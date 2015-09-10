@@ -7,8 +7,10 @@
  */
 
 namespace AppBundle\Form\Type;
+use AppBundle\EventListener\AddCollegeFieldSubscriber;
+use AppBundle\EventListener\AddStudentDelegationFieldSubscriber;
+use AppBundle\EventListener\AddUniversityFieldSubscriber;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
@@ -16,6 +18,14 @@ class ProfileType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $factory = $builder->getFormFactory();
+        $universitySubscriber = new AddUniversityFieldSubscriber($factory);
+        $builder->addEventSubscriber($universitySubscriber);
+        $collegeSubscriber = new AddCollegeFieldSubscriber($factory);
+        $builder->addEventSubscriber($collegeSubscriber);
+        $studentDelegationSubscriber = new AddStudentDelegationFieldSubscriber($factory);
+        $builder->addEventSubscriber($studentDelegationSubscriber);
+
 
         $builder
             ->add('firstname', null, array(
@@ -23,26 +33,6 @@ class ProfileType extends BaseType
             ))
             ->add('lastname', null, array(
                 'label' => 'label.last_name'
-            ))
-            ->add('university','entity', array(
-                'class' => 'AppBundle\Entity\University',
-                'label' => 'label.university',
-                'placeholder' => 'Selecciona tu Universidad',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('u')->orderBy('u.name', 'ASC');
-                },
-                'mapped' => false,
-            ))
-            ->add('college','entity', array(
-                'class' => 'AppBundle\Entity\College',
-                'label' => 'label.college',
-                'placeholder' => '--------',
-                'mapped' => false
-            ))
-            ->add('studentdelegation','entity', array(
-                'class' => 'AppBundle\Entity\StudentDelegation',
-                'label' => 'label.student_delegation',
-                'placeholder' => '--------'
             ))
             ->add('email')
             ->add('phone', null, array(

@@ -45,9 +45,13 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Convention", mappedBy="administrators")
      */
     private $admin_conventions;
-    /** @ORM\ManyToOne(targetEntity="\AppBundle\Entity\StudentDelegation", inversedBy="users") */
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\StudentDelegation", inversedBy="users")
+     */
     private $student_delegation;
-    /** @ORM\OneToMany(targetEntity="\AppBundle\Entity\Registration", mappedBy="user") */
+    /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Registration", mappedBy="user")
+     */
     private $registrations;
 
     public function __construct()

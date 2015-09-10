@@ -246,7 +246,7 @@ class Convention
      */
     public function setDomain($domain)
     {
-        $this->domain = $domain;
+        $this->domain = strtoupper($domain);
 
         return $this;
     }
