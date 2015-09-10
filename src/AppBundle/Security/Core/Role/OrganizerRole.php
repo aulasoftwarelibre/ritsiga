@@ -20,12 +20,18 @@ class OrganizerRole implements RoleInterface
     private $role;
 
     /**
+     * @var string
+     */
+    private $code;
+
+    /**
      * OrganizerRole constructor.
      * @param Convention $convention
      */
     public function __construct(Convention $convention)
     {
-        $this->role = 'ROLE_RITSIGA_ORGANIZER_' . strtoupper($convention->getDomain());
+        $this->role = 'ROLE_RITSIGA_ORGANIZER_' . $convention->getDomain();
+        $this->code = strtoupper($convention->getDomain());
     }
 
     /**
@@ -41,5 +47,15 @@ class OrganizerRole implements RoleInterface
     public function getRole()
     {
         return $this->role;
+    }
+
+    public function getRoles($object, $attributes)
+    {
+        $roles = [];
+        foreach ($attributes as $attribute) {
+            $roles[] = sprintf('ROLE_%s_RITSIGA_ADMIN_%s_%s', $this->code, $object, $attribute);
+        }
+
+        return $roles;
     }
 }

@@ -14,6 +14,7 @@ use AppBundle\Site\SiteManager;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
 
 class AdminVoter implements VoterInterface
@@ -93,21 +94,15 @@ class AdminVoter implements VoterInterface
             }
 
             // as soon as at least one attribute is supported, default is to deny access
-            // $vote = self::ACCESS_DENIED;
+            $vote = self::ACCESS_DENIED;
 
-            /** @var UserInterface $user */
-            $currentSite = $this->siteManager->getCurrentSite();
-
-//            $roles = $this->roleHierarchy->getReachableRoles($token->getRoles());
-//
-//            if (in_array(new OrganizerRole($currentSite), $roles)) {
-//                return self::ACCESS_GRANTED;
-//            }
-
-            $organizerRole = new OrganizerRole($currentSite);
-
-            if ($token->getUser()->hasRole($organizerRole->getRole())) {
-                return self::ACCESS_GRANTED;
+            foreach($token->getUser()->getRoles() as $role) {
+                $roleHierarchy = $this->roleHierarchy->getReachableRoles([new Role($role)]);
+                foreach($roleHierarchy as $node) {
+                    if ($node->getRole() == $attribute) {
+                        return self::ACCESS_GRANTED;
+                    }
+                }
             }
         }
 

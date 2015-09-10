@@ -14,6 +14,8 @@ use AppBundle\Site\SiteManager;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\Role\RoleHierarchy;
 
 abstract class AbstractOrganizationVoter implements VoterInterface
 {
@@ -21,15 +23,20 @@ abstract class AbstractOrganizationVoter implements VoterInterface
      * @var SiteManager
      */
     protected $siteManager;
+    /**
+     * @var RoleHierarchy
+     */
+    private $roleHierarchy;
 
     /**
      * Construct
      *
      * @param SiteManager $siteManager
      */
-    function __construct(SiteManager $siteManager)
+    function __construct(SiteManager $siteManager, RoleHierarchy $roleHierarchy)
     {
         $this->siteManager = $siteManager;
+        $this->roleHierarchy = $roleHierarchy;
     }
 
     /**
@@ -42,7 +49,8 @@ abstract class AbstractOrganizationVoter implements VoterInterface
     public function supportsAttribute($attribute)
     {
         $entity = strtoupper(join('', array_slice(explode('\\', $this->getClass()), -1)));
-        return preg_match("/ROLE_RITSIGA_ADMIN_{$entity}_[CREATE|DELETE|EDIT|VIEW]/", $attribute) === 1 ? true : false;
+        $code = strtoupper($this->siteManager->getCurrentSite()->getDomain());
+        return preg_match("/ROLE_{$code}_RITSIGA_ADMIN_{$entity}_[CREATE|DELETE|EDIT|VIEW]/", $attribute) === 1 ? true : false;
     }
 
     /**
@@ -94,12 +102,17 @@ abstract class AbstractOrganizationVoter implements VoterInterface
             // as soon as at least one attribute is supported, default is to deny access
             $vote = self::ACCESS_DENIED;
 
-            /** @var UserInterface $user */
-            $currentSite = $this->siteManager->getCurrentSite();
-            $organizerRole = new OrganizerRole($currentSite);
+            if ($token->getUser()->hasRole('ROLE_ADMIN')) {
+                return self::ACCESS_ABSTAIN;
+            }
 
-            if ($token->getUser()->hasRole($organizerRole->getRole())) {
-                return self::ACCESS_GRANTED;
+            foreach($token->getUser()->getRoles() as $role) {
+                $roleHierarchy = $this->roleHierarchy->getReachableRoles([new Role($role)]);
+                foreach($roleHierarchy as $node) {
+                    if ($node->getRole() == $attribute) {
+                        return self::ACCESS_GRANTED;
+                    }
+                }
             }
         }
 

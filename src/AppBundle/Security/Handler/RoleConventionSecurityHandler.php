@@ -26,17 +26,12 @@ class RoleConventionSecurityHandler extends RoleSecurityHandler
         $this->siteManager = $siteManager;
     }
 
-
-    public function isGranted(AdminInterface $admin, $attributes, $object = null)
+    /**
+     * {@inheritdoc}
+     */
+    public function getBaseRole(AdminInterface $admin)
     {
-        $is_auth = parent::isGranted($admin, $attributes, $object);
-
-//        if($is_auth)
-//        {
-//            $is_auth = $this->authorizationChecker->isGranted('ORGANIZE', $object);
-//        }
-
-        return $is_auth;
+        $code = $this->siteManager->getCurrentSite()->getDomain();
+        return 'ROLE_'.str_replace('.', '_', strtoupper($code . "." . $admin->getCode())).'_%s';
     }
-
 }

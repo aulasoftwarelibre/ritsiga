@@ -10,6 +10,7 @@ namespace AppBundle\Security\Voter;
 
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ConventionVoter extends AbstractOrganizationVoter
 {

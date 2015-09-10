@@ -73,6 +73,12 @@
                                             <a href="{{ url('fos_user_profile_show') }}" class="btn btn-default btn-flat">{{ 'Profile' | trans }}</a>
                                         </div>
 
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <div class="pull-left">
+                                                <a href="{{ url('sonata_admin_dashboard') }}" class="btn btn-default btn-flat">{{ 'Admin' | trans }}</a>
+                                            </div>
+                                        {% endif %}
+
                                         <div class="pull-right">
                                             <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat"> {{ 'Logout' | trans }}</a>
                                         </div>

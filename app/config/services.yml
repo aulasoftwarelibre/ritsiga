@@ -5,225 +5,230 @@ parameters:
 
 services:
 #    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-     ritsiga.site.manager:
-         class: AppBundle\Site\SiteManager
+#       class: AppBundle\Directory\ClassName
+#       arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    ritsiga.site.manager:
+        class: AppBundle\Site\SiteManager
 
-     ritsiga.listener.site:
-         class: AppBundle\EventListener\CurrentSiteListener
-         arguments:
-             - "@ritsiga.site.manager"
-             - "@doctrine.orm.default_entity_manager"
-             - "@router"
-             - "%base_code%"
-         tags:
-             -
-                 name: kernel.event_listener
-                 method: onKernelRequest
-                 event: kernel.request
-                 priority: 1
+    ritsiga.listener.site:
+        class: AppBundle\EventListener\CurrentSiteListener
+        arguments:
+           - "@ritsiga.site.manager"
+           - "@doctrine.orm.default_entity_manager"
+           - "@router"
+           - "%base_code%"
+        tags:
+           -
+              name: kernel.event_listener
+              method: onKernelRequest
+              event: kernel.request
+              priority: 1
 
-     ritsiga.listener.generatepdf:
-         class: AppBundle\EventListener\GeneratePDFListener
-         arguments:
-             - "@knp_snappy.pdf"
-             - "@twig"
-             - "@kernel"
-         tags:
-             -
-                 name: kernel.event_listener
-                 method: onRegistrationConfirmed
-                 event: registration.confirmed
-                 priority: 0
+    ritsiga.listener.generatepdf:
+        class: AppBundle\EventListener\GeneratePDFListener
+        arguments:
+           - "@knp_snappy.pdf"
+           - "@twig"
+           - "@kernel"
+        tags:
+           -
+              name: kernel.event_listener
+              method: onRegistrationConfirmed
+              event: registration.confirmed
+              priority: 0
 
-     ritsiga.listener.maintenance:
-         class: AppBundle\EventListener\MaintenanceListener
-         arguments:
-             - "@ritsiga.site.manager"
-             - "@service_container"
-         tags:
-             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 5 }
+    ritsiga.listener.maintenance:
+        class: AppBundle\EventListener\MaintenanceListener
+        arguments:
+           - "@ritsiga.site.manager"
+           - "@service_container"
+        tags:
+           - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 5 }
 
-     ritsiga.listener.notification:
-         class: AppBundle\EventListener\NotificationListener
-         arguments:
-             - "@service_container"
-         tags:
-             - { name: kernel.event_subscriber }
-             - { name: doctrine.event_listener, event: preUpdate }
+    ritsiga.listener.notification:
+        class: AppBundle\EventListener\NotificationListener
+        arguments:
+           - "@service_container"
+        tags:
+           - { name: kernel.event_subscriber }
+           - { name: doctrine.event_listener, event: preUpdate }
 
-     sylius.scenario.flow:
-         class: AppBundle\Process\SyliusScenario
-         calls:
-             - [ setContainer, [ @service_container ] ]
-         tags:
-             -
-                 name: sylius.process.scenario
-                 alias: asamblea
+    sylius.scenario.flow:
+        class: AppBundle\Process\SyliusScenario
+        calls:
+           - [ setContainer, [ @service_container ] ]
+        tags:
+           -
+              name: sylius.process.scenario
+              alias: asamblea
 
-     my_user_provider:
-         class: AppBundle\Security\Core\User\FOSUBUserProvider
-         arguments: [ @fos_user.user_manager, { google: google_id, sir: sir_id } ]
+    my_user_provider:
+        class: AppBundle\Security\Core\User\FOSUBUserProvider
+        arguments: [ @fos_user.user_manager, { google: google_id, sir: sir_id } ]
 
 
 ##### SONATA ADMIN ######
 
-     ritsiGA.admin.convention:
-         class: AppBundle\Admin\ConventionAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Asambleas" }
-         arguments:
-             - ~
-             - AppBundle\Entity\Convention
-             - AppBundle:Backend\ConventionCRUD
+    ritsiGA.admin.convention:
+        class: AppBundle\Admin\ConventionAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Asambleas" }
+        arguments:
+           - ~
+           - AppBundle\Entity\Convention
+           - AppBundle:Backend\ConventionCRUD
 
-     ritsiGA.admin.participanttype:
-         class: AppBundle\Admin\ParticipantTypeAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Tipos de Participantes" }
-         arguments:
-             - ~
-             - AppBundle\Entity\ParticipantType
-             - ~
+    ritsiGA.admin.participanttype:
+        class: AppBundle\Admin\ParticipantTypeAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Tipos de Participantes" }
+        arguments:
+           - ~
+           - AppBundle\Entity\ParticipantType
+           - ~
 
-     ritsiGA.admin.university:
-         class: AppBundle\Admin\UniversityAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Universidades" }
-         arguments:
-             - ~
-             - AppBundle\Entity\University
-             - ~
+    ritsiGA.admin.university:
+        class: AppBundle\Admin\UniversityAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Universidades" }
+        arguments:
+           - ~
+           - AppBundle\Entity\University
+           - ~
 
-     ritsiGA.admin.participant:
-         class: AppBundle\Admin\ParticipantAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Participantes" }
-         arguments:
-             - ~
-             - AppBundle\Entity\Participant
-             - ~
+    ritsiGA.admin.participant:
+        class: AppBundle\Admin\ParticipantAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Participantes" }
+        arguments:
+           - ~
+           - AppBundle\Entity\Participant
+           - ~
 
-     ritsiGA.admin.college:
-         class: AppBundle\Admin\CollegeAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Facultades" }
-         arguments:
-             - ~
-             - AppBundle\Entity\College
-             - ~
+    ritsiGA.admin.college:
+        class: AppBundle\Admin\CollegeAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Facultades" }
+        arguments:
+           - ~
+           - AppBundle\Entity\College
+           - ~
 
-     ritsiGA.admin.studentdelegation:
-         class: AppBundle\Admin\StudentDelegationAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Delegaciones de Estudiantes" }
-         arguments:
-             - ~
-             - AppBundle\Entity\StudentDelegation
-             - ~
+    ritsiGA.admin.studentdelegation:
+        class: AppBundle\Admin\StudentDelegationAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Delegaciones de Estudiantes" }
+        arguments:
+           - ~
+           - AppBundle\Entity\StudentDelegation
+           - ~
 
-     ritsiGA.admin.registration:
-         class: AppBundle\Admin\RegistrationAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Inscripciones" }
-         arguments:
-             - ~
-             - AppBundle\Entity\Registration
-             - ~
+    ritsiGA.admin.registration:
+        class: AppBundle\Admin\RegistrationAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Inscripciones" }
+        arguments:
+           - ~
+           - AppBundle\Entity\Registration
+           - ~
 
-     sonata.user.admin.group:
-         abstract: true
-         public: false
+    sonata.user.admin.group:
+        abstract: true
+        public: false
 
 ## FORMULARIOS ###
 
-     ritsiga.profile.form.type:
-         class: AppBundle\Form\Type\ProfileType
-         arguments: [%fos_user.model.user.class%]
-         tags:
-             - { name: form.type, alias: ritsiga_user_profile }
+    ritsiga.profile.form.type:
+        class: AppBundle\Form\Type\ProfileType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+           - { name: form.type, alias: ritsiga_user_profile }
 
-     ritsiga.participant.form.type:
-         class: AppBundle\Form\ParticipantType
-         arguments: [@ritsiga.site.manager, @ritsiga.repository.participanttype]
-         tags:
-             - { name: form.type, alias: participant }
+    ritsiga.participant.form.type:
+        class: AppBundle\Form\ParticipantType
+        arguments: [@ritsiga.site.manager, @ritsiga.repository.participanttype]
+        tags:
+           - { name: form.type, alias: participant }
 
-     ritsiga.registration.form.type:
-         class: AppBundle\Form\RegistrationType
-         arguments: [@ritsiga.participant.form.type]
-         tags:
-             - { name: form.type, alias: registration }
+    ritsiga.registration.form.type:
+        class: AppBundle\Form\RegistrationType
+        arguments: [@ritsiga.participant.form.type]
+        tags:
+           - { name: form.type, alias: registration }
 
-     ritsiga.profile.form.handler:
-         class: AppBundle\Form\Type\ProfileFormHandler
-         arguments: [@fos_user.profile.form, @request, @fos_user.user_manager]
-         scope: request
-         public: false
+    ritsiga.profile.form.handler:
+        class: AppBundle\Form\Type\ProfileFormHandler
+        arguments: [@fos_user.profile.form, @request, @fos_user.user_manager]
+        scope: request
+        public: false
 
 ## REPOSITORY
-     ritsiga.repository.convention:
-         class: AppBundle\Doctrine\ORM\ConventionRepository
-         factory_service: doctrine.orm.entity_manager
-         factory_method: getRepository
-         arguments: ['AppBundle\Entity\Convention']
+    ritsiga.repository.convention:
+        class: AppBundle\Doctrine\ORM\ConventionRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['AppBundle\Entity\Convention']
 
-     ritsiga.repository.participanttype:
-         class: AppBundle\Doctrine\ORM\ParticipationTypeRepository
-         factory_service: doctrine.orm.entity_manager
-         factory_method: getRepository
-         arguments: ['AppBundle\Entity\ParticipantType']
+    ritsiga.repository.participanttype:
+        class: AppBundle\Doctrine\ORM\ParticipationTypeRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['AppBundle\Entity\ParticipantType']
 
-     ritsiga.repository.registration:
-         class: AppBundle\Doctrine\ORM\RegistrationRepository
-         factory_service: doctrine.orm.entity_manager
-         factory_method: getRepository
-         arguments: ['AppBundle\Entity\Registration']
+    ritsiga.repository.registration:
+        class: AppBundle\Doctrine\ORM\RegistrationRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['AppBundle\Entity\Registration']
 
 ## TWIG
 
-     ritsiGA.twig.conventionextension:
-         class: AppBundle\Twig\ConventionExtension
-         arguments: [ @request_stack, @ritsiga.site.manager ]
-         public: false
-         tags:
-             - { name: twig.extension }
+    ritsiGA.twig.conventionextension:
+        class: AppBundle\Twig\ConventionExtension
+        arguments: [ @request_stack, @ritsiga.site.manager ]
+        public: false
+        tags:
+           - { name: twig.extension }
 
 ## HANDLER
 
-     ritsiGA.security.handler.convention:
-         class: AppBundle\Security\Handler\RoleConventionSecurityHandler
-         arguments: [@security.authorization_checker, ['ROLE_SUPER_ADMIN'], @ritsiga.site.manager]
+    ritsiGA.security.handler.convention:
+        class: AppBundle\Security\Handler\RoleConventionSecurityHandler
+        arguments: [@security.authorization_checker, ['ROLE_SUPER_ADMIN'], @ritsiga.site.manager]
+
+    security.role_hierarchy:
+        class: AppBundle\Security\Core\Role\RoleHierarchy
+        public: false
+        arguments: [ %security.role_hierarchy.roles%, @doctrine.orm.entity_manager ]
 
 ## VOTERS
 
-     ritsiGA.security_voter.convention_voter:
-         class: AppBundle\Security\Voter\ConventionVoter
-         arguments: [@ritsiga.site.manager]
-         tags:
-             - { name: security.voter }
+    ritsiGA.security_voter.convention_voter:
+        class: AppBundle\Security\Voter\ConventionVoter
+        arguments: [@ritsiga.site.manager, @security.role_hierarchy]
+        tags:
+           - { name: security.voter }
 
-     ritsiGA.security_voter.participantype_voter:
-         class: AppBundle\Security\Voter\ParticipantTypeVoter
-         arguments: [@ritsiga.site.manager]
-         tags:
-             - { name: security.voter }
+    ritsiGA.security_voter.participantype_voter:
+        class: AppBundle\Security\Voter\ParticipantTypeVoter
+        arguments: [@ritsiga.site.manager, @security.role_hierarchy]
+        tags:
+           - { name: security.voter }
 
-     ritsiGA.security_voter.participant_voter:
-         class: AppBundle\Security\Voter\ParticipantVoter
-         arguments: [@ritsiga.site.manager]
-         tags:
-             - { name: security.voter }
+    ritsiGA.security_voter.participant_voter:
+        class: AppBundle\Security\Voter\ParticipantVoter
+        arguments: [@ritsiga.site.manager, @security.role_hierarchy]
+        tags:
+           - { name: security.voter }
 
-     ritsiGA.security_voter.registration_voter:
-         class: AppBundle\Security\Voter\RegistrationVoter
-         arguments: [@ritsiga.site.manager]
-         tags:
-             - { name: security.voter }
+    ritsiGA.security_voter.registration_voter:
+        class: AppBundle\Security\Voter\RegistrationVoter
+        arguments: [@ritsiga.site.manager, @security.role_hierarchy]
+        tags:
+           - { name: security.voter }
 
-     ritsiGA.security_voter.organizer_voter:
-         class: AppBundle\Security\Voter\AdminVoter
-         arguments: [ @ritsiga.site.manager, @security.role_hierarchy ]
-         tags:
-            - { name: security.voter }
+#    ritsiGA.security_voter.organizer_voter:
+#        class: AppBundle\Security\Voter\AdminVoter
+#        arguments: [ @ritsiga.site.manager, @security.role_hierarchy ]
+#        tags:
+#          - { name: security.voter }
