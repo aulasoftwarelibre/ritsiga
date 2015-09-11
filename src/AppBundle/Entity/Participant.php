@@ -49,6 +49,7 @@ class Participant {
      *
      * @ORM\Column(name="email", type="string", length=255)
      * @Assert\Email()
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -66,6 +67,21 @@ class Participant {
      * @Assert\NotBlank
      */
     private $dni;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="size", type="string", length=5, nullable=true)
+     */
+    private $size;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_of_birth", type="date")
+     * @Assert\NotBlank
+     */
+    private $dateOfBirth;
 
     /**
      * @ORM\JoinColumn(
@@ -250,6 +266,38 @@ class Participant {
     }
 
     /**
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param string $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * @param \DateTime $dateOfBirth
+     */
+    public function setDateOfBirth($dateOfBirth)
+    {
+        $this->dateOfBirth = $dateOfBirth;
+    }
+
+    /**
      * To String
      * @return string
      */
@@ -257,6 +305,4 @@ class Participant {
     {
         return sprintf("%s %s", $this->getName(), $this->getLastName());
     }
-
-
 }
