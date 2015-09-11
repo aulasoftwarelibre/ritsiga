@@ -7,6 +7,8 @@
  */
 
 namespace AppBundle\Entity;
+
+
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -37,6 +39,7 @@ class Registration {
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=140)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -44,6 +47,7 @@ class Registration {
      * @var string
      *
      * @ORM\Column(name="position", type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $position;
 

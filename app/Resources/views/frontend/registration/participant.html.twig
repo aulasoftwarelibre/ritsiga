@@ -11,11 +11,16 @@
                         <div class="col-md-10"><h3 class="box-title">Completa los siguientes datos</h3></div>
                     </div>
                 </div><!-- /.box-header -->
+                {{ form_start(form) }}
                 <div class="box-body">
-                    {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    {{ form_end(form) }}
                 </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <button action="submit" class="btn btn-success">Enviar</button>
+                    <a href="{{ path('registration', {'code': convention.code}) }}" class="btn btn-danger">Cancelar</a>
+
+                </div>
+                {{ form_end(form) }}
             </div><!-- /.box -->
         </div><!-- /.col -->
 
@@ -24,4 +29,13 @@
     {% endblock %}
 
 
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
 {% endblock %}

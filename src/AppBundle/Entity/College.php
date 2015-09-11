@@ -118,6 +118,7 @@ class College
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\AcademicDegree", inversedBy="colleges")
+     * @Assert\Count(min="1", minMessage="error.select_degree")
      */
     private $academic_degrees;
 
@@ -134,7 +135,7 @@ class College
      */
     public function __construct()
     {
-        $this->academic_degrees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->academic_degrees = new ArrayCollection();
         $this->students_delegations = new ArrayCollection();
     }
 

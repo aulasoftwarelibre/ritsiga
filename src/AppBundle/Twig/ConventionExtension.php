@@ -38,9 +38,29 @@ class ConventionExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('convention_url',[$this, 'conventionURL']),
-            new \Twig_SimpleFunction('convention_domain',[$this, 'conventionDomain']),
+            new \Twig_SimpleFunction('convention_url', [$this, 'conventionURL']),
+            new \Twig_SimpleFunction('convention_code', [$this, 'conventionCode']),
         ];
+    }
+
+    /**
+     * @{inheritdoc}
+     */
+    public function getGlobals()
+    {
+        return [
+            'convention' => $this->getCurrentConvention(),
+        ];
+    }
+
+    /**
+     * Returns the current convention
+     *
+     * @return Convention
+     */
+    public function getCurrentConvention()
+    {
+        return $this->siteManager->getCurrentSite();
     }
 
     /**
@@ -53,21 +73,21 @@ class ConventionExtension extends \Twig_Extension
     public function conventionURL(Convention $convention)
     {
         $request = $this->requestStack->getCurrentRequest();
-        $domain = $convention->getDomain();
+        $code = $convention->getCode();
         $url = str_replace('http://', '', $request->getUri());
-        $url_complete = "http://" . $domain . "." . $url;
+        $url_complete = "http://" . $code . "." . $url;
         return $url_complete;
     }
 
     /**
-     * Returns code domain
+     * Returns code code
      *
      * @return string
      */
-    public function conventionDomain()
+    public function conventionCode()
     {
         $convention = $this->siteManager->getCurrentSite();
-        return $convention->getDomain();
+        return $convention->getCode();
     }
 
     /**

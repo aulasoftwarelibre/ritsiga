@@ -7,24 +7,20 @@
  */
 
 namespace AppBundle\Process\Step;
-use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
-use Sylius\Bundle\FlowBundle\Process\Step\ControllerStep;
+
 
 use AppBundle\Form\StudentDelegationType;
+use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
-class StudentDelegationStep extends ControllerStep
+class StudentDelegationStep extends BaseStep
 {
     public function displayAction(ProcessContextInterface $context)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $request = $context->getRequest();
-        $siteManager = $this->container->get('ritsiga.site.manager');
-        $convention = $siteManager->getCurrentSite();
+        $user = $this->getUser();
         $student=$user->getStudentDelegation();
         $form = $this->createForm(new StudentDelegationType(), $student);
 
         return $this->render(':frontend/registration/process:student_delegation.html.twig', array(
-            'convention' => $convention,
             'form' => $form->createView(),
             'user' => $user,
             'context' => $context
@@ -34,21 +30,23 @@ class StudentDelegationStep extends ControllerStep
     public function forwardAction(ProcessContextInterface $context)
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $student=$user->getStudentDelegation();
+        $user = $this->getUser();
+        $student = $user->getStudentDelegation();
 
         $form = $this->createForm(new StudentDelegationType(), $student);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $em->persist($student);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans( 'Your student delegation has been successfully updated'));
+            $this->addFlash('warning', $this->get('translator')->trans('Your student delegation has been successfully updated'));
             return $this->complete();
         }
 
+        return $this->render(':frontend/registration/process:student_delegation.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context
+        ));
     }
-
 }

@@ -1,10 +1,10 @@
 {%  extends ":frontend/registration:step.html.twig" %}
 
 {% block titlestep %}
-<h3 class="box-title"> Su Delegación de Estudios</h3>
+<h3 class="box-title">{{ 'label.student_delegation' | trans }}</h3>
 {% endblock %}
+
 {% block formstep %}
     {{ form_errors(form) }}
-
     {{ form_rest(form) }}
 {% endblock %}

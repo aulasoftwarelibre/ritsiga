@@ -26,6 +26,7 @@ class CollegeType extends AbstractType
             ->add('phone', null, array('label' => 'label.phone'))
             ->add('academic_degrees', null, array(
                 'label' => 'label.academic_degrees',
+                'required' => false,
             ))
         ;
     }

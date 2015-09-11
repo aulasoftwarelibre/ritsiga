@@ -9,6 +9,7 @@
 namespace AppBundle\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ResponsibleType extends AbstractType
@@ -16,12 +17,24 @@ class ResponsibleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('position', null, array('label' => 'label.position'));
+            ->add('name', null, array(
+                'label' => 'label.name',
+                'attr' => array(
+                    'field_help' => 'help.responsible_name',
+                ),
+            ))
+            ->add('position', null, array(
+                'label' => 'label.position',
+                'attr' => array(
+                    'field_help' => 'help.responsible_position',
+                ),
+            ))
+        ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Registration'
         ));

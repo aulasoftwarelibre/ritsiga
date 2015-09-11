@@ -5,10 +5,21 @@
 {% endblock %}
 {% block descriptionstep %}
     <div>Antes de proceder con su inscripción, acepta las siguientes condiciones:</div>
-    <p>1. Que Vd es representante legal de la asocicación/delegación/consejo de estudiantes del siguiente centro: </p>
-    <p>2. Que cuenta con autorización para realizar este proceso </p>
-    <p>3. Que todos los datos que va a indicar son auténticos </p>
-    <p>Una vez rellenados los datos de la Universidad, Facultad y su Delegación de Estudiantes
-    deberá de identificarse en el cargo y proceder a realizar las inscripciones de los estudiantes</p>
+    <ol>
+        <li>Que Vd es representante legal de la asocicación/delegación/consejo de estudiantes del siguiente centro:
+            <ul>
+                <li><strong>Universidad</strong>: {{ app.user.university }}</li>
+                <li><strong>Centro</strong>: {{ app.user.college }}</li>
+                <li><strong>Delegación</strong>: {{ app.user.studentDelegation }}</li>
+            </ul>
+        </li>
+        <li>Que cuenta con autorización para realizar este proceso.</li>
+        <li>Que todos los datos que va a indicar son auténticos.</li>
+    </ol>
+    <p>
+        Una vez rellenados los datos de la Universidad, Facultad y su Delegación de Estudiantes
+        deberá de indicar el responsable que firmará la acreditación.
+        A continuación podrá realizar las inscripciones de los estudiantes.
+    </p>
 {% endblock %}
 

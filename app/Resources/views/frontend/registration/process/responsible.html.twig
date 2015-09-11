@@ -3,8 +3,18 @@
 {% block titlestep %}
     <h3 class="box-title"> Responsable</h3>
 {% endblock %}
+{% block descriptionstep %}
+    La acreditación es el documento formal que certifica
+    que un asociado es representante oficial de las titulaciones que se
+    imparten en una Universidad. Para poder generar las acreditaciones
+    necesitamos que nos indique los datos de un cargo de tu delegación/consejo
+    que pueda dar fe.
+{% endblock %}
 {% block formstep %}
     {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.position) }}
 
     {{ form_rest(form) }}
 {% endblock %}

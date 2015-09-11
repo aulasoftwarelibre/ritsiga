@@ -1,48 +1,42 @@
-{%  extends ":frontend:base.html.twig" %}
+{% extends ":frontend:base.html.twig" %}
 {% block javascripts %}
     {{ parent() }}
     <script type="application/javascript">
-        $('#step_welcome').removeClass( "btn-default" ).addClass( "btn-warning" );
-        if ('{{ context.currentStep.name }}' == "university")
-        {
-            $('#step_university').removeClass( "btn-default" ).addClass( "btn-warning" );
+        $('#step_welcome').removeClass("btn-default").addClass("btn-warning");
+        if ('{{ context.currentStep.name }}' == "university") {
+            $('#step_university').removeClass("btn-default").addClass("btn-warning");
         }
-        if ('{{ context.currentStep.name }}' == 'college')
-        {
-            $('#step_university').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_college').removeClass( "btn-default" ).addClass( "btn-warning" );
+        if ('{{ context.currentStep.name }}' == 'college') {
+            $('#step_university').removeClass("btn-default").addClass("btn-warning");
+            $('#step_college').removeClass("btn-default").addClass("btn-warning");
         }
-        if ('{{ context.currentStep.name }}' == 'student_delegation')
-        {
-            $('#step_university').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_college').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_student').removeClass( "btn-default" ).addClass( "btn-warning" );
+        if ('{{ context.currentStep.name }}' == 'student_delegation') {
+            $('#step_university').removeClass("btn-default").addClass("btn-warning");
+            $('#step_college').removeClass("btn-default").addClass("btn-warning");
+            $('#step_student').removeClass("btn-default").addClass("btn-warning");
         }
-        if ('{{ context.currentStep.name }}' == 'responsible')
-        {
-            $('#step_university').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_college').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_student').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_responsible').removeClass( "btn-default" ).addClass( "btn-warning" );
+        if ('{{ context.currentStep.name }}' == 'responsible') {
+            $('#step_university').removeClass("btn-default").addClass("btn-warning");
+            $('#step_college').removeClass("btn-default").addClass("btn-warning");
+            $('#step_student').removeClass("btn-default").addClass("btn-warning");
+            $('#step_responsible').removeClass("btn-default").addClass("btn-warning");
         }
-        if ('{{ context.currentStep.name }}' == 'participants')
-        {
-            $('#step_university').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_college').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_student').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_responsible').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_participants').removeClass( "btn-default" ).addClass( "btn-warning" );
+        if ('{{ context.currentStep.name }}' == 'participants') {
+            $('#step_university').removeClass("btn-default").addClass("btn-warning");
+            $('#step_college').removeClass("btn-default").addClass("btn-warning");
+            $('#step_student').removeClass("btn-default").addClass("btn-warning");
+            $('#step_responsible').removeClass("btn-default").addClass("btn-warning");
+            $('#step_participants').removeClass("btn-default").addClass("btn-warning");
         }
-        if ('{{ context.currentStep.name }}' == 'invoice')
-        {
-            $('#step_university').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_college').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_student').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_responsible').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#step_participants').removeClass( "btn-default" ).addClass( "btn-warning" );
-            $('#left_column').removeClass( "col-md-3" ).addClass( "col-md-1" );
-            $('#center_column').removeClass( "col-md-6" ).addClass( "col-md-9" );
-            $('#right_column').removeClass( "col-md-3" ).addClass( "col-md-1" );
+        if ('{{ context.currentStep.name }}' == 'invoice') {
+            $('#step_university').removeClass("btn-default").addClass("btn-warning");
+            $('#step_college').removeClass("btn-default").addClass("btn-warning");
+            $('#step_student').removeClass("btn-default").addClass("btn-warning");
+            $('#step_responsible').removeClass("btn-default").addClass("btn-warning");
+            $('#step_participants').removeClass("btn-default").addClass("btn-warning");
+            $('#left_column').removeClass("col-md-3").addClass("col-md-1");
+            $('#center_column').removeClass("col-md-6").addClass("col-md-9");
+            $('#right_column').removeClass("col-md-3").addClass("col-md-1");
 
         }
 
@@ -75,34 +69,33 @@
     </div>
     </div>
     <div class="row">
-    <div class="col-md-3" id="left_column"></div>
-    <div class="col-md-6" id="center_column">
-    <div class="box box-warning">
-<div class ="box-header ui-sortable-handle">
-    {% block titlestep %}{% endblock %}
+        <div class="col-md-6 col-md-offset-3" id="center_column">
+            <div class="box box-warning">
+                <form action="{{ path('sylius_flow_forward', {'scenarioAlias': 'asamblea', 'stepName': context.currentStep.name}) }}" method="post">
+                    <div class ="box-header ui-sortable-handle">
+                        {% block titlestep %}{% endblock %}
+                    </div>
+                    <div class="box-body">
+                            <div class="info">
+                            {% block descriptionstep %}{% endblock %}
+                            </div>
+                            {% block formstep %}{% endblock %}
+                            {% block buttonsstep %}{% endblock %}
+                    </div>
+                    <div class="box-footer">
+                        {% if context.firstStep!=1  %}
+                            <a href="{{ path('sylius_flow_display', {'scenarioAlias': 'asamblea', 'stepName': context.previousStep.name }) }}" class="btn btn-default">Volver</a> &nbsp;
+                        {% endif %}
+                        <button class="btn btn-warning" type="submit" id="aceptar">Aceptar <i class="icon-forward icon-white"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row" id="participants"></div>
 
-        <div class="box-body">
-            {% block descriptionstep %}{% endblock %}
-<form action="{{ path('sylius_flow_forward', {'scenarioAlias': 'asamblea', 'stepName': context.currentStep.name}) }}" method="post">
-    {% block formstep %}{% endblock %}
-        </div>
-        <div class="box-footer clearfix" align="center">
-                {% if context.firstStep!=1  %}
-                    <a href="{{ path('sylius_flow_display', {'scenarioAlias': 'asamblea', 'stepName': context.previousStep.name }) }}" class="btn btn-default">Volver</a> &nbsp;
-                {% endif %}
-                <button class="btn btn-warning" type="submit" id="aceptar">Aceptar <i class="icon-forward icon-white"></i></button>
-            </form>
-    {% block buttonsstep %}
-    {% endblock %}
-        </div>
-    </div>
-        <div class="col-md-3" id="right_column"></div>
-    </div>
-
-    </div><div class="row" id="participants"></div>
-
-    </div>
+</div>
 
 
 {% endblock %}

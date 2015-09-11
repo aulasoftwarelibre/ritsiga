@@ -7,29 +7,23 @@
  */
 
 namespace AppBundle\Process\Step;
+
+
 use AppBundle\Entity\Registration;
 use AppBundle\Form\ResponsibleType;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
-use Sylius\Bundle\FlowBundle\Process\Step\ControllerStep;
 
-class ResponsibleStep extends ControllerStep
+class ResponsibleStep extends BaseStep
 {
     public function displayAction(ProcessContextInterface $context)
     {
-
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $request = $context->getRequest();
-        $siteManager = $this->container->get('ritsiga.site.manager');
-        $convention = $siteManager->getCurrentSite();
-
+        $convention = $this->getCurrentSite();
         $registration=new Registration();
         $registration->setConvention($convention);
         $form = $this->createForm(new ResponsibleType(), $registration);
 
         return $this->render(':frontend/registration/process:responsible.html.twig', array(
-            'convention' => $convention,
             'form' => $form->createView(),
-            'user' => $user,
             'context' => $context
         ));
     }
@@ -37,10 +31,7 @@ class ResponsibleStep extends ControllerStep
     public function forwardAction(ProcessContextInterface $context)
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $siteManager = $this->container->get('ritsiga.site.manager');
-        $convention = $siteManager->getCurrentSite();
-        $em = $this->getDoctrine()->getManager();
+        $convention = $this->getCurrentSite();
         $registration=new Registration();
         $registration->setConvention($convention);
         $form = $this->createForm(new ResponsibleType(), $registration);
@@ -48,12 +39,20 @@ class ResponsibleStep extends ControllerStep
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
             $registration->setUser($user);
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($registration);
             $em->flush();
             $this->addFlash('warning', $this->get('translator')->trans( 'Your registration has been saved, you can now add registrations'));
+
             return $this->complete();
         }
 
+        return $this->render(':frontend/registration/process:responsible.html.twig', array(
+            'form' => $form->createView(),
+            'context' => $context
+        ));
     }
 }
