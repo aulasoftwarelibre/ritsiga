@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="6">
                 <source>label.college</source>
-                <target>Facultad</target>
+                <target>Centro</target>
             </trans-unit>
             <trans-unit id="7">
                 <source>label.student_delegation</source>
-                <target>Consejo de Estudiantes</target>
+                <target>Órgano de Representación Estudiantil</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>label.maintenance</source>
@@ -100,7 +100,7 @@
             </trans-unit>
             <trans-unit id="24">
                 <source>Your university has been successfully updated</source>
-                <target>Su Universidad ha sido actualizada correctamente</target>
+                <target>Su universidad ha sido actualizada correctamente</target>
             </trans-unit>
             <trans-unit id="25">
                 <source>label.academic_degrees</source>
@@ -108,11 +108,11 @@
             </trans-unit>
             <trans-unit id="26">
                 <source>Your college has been successfully updated</source>
-                <target>Su Facultad ha sido actualizada correctamente</target>
+                <target>Su centro ha sido actualizado correctamente</target>
             </trans-unit>
             <trans-unit id="27">
                 <source>Your student delegation has been successfully updated</source>
-                <target>Su Delegación de Estudiantes ha sido actualizada correctamente</target>
+                <target>Su delegación de estudiantes ha sido actualizado correctamente</target>
             </trans-unit>
             <trans-unit id="28">
                 <source>label.position</source>
@@ -151,8 +151,8 @@
                 <target>Número de Factura</target>
             </trans-unit>
             <trans-unit id="37">
-                <source>label.domain</source>
-                <target>Dominio</target>
+                <source>label.code</source>
+                <target>Código</target>
             </trans-unit>
             <trans-unit id="38">
                 <source>label.type</source>
@@ -177,6 +177,31 @@
             <trans-unit id="43">
                 <source>label.participanttype</source>
                 <target>Tipo de participante</target>
+            </trans-unit>
+            <trans-unit id="help.responsible_name">
+                <source>help.responsible_name</source>
+                <target>Indique el nombre de la persona que firmará las acreditaciones.</target>
+            </trans-unit>
+            <trans-unit id="help.responsible_position">
+                <source>help.responsible_position</source>
+                <target>Indique el cargo que ostenta. Ejemplo: Secretario.</target>
+            </trans-unit>
+            <trans-unit id="label.size">
+                <source>label.size</source>
+                <target>Talla de camiseta</target>
+            </trans-unit>
+            <trans-unit id="help.select_size">
+                <source>help.select_size</source>
+                <target>Seleccione una talla</target>
+            </trans-unit>
+            <trans-unit id="help.participant_size">
+                <source>help.participant_size</source>
+                <target>La talla se guarda solo para cuestiones logísticas de la organización. No garantiza que haya
+                camisetas pero en ese caso se usaría para hacer las reservas.</target>
+            </trans-unit>
+            <trans-unit id="label.date_of_birth">
+                <source>label.date_of_birth</source>
+                <target>Fecha de nacimiento</target>
             </trans-unit>
         </body>
     </file>
