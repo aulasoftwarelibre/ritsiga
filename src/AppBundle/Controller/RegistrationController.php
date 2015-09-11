@@ -13,6 +13,7 @@ use AppBundle\Entity\Participant;
 use AppBundle\Event\RegistrationEvent;
 use AppBundle\Event\RegistrationEvents;
 use AppBundle\Form\TravelInformationType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -47,6 +48,7 @@ class RegistrationController extends Controller
     /**
      * @Route("/inscripciones", name="registration_list")
      * @Template("frontend/registration/my_registrations.html.twig")
+     * @Security("is_granted('ROLE_USER')")
      * Muestra todas las inscripciones del usuario
      */
     public function showRegistrations()

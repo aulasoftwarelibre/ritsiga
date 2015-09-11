@@ -46,26 +46,26 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <p><i class="fa fa-desktop"></i> <a href="{{ convention.web }}" target="_blank">{{ convention.web }}</a></p>
-                <p><i class="fa fa-envelope-o"></i>  {{ convention.email }}</p>
-                <p><i class="fa fa-calendar"></i>  Del {{ convention.startsAt|date('d-m-Y') }} al {{ convention.endsAt|date('d-m-Y') }} </p>
+                <p><i class="fa fa-envelope-o"></i>{{ convention.email }}</p>
+                <p><i class="fa fa-calendar"></i>Del {{ convention.startsAt|date('d-m-Y') }} al {{ convention.endsAt|date('d-m-Y') }} </p>
             </div>
         </div>
-        <div class="box box-danger">
-            <div class="box-header with-border">
-                En las redes
-            </div><!-- /.box-header -->
-            <div class="box-body">
-                {% if convention.facebook %}
-                <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/{{ convention.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
-                {% endif %}
-                {% if convention.instagram %}
-                <a class="btn btn-social-icon btn-instagram" href="http://www.instagram.com/{{ convention.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
-                {% endif %}
-                {% if convention.twitter %}
-                <a class="btn btn-social-icon btn-twitter" href="http://www.twitter.com/{{ convention.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
-                {% endif %}
-            </div>
-        </div>
+        {#<div class="box box-danger">#}
+            {#<div class="box-header with-border">#}
+                {#En las redes#}
+            {#</div><!-- /.box-header -->#}
+            {#<div class="box-body">#}
+                {#{% if convention.facebook %}#}
+                {#<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/{{ convention.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>#}
+                {#{% endif %}#}
+                {#{% if convention.instagram %}#}
+                {#<a class="btn btn-social-icon btn-instagram" href="http://www.instagram.com/{{ convention.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>#}
+                {#{% endif %}#}
+                {#{% if convention.twitter %}#}
+                {#<a class="btn btn-social-icon btn-twitter" href="http://www.twitter.com/{{ convention.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
     </div>
 </div>
 {% endblock %}
