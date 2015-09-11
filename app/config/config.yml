@@ -25,6 +25,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
+        cookie_lifetime: 0
     fragments:       ~
     http_method_override: true
 
@@ -125,9 +126,9 @@ hwi_oauth:
             type:                oauth2
             client_id:           "%sir_app_id%"
             client_secret:       "%sir_app_secret%"
-            access_token_url:    http://%base_host%/simplesaml/module.php/oauth2/token.php
-            authorization_url:   http://%base_host%/simplesaml/module.php/oauth2/authorize.php
-            infos_url:           http://%base_host%/simplesaml/module.php/oauth2/user.php
+            access_token_url:    "%simplesaml_server%/module.php/oauth2/token.php"
+            authorization_url:   "%simplesaml_server%/module.php/oauth2/authorize.php"
+            infos_url:           "%simplesaml_server%/module.php/oauth2/user.php"
             scope:               "user_details"
             user_response_class: AppBundle\OAuth\Response\SirUserResponse
 

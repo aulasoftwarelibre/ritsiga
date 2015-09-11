@@ -20,7 +20,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    base_host:        ~
+    simplesaml_server: http://localhost/simplesaml/
     base_code:        ~
 
     # Google auth

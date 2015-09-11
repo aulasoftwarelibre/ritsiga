@@ -108,6 +108,16 @@ security:
             logout:       true
             anonymous:    true
 
+        login:
+            pattern:  ^/login$
+            security: false
+
+            remember_me:
+                key: "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path: /
+                domain: ~ # Defaults to the current domain from $_SERVER
+
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
