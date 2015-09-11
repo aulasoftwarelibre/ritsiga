@@ -41,14 +41,14 @@ class CoreContext extends DefaultContext
 
 
     /**
-     * @Given estoy en el sitio de :domain
+     * @Given estoy en el sitio de :code
      */
-    public function iAmOnConventionSite($domain)
+    public function iAmOnConventionSite($code)
     {
         $siteManager = $this->getContainer()->get('ritsiga.site.manager');
-        $site = $this->getEntityManager()->getRepository('AppBundle:Convention')->findOneBy(['domain' => $domain]);
+        $site = $this->getEntityManager()->getRepository('AppBundle:Convention')->findOneBy(['code' => $code]);
         if (false === $site instanceof Convention) {
-            throw new \Exception("Site not found: $domain");
+            throw new \Exception("Site not found: $code");
         }
         $siteManager->setCurrentSite($site);
         $this->setMinkParameter('base_url', 'http://');

@@ -30,8 +30,8 @@ class OrganizerRole implements RoleInterface
      */
     public function __construct(Convention $convention)
     {
-        $this->role = 'ROLE_RITSIGA_ORGANIZER_' . $convention->getDomain();
-        $this->code = strtoupper($convention->getDomain());
+        $this->role = 'ROLE_RITSIGA_ORGANIZER_' . $convention->getCode();
+        $this->code = $convention->getCode();
     }
 
     /**

@@ -21,7 +21,7 @@ class RegistrationContext extends DefaultContext
     {
         foreach ($tableNode->getHash() as $registrationHash) {
             $user = $this->getEntityManager()->getRepository('AppBundle:User')->findOneBy(['username' => $registrationHash['usuario']]);
-            $convention = $this->getEntityManager()->getRepository('AppBundle:Convention')->findOneBy(['domain' => $registrationHash['asamblea']]);
+            $convention = $this->getEntityManager()->getRepository('AppBundle:Convention')->findOneBy(['code' => $registrationHash['asamblea']]);
             $registration = new Registration();
             $registration->setUser($user);
             $registration->setName($registrationHash['nombre']);

@@ -43,10 +43,10 @@ class Convention
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255)
      * @Assert\NotBlank
      */
-    private $domain;
+    private $code;
 
     /**
      * @var string
@@ -238,27 +238,27 @@ class Convention
     }
 
     /**
-     * Set domain
+     * Set site code
      *
-     * @param string $domain
+     * @param string $code
      *
      * @return Convention
      */
-    public function setDomain($domain)
+    public function setCode($code)
     {
-        $this->domain = strtoupper($domain);
+        $this->code = strtolower($code);
 
         return $this;
     }
 
     /**
-     * Get domain
+     * Get site code
      *
      * @return string
      */
-    public function getDomain()
+    public function getCode()
     {
-        return $this->domain;
+        return $this->code;
     }
 
     /**

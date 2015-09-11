@@ -50,14 +50,14 @@ class CurrentSiteListener {
 
         if ($this->baseCode == $code) {
             $site = new Convention();
-            $site->setDomain('ritsi');
+            $site->setCode('ritsi');
             $this->siteManager->setCurrentSite($site);
             return;
         }
 
         $site = $this->em
             ->getRepository('AppBundle:Convention')
-            ->findOneBy(array('domain' => $code));
+            ->findOneBy(array('code' => $code));
         if (!$site) {
             throw new NotFoundHttpException(sprintf(
                 'No site for code "%s"',

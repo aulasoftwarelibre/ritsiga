@@ -52,7 +52,7 @@ class MaintenanceListener
 
         $convention = $this->siteManager->getCurrentSite();
         $hoy = date("d-m-Y");
-        if ($convention && $convention->getDomain() !== 'ritsi' && ($convention->getMaintenance() == true || $hoy > $convention->getEndsAt()))
+        if ($convention && $convention->getCode() !== 'ritsi' && ($convention->getMaintenance() == true || $hoy > $convention->getEndsAt()))
         {
             $engine = $this->container->get('templating');
             $content = $engine->render('/frontend/conventions/maintenance.html.twig');

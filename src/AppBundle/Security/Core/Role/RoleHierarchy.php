@@ -32,7 +32,7 @@ class RoleHierarchy extends BaseRoleHierarchy
 
         foreach($conventions as $convention) {
             $roles = [];
-            $code = $convention->getDomain();
+            $code = $convention->getCode();
             foreach ($baseRoles as $role) {
                 $roles[] = preg_replace('/RITSI/', $code, $role, 1);
             }
