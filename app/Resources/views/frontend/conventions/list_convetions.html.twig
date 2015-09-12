@@ -20,6 +20,9 @@
                             <h5><i class="fa fa-calendar"></i> Del {{ convention.startsAt|date('d-m-Y') }} al {{ convention.endsAt|date('d-m-Y') }} </h5>
                             <p>{{ convention.description | truncate(90, true) }}</p>
                         </div>
+                        {% if is_granted('ROLE_RITSIGA_ORGANIZER_' ~ convention.code , convention) %}
+                        <a href="{{ url('sonata_admin_dashboard', {'code': convention.code}) }}" class="btn btn-warning btn-block btn-flat"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Administrar</a></center>
+                        {% endif %}
                         <a href="{{ path('convention', {'code': convention.code}) }}" class="btn btn-warning btn-block btn-flat">Inscribirse</a>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
