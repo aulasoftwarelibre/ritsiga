@@ -85,6 +85,7 @@
     display: table;
     width: 100%;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .process-step button[disabled] {
@@ -93,21 +94,21 @@
 }
 
 .process-row:before {
+    top: 30px;
     bottom: 0;
-    left: 50%;
     position: absolute;
     content: " ";
-    width: 1px;
-    height: 100%;
+    width: 100%;
+    height: 1px;
     background-color: #ccc;
     z-order: 0;
 
 }
 
 .process-step {
+    display: table-cell;
     text-align: center;
     position: relative;
-    margin-bottom: 25px;
 }
 
 .process-step p {
@@ -116,14 +117,16 @@
 }
 
 .btn-circle {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     text-align: center;
     padding: 6px 0;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
 }
+
+/** CARDS **/
 
 .card{
     transition: .2s ease;
