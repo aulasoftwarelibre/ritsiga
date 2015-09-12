@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 07/09/15
- * Time: 17:38
+ * Time: 17:38.
  */
-
 namespace AppBundle\EventListener;
-
 
 use AppBundle\Entity\University;
 use AppBundle\Entity\User;
@@ -52,10 +51,10 @@ class AddCollegeFieldSubscriber implements EventSubscriberInterface
     private function addCollegeForm(FormInterface $form, $college, $university)
     {
         $form->add($this->factory->createNamed('college', 'entity', $college, array(
-            'class'         => 'AppBundle:College',
-            'mapped'        => false,
+            'class' => 'AppBundle:College',
+            'mapped' => false,
             'auto_initialize' => false,
-            'label'         => 'label.college',
+            'label' => 'label.college',
             'query_builder' => function (EntityRepository $repository) use ($university) {
                 $qb = $repository->createQueryBuilder('college')
                     ->innerJoin('college.university', 'university');
@@ -71,7 +70,7 @@ class AddCollegeFieldSubscriber implements EventSubscriberInterface
                 }
 
                 return $qb;
-            }
+            },
         )));
     }
 
@@ -85,8 +84,8 @@ class AddCollegeFieldSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $college = ($data->getStudentDelegation()) ? $data->getStudentDelegation()->getCollege() : null ;
-        $university = ($college) ? $college->getUniversity() : null ;
+        $college = ($data->getStudentDelegation()) ? $data->getStudentDelegation()->getCollege() : null;
+        $university = ($college) ? $college->getUniversity() : null;
         $this->addCollegeForm($form, $college, $university);
     }
 
@@ -99,8 +98,8 @@ class AddCollegeFieldSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $college = array_key_exists('college', $data) ? $data['college'] : null ;
-        $university = array_key_exists('university', $data) ? $data['university'] : null ;
+        $college = array_key_exists('college', $data) ? $data['college'] : null;
+        $university = array_key_exists('university', $data) ? $data['university'] : null;
         $this->addCollegeForm($form, $college, $university);
     }
 }

@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 11/09/15
- * Time: 19:10
+ * Time: 19:10.
  */
-
 namespace AppBundle\Process\Step;
-
 
 use Sylius\Bundle\FlowBundle\Process\Step\ControllerStep;
 

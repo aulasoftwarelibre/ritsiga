@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 30/07/15
- * Time: 17:56
+ * Time: 17:56.
  */
-
 namespace AppBundle\Security\Handler;
-
 
 use AppBundle\Site\SiteManager;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -32,6 +31,7 @@ class RoleConventionSecurityHandler extends RoleSecurityHandler
     public function getBaseRole(AdminInterface $admin)
     {
         $code = $this->siteManager->getCurrentSite()->getSlug();
-        return 'ROLE_'.str_replace('.', '_', $code . "." . strtoupper($admin->getCode())).'_%s';
+
+        return 'ROLE_'.str_replace('.', '_', $code.'.'.strtoupper($admin->getCode())).'_%s';
     }
 }

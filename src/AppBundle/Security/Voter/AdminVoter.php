@@ -1,15 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 22/08/15
- * Time: 00:36
+ * Time: 00:36.
  */
-
 namespace AppBundle\Security\Voter;
 
-
-use AppBundle\Security\Core\Role\OrganizerRole;
 use AppBundle\Site\SiteManager;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -29,11 +27,11 @@ class AdminVoter implements VoterInterface
     private $roleHierarchy;
 
     /**
-     * Construct
+     * Construct.
      *
      * @param SiteManager $siteManager
      */
-    function __construct(SiteManager $siteManager, RoleHierarchy $roleHierarchy)
+    public function __construct(SiteManager $siteManager, RoleHierarchy $roleHierarchy)
     {
         $this->siteManager = $siteManager;
         $this->roleHierarchy = $roleHierarchy;
@@ -69,9 +67,9 @@ class AdminVoter implements VoterInterface
      * This method must return one of the following constants:
      * ACCESS_GRANTED, ACCESS_DENIED, or ACCESS_ABSTAIN.
      *
-     * @param TokenInterface $token A TokenInterface instance
-     * @param object|null $object The object to secure
-     * @param array $attributes An array of attributes associated with the method being invoked
+     * @param TokenInterface $token      A TokenInterface instance
+     * @param object|null    $object     The object to secure
+     * @param array          $attributes An array of attributes associated with the method being invoked
      *
      * @return int either ACCESS_GRANTED, ACCESS_ABSTAIN, or ACCESS_DENIED
      */
@@ -96,9 +94,9 @@ class AdminVoter implements VoterInterface
             // as soon as at least one attribute is supported, default is to deny access
             $vote = self::ACCESS_DENIED;
 
-            foreach($token->getUser()->getRoles() as $role) {
+            foreach ($token->getUser()->getRoles() as $role) {
                 $roleHierarchy = $this->roleHierarchy->getReachableRoles([new Role($role)]);
-                foreach($roleHierarchy as $node) {
+                foreach ($roleHierarchy as $node) {
                     if ($node->getRole() == $attribute) {
                         return self::ACCESS_GRANTED;
                     }

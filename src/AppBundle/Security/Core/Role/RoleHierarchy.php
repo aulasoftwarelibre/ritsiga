@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 09/09/15
- * Time: 05:17
+ * Time: 05:17.
  */
-
 namespace AppBundle\Security\Core\Role;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,7 +30,7 @@ class RoleHierarchy extends BaseRoleHierarchy
         $conventions = $this->em->getRepository('AppBundle:Convention')->findAll();
         $baseRoles = $hierarchy['ROLE_RITSIGA_ORGANIZER_CONVENTION'];
 
-        foreach($conventions as $convention) {
+        foreach ($conventions as $convention) {
             $roles = [];
             $code = $convention->getSlug();
             foreach ($baseRoles as $role) {

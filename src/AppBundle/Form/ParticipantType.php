@@ -1,25 +1,19 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 4/05/15
- * Time: 22:20
+ * Time: 22:20.
  */
-
 namespace AppBundle\Form;
 
-
-use AppBundle\Doctrine\ORM\ParticipationTypeRepository;
-use AppBundle\Site\SiteManager;
-use Faker\Provider\DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ParticipantType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', null, array(
@@ -54,7 +48,7 @@ class ParticipantType extends AbstractType
                     return $currentChoiceKey;
                 },
                 'attr' => array(
-                    'field_help' => 'help.participant_size'
+                    'field_help' => 'help.participant_size',
                 ),
             ));
     }
@@ -62,7 +56,7 @@ class ParticipantType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Participant'
+            'data_class' => 'AppBundle\Entity\Participant',
         ));
     }
 

@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 4/06/15
- * Time: 13:40
+ * Time: 13:40.
  */
-
 namespace AppBundle\Process\Step;
-
 
 use AppBundle\Entity\Registration;
 use AppBundle\Form\ResponsibleType;
@@ -18,13 +17,13 @@ class ResponsibleStep extends BaseStep
     public function displayAction(ProcessContextInterface $context)
     {
         $convention = $this->getCurrentSite();
-        $registration=new Registration();
+        $registration = new Registration();
         $registration->setConvention($convention);
         $form = $this->createForm(new ResponsibleType(), $registration);
 
         return $this->render(':frontend/registration/process:responsible.html.twig', array(
             'form' => $form->createView(),
-            'context' => $context
+            'context' => $context,
         ));
     }
 
@@ -32,7 +31,7 @@ class ResponsibleStep extends BaseStep
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $convention = $this->getCurrentSite();
-        $registration=new Registration();
+        $registration = new Registration();
         $registration->setConvention($convention);
         $form = $this->createForm(new ResponsibleType(), $registration);
 
@@ -45,14 +44,14 @@ class ResponsibleStep extends BaseStep
             $em = $this->getDoctrine()->getManager();
             $em->persist($registration);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans( 'Your registration has been saved, you can now add registrations'));
+            $this->addFlash('warning', $this->get('translator')->trans('Your registration has been saved, you can now add registrations'));
 
             return $this->complete();
         }
 
         return $this->render(':frontend/registration/process:responsible.html.twig', array(
             'form' => $form->createView(),
-            'context' => $context
+            'context' => $context,
         ));
     }
 }

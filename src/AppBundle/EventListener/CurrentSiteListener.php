@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 12/04/15
- * Time: 19:22
+ * Time: 19:22.
  */
-
 namespace AppBundle\EventListener;
+
 use AppBundle\Entity\Convention;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Doctrine\ORM\EntityManager;
@@ -15,7 +16,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-class CurrentSiteListener {
+class CurrentSiteListener
+{
     private $siteManager;
 
     private $em;
@@ -52,6 +54,7 @@ class CurrentSiteListener {
             $site = new Convention();
             $site->setSlug('ritsi');
             $this->siteManager->setCurrentSite($site);
+
             return;
         }
 

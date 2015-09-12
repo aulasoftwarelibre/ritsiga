@@ -1,20 +1,18 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 30/07/15
- * Time: 18:05
+ * Time: 18:05.
  */
-
 namespace AppBundle\Security\Voter;
 
-
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class ConventionVoter extends AbstractOrganizationVoter
 {
-    function getClass()
+    public function getClass()
     {
         return 'AppBundle\Entity\Convention';
     }

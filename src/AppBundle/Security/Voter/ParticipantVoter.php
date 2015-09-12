@@ -1,29 +1,28 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 22/08/15
- * Time: 10:57
+ * Time: 10:57.
  */
-
 namespace AppBundle\Security\Voter;
-
 
 use AppBundle\Entity\Participant;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class ParticipantVoter extends AbstractOrganizationVoter
 {
-
-    function getClass()
+    public function getClass()
     {
         return 'AppBundle\Entity\Participant';
     }
 
     /**
-     * @param TokenInterface $token
+     * @param TokenInterface   $token
      * @param null|Participant $object
-     * @param array $attributes
+     * @param array            $attributes
+     *
      * @return int
      */
     public function vote(TokenInterface $token, $object, array $attributes)

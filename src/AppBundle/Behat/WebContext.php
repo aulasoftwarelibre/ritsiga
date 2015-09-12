@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 24/03/15
- * Time: 22:36
+ * Time: 22:36.
  */
-
 namespace AppBundle\Behat;
-
 
 use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
@@ -37,7 +36,6 @@ class WebContext extends DefaultContext
         $action = ucfirst($action);
         $block = ucfirst($block);
         $this->iClickNear($action, $block);
-
     }
 
     /**
@@ -45,7 +43,7 @@ class WebContext extends DefaultContext
      */
     public function iAmOnActionResource($action, $resource)
     {
-        $page = sprintf("ritsiga_%s_%s", $this->translate[$resource], $this->actions[$action]);
+        $page = sprintf('ritsiga_%s_%s', $this->translate[$resource], $this->actions[$action]);
         $this->iAmOnPage($page);
     }
 
@@ -68,6 +66,6 @@ class WebContext extends DefaultContext
      */
     public function iShouldSeeNumItems($num)
     {
-        $this->assertSession()->pageTextContains(sprintf("%d %s", $num, $num == 1 ? "resultado" : "resultados"));
+        $this->assertSession()->pageTextContains(sprintf('%d %s', $num, $num == 1 ? 'resultado' : 'resultados'));
     }
 }

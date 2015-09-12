@@ -1,33 +1,33 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 19/04/15
- * Time: 19:52
+ * Time: 19:52.
  */
-
 namespace AppBundle\Entity;
-
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Registration
+ * Registration.
  *
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\RegistrationRepository")
  * @ORM\Table(name="Registration")
  */
-class Registration {
-    const STATUS_OPEN= 'open';
+class Registration
+{
+    const STATUS_OPEN = 'open';
     const STATUS_CONFIRMED = 'confirmed';
     const STATUS_PAID = 'paid';
     const STATUS_CANCELLED = 'cancelled';
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -50,7 +50,6 @@ class Registration {
      * @Assert\NotBlank()
      */
     private $position;
-
 
     /**
      * @ORM\ManyToOne(
@@ -76,7 +75,6 @@ class Registration {
     private $convention;
 
     /**
-     *
      * @ORM\OneToMany(targetEntity="Participant",mappedBy="registration")
      */
     private $participants;
@@ -126,9 +124,9 @@ class Registration {
     private $invoicenumber;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -136,7 +134,7 @@ class Registration {
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
      *
@@ -150,7 +148,7 @@ class Registration {
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \AppBundle\Entity\User
      */
@@ -160,7 +158,7 @@ class Registration {
     }
 
     /**
-     * Set convention
+     * Set convention.
      *
      * @param \AppBundle\Entity\Convention $convention
      *
@@ -174,7 +172,7 @@ class Registration {
     }
 
     /**
-     * Get convention
+     * Get convention.
      *
      * @return \AppBundle\Entity\Convention
      */
@@ -183,7 +181,7 @@ class Registration {
         return $this->convention;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -192,7 +190,7 @@ class Registration {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -206,7 +204,7 @@ class Registration {
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -216,7 +214,7 @@ class Registration {
     }
 
     /**
-     * Set position
+     * Set position.
      *
      * @param string $position
      *
@@ -230,7 +228,7 @@ class Registration {
     }
 
     /**
-     * Get position
+     * Get position.
      *
      * @return string
      */
@@ -240,7 +238,7 @@ class Registration {
     }
 
     /**
-     * Add participant
+     * Add participant.
      *
      * @param \AppBundle\Entity\Participant $participant
      *
@@ -254,7 +252,7 @@ class Registration {
     }
 
     /**
-     * Remove participant
+     * Remove participant.
      *
      * @param \AppBundle\Entity\Participant $participant
      */
@@ -264,7 +262,7 @@ class Registration {
     }
 
     /**
-     * Get participants
+     * Get participants.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -290,11 +288,12 @@ class Registration {
             throw new \InvalidArgumentException('Wrong status type supplied.');
         }
         $this->status = $status;
+
         return $this;
     }
 
     /**
-     * Get all status values
+     * Get all status values.
      *
      * @return array
      */
@@ -304,7 +303,7 @@ class Registration {
     }
 
     /**
-     * Get amount
+     * Get amount.
      *
      * @return float
      */
@@ -312,10 +311,10 @@ class Registration {
     {
         $participants = $this->getParticipants();
         $amount = 0;
-        foreach($participants as $participant)
-        {
-            $amount+= $participant->getParticipantType()->getPrice();
+        foreach ($participants as $participant) {
+            $amount += $participant->getParticipantType()->getPrice();
         }
+
         return $amount;
     }
 
@@ -401,7 +400,7 @@ class Registration {
 
     public function getDescription()
     {
-        return sprintf("#%d - %s - %s", $this->getId(), $this->getUser()->getUniversity(), $this->getUser());
+        return sprintf('#%d - %s - %s', $this->getId(), $this->getUser()->getUniversity(), $this->getUser());
     }
 
     public function __toString()

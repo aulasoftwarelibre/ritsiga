@@ -1,25 +1,21 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 20/07/15
- * Time: 18:50
+ * Time: 18:50.
  */
-
 namespace AppBundle\EventListener;
+
 use AppBundle\Site\SiteManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class MaintenanceListener
 {
-
     /**
      * @var SiteManager
      */
@@ -37,7 +33,7 @@ class MaintenanceListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if ( in_array($this->container->get('kernel')->getEnvironment(), array('test', 'dev')) ) {
+        if (in_array($this->container->get('kernel')->getEnvironment(), array('test', 'dev'))) {
             return;
         }
 
@@ -46,14 +42,13 @@ class MaintenanceListener
         }
 
         $route = $this->container->get('router')->getRouteCollection()->get($event->getRequest()->get('_route'));
-        if (route && preg_match('/^\/admin\/.*/', $route->getPath() ) ) {
+        if (route && preg_match('/^\/admin\/.*/', $route->getPath())) {
             return;
         }
 
         $convention = $this->siteManager->getCurrentSite();
-        $hoy = date("d-m-Y");
-        if ($convention && $convention->getSlug() !== 'ritsi' && ($convention->getMaintenance() == true || $hoy > $convention->getEndsAt()))
-        {
+        $hoy = date('d-m-Y');
+        if ($convention && $convention->getSlug() !== 'ritsi' && ($convention->getMaintenance() == true || $hoy > $convention->getEndsAt())) {
             $engine = $this->container->get('templating');
             $content = $engine->render('/frontend/conventions/maintenance.html.twig');
             $event->setResponse(new Response($content, 503));

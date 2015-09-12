@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 07/09/15
- * Time: 17:38
+ * Time: 17:38.
  */
-
 namespace AppBundle\EventListener;
-
 
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
@@ -51,16 +50,16 @@ class AddUniversityFieldSubscriber implements EventSubscriberInterface
     private function addUniversityForm(FormInterface $form, $university)
     {
         $form->add($this->factory->createNamed('university', 'entity', $university, array(
-            'class'         => 'AppBundle:University',
-            'mapped'        => false,
+            'class' => 'AppBundle:University',
+            'mapped' => false,
             'auto_initialize' => false,
-            'label'         => 'label.university',
+            'label' => 'label.university',
             'query_builder' => function (EntityRepository $repository) {
                 $qb = $repository->createQueryBuilder('university')
                 ->orderBy('university.name', 'ASC');
 
                 return $qb;
-            }
+            },
         )));
     }
 
@@ -74,7 +73,7 @@ class AddUniversityFieldSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $university = ($data->getStudentDelegation()) ? $data->getStudentDelegation()->getCollege()->getUniversity() : null ;
+        $university = ($data->getStudentDelegation()) ? $data->getStudentDelegation()->getCollege()->getUniversity() : null;
         $this->addUniversityForm($form, $university);
     }
 

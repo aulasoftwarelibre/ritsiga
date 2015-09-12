@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 18/08/15
- * Time: 15:46
+ * Time: 15:46.
  */
-
 namespace AppBundle\EventListener;
-
 
 use AppBundle\Entity\Registration;
 use AppBundle\Event\RegistrationEvent;
@@ -34,7 +33,6 @@ class NotificationListener implements EventSubscriberInterface
         $user = $registration->getUser();
         $systemMailer = $this->container->get('system_mailer');
         $systemMailer->send('App:confirmed_registration', ['user' => $user, 'registration' => $registration], 'es');
-
     }
 
     public function onRegistrationPaid(RegistrationEvent $event)
@@ -81,7 +79,6 @@ class NotificationListener implements EventSubscriberInterface
                 $user = $registration->getUser();
                 $systemMailer = $this->container->get('system_mailer');
                 $systemMailer->send('App:paid_registration', ['user' => $user, 'registration' => $registration], 'es');
-
             }
         }
     }

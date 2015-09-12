@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 8/10/14
- * Time: 9:57
+ * Time: 9:57.
  */
-
 namespace AppBundle\Behat;
 
 use AppBundle\Entity\Convention;
@@ -23,7 +23,6 @@ class CoreContext extends DefaultContext
     public function iAmLoggedInAsAdministrator()
     {
         $this->iAmLoggedInAsRole('ROLE_ADMIN');
-
     }
 
     /**
@@ -38,7 +37,6 @@ class CoreContext extends DefaultContext
         $this->fillField('password', 'password');
         $this->pressButton('Entrar');
     }
-
 
     /**
      * @Given estoy en el sitio de :code
@@ -71,14 +69,16 @@ class CoreContext extends DefaultContext
 
     /**
      * Create an user if he doesn't exists.
+     *
      * @param $username
      * @param $password
-     * @param null $role
-     * @param bool $create_entities
+     * @param null   $role
+     * @param bool   $create_entities
      * @param string $enabled
-     * @param null $address
-     * @param array $groups
-     * @param bool $flush
+     * @param null   $address
+     * @param array  $groups
+     * @param bool   $flush
+     *
      * @return UserInterface
      */
     public function thereIsUser($username, $password, $role = null, $create_entities = false, $enabled = 'yes', $address = null, $groups = array(), $flush = true)
@@ -86,8 +86,7 @@ class CoreContext extends DefaultContext
         $addressData = explode(',', $address);
         $addressData = array_map('trim', $addressData);
 
-        if ($create_entities==true)
-        {
+        if ($create_entities == true) {
             $student_delegation = new StudentDelegation();
             $student_delegation->setName($this->faker->word);
             $student_delegation->setCity($this->faker->word);
@@ -128,11 +127,10 @@ class CoreContext extends DefaultContext
         $user->setLastname($this->faker->lastName);
         $user->setFirstname(null === $address ? $this->faker->firstName : $addressData[0]);
         $user->setLastname(null === $address ? $this->faker->lastName : $addressData[1]);
-        $user->setEmail($username . '@ritsiGA.com');
+        $user->setEmail($username.'@ritsiGA.com');
         $user->setEnabled('yes' === $enabled);
         $user->setPlainPassword($password);
-        if ($create_entities==true)
-        {
+        if ($create_entities == true) {
             $user->setStudentDelegation($student_delegation);
         }
         if (null !== $role) {
@@ -147,6 +145,7 @@ class CoreContext extends DefaultContext
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+
         return $user;
     }
 }

@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 23/07/15
- * Time: 20:44
+ * Time: 20:44.
  */
-
 namespace AppBundle\Doctrine\ORM;
 
 use AppBundle\Entity\ParticipantType;
@@ -14,7 +14,6 @@ use Doctrine\ORM\EntityRepository;
 
 class ParticipantRepository extends EntityRepository
 {
-
     public function getNumParticipationsTypesAvailables(Registration $registration, ParticipantType $participantType)
     {
         $em = $this->getEntityManager();

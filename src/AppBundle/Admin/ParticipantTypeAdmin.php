@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 31/05/15
- * Time: 18:39
+ * Time: 18:39.
  */
-
 namespace AppBundle\Admin;
 
 use Doctrine\ORM\QueryBuilder;
@@ -27,7 +27,7 @@ class ParticipantTypeAdmin  extends Admin
         $convention = $this->getConfigurationPool()->getContainer()->get('ritsiga.site.manager')->getCurrentSite();
 
         if ($convention->getId()) {
-            $query->andWhere($query->expr()->eq($alias . '.convention', $convention->getId()));
+            $query->andWhere($query->expr()->eq($alias.'.convention', $convention->getId()));
         }
 
         return $query;
@@ -89,7 +89,7 @@ class ParticipantTypeAdmin  extends Admin
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                )));
+                ), ));
     }
 
     protected function configureShowFields(ShowMapper $showMapper)

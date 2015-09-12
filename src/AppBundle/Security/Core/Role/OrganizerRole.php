@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 21/08/15
- * Time: 23:58
+ * Time: 23:58.
  */
-
 namespace AppBundle\Security\Core\Role;
-
 
 use AppBundle\Entity\Convention;
 use Symfony\Component\Security\Core\Role\RoleInterface;
@@ -26,11 +25,12 @@ class OrganizerRole implements RoleInterface
 
     /**
      * OrganizerRole constructor.
+     *
      * @param Convention $convention
      */
     public function __construct(Convention $convention)
     {
-        $this->role = 'ROLE_RITSIGA_ORGANIZER_' . $convention->getSlug();
+        $this->role = 'ROLE_RITSIGA_ORGANIZER_'.$convention->getSlug();
         $this->code = $convention->getSlug();
     }
 

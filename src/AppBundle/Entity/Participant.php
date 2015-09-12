@@ -1,26 +1,27 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 19/04/15
- * Time: 19:53
+ * Time: 19:53.
  */
-
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Registration
+ * Registration.
  *
  * @ORM\Entity
  * @ORM\Table(name="Participant")
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ParticipantRepository")
  */
-class Participant {
-
+class Participant
+{
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -54,7 +55,7 @@ class Participant {
     private $email;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="phone", type="integer", length=20, nullable=true)
      */
@@ -104,9 +105,9 @@ class Participant {
     private $participant_type;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -114,7 +115,7 @@ class Participant {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -128,7 +129,7 @@ class Participant {
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -138,7 +139,7 @@ class Participant {
     }
 
     /**
-     * Set lastName
+     * Set lastName.
      *
      * @param string $lastName
      *
@@ -152,7 +153,7 @@ class Participant {
     }
 
     /**
-     * Get lastName
+     * Get lastName.
      *
      * @return string
      */
@@ -162,7 +163,7 @@ class Participant {
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -176,7 +177,7 @@ class Participant {
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -186,7 +187,7 @@ class Participant {
     }
 
     /**
-     * Set dni
+     * Set dni.
      *
      * @param string $dni
      *
@@ -200,7 +201,7 @@ class Participant {
     }
 
     /**
-     * Get dni
+     * Get dni.
      *
      * @return string
      */
@@ -210,7 +211,7 @@ class Participant {
     }
 
     /**
-     * Set registration
+     * Set registration.
      *
      * @param \AppBundle\Entity\Registration $registration
      *
@@ -224,7 +225,7 @@ class Participant {
     }
 
     /**
-     * Get registration
+     * Get registration.
      *
      * @return \AppBundle\Entity\Registration
      */
@@ -298,11 +299,12 @@ class Participant {
     }
 
     /**
-     * To String
+     * To String.
+     *
      * @return string
      */
-    function __toString()
+    public function __toString()
     {
-        return sprintf("%s %s", $this->getName(), $this->getLastName());
+        return sprintf('%s %s', $this->getName(), $this->getLastName());
     }
 }

@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 1/05/15
- * Time: 19:19
+ * Time: 19:19.
  */
-
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Registration;
@@ -27,8 +27,8 @@ class RegistrationAdmin extends Admin
         $alias = current($query->getRootAliases());
         $convention = $this->getConfigurationPool()->getContainer()->get('ritsiga.site.manager')->getCurrentSite();
 
-        if($convention->getId()) {
-            $query->andWhere($query->expr()->eq( $alias . '.convention', $convention->getId() ));
+        if ($convention->getId()) {
+            $query->andWhere($query->expr()->eq($alias.'.convention', $convention->getId()));
         }
 
         return $query;
@@ -45,8 +45,8 @@ class RegistrationAdmin extends Admin
             ->add('user', null, array('label' => 'label.user'))
             ->add('name', null, array('label' => 'label.name'))
             ->add('position', null, array('label' => 'label.position'))
-            ->add('status', 'choice', array('label' => 'label.status', 'choices'  => array(Registration::STATUS_OPEN => 'Abierta', Registration::STATUS_CONFIRMED  => 'Confirmada', Registration::STATUS_CANCELLED => 'Cancelada', Registration::STATUS_PAID => 'Pagada'),
-        'required' => true))
+            ->add('status', 'choice', array('label' => 'label.status', 'choices' => array(Registration::STATUS_OPEN => 'Abierta', Registration::STATUS_CONFIRMED => 'Confirmada', Registration::STATUS_CANCELLED => 'Cancelada', Registration::STATUS_PAID => 'Pagada'),
+        'required' => true, ))
             ->add('invoicenumber', null, array('label' => 'label.invoicenumber'))
         ;
     }
@@ -81,17 +81,17 @@ class RegistrationAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('user.university', null, array(
-                'label' => 'label.university'
+                'label' => 'label.university',
             ))
             ->add('user.college', null, array(
-                'label' => 'label.college'
+                'label' => 'label.college',
             ))
             ->add('status', null, array('label' => 'label.status'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                )))
+                ), ))
         ;
     }
 }

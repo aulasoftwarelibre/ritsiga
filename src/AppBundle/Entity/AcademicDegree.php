@@ -1,16 +1,17 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/04/15
- * Time: 12:48
+ * Time: 12:48.
  */
-
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AcademicDegree
+ * AcademicDegree.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\AcademicDegreeRepository")
@@ -18,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 class AcademicDegree
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -49,10 +50,8 @@ class AcademicDegree
      */
     private $colleges;
 
-
-
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -60,9 +59,9 @@ class AcademicDegree
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,7 +69,7 @@ class AcademicDegree
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -84,7 +83,7 @@ class AcademicDegree
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -94,7 +93,7 @@ class AcademicDegree
     }
 
     /**
-     * Set category
+     * Set category.
      *
      * @param string $category
      *
@@ -108,7 +107,7 @@ class AcademicDegree
     }
 
     /**
-     * Get category
+     * Get category.
      *
      * @return string
      */
@@ -118,7 +117,7 @@ class AcademicDegree
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -132,7 +131,7 @@ class AcademicDegree
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -142,7 +141,7 @@ class AcademicDegree
     }
 
     /**
-     * Add college
+     * Add college.
      *
      * @param \AppBundle\Entity\College $college
      *
@@ -157,7 +156,7 @@ class AcademicDegree
     }
 
     /**
-     * Remove college
+     * Remove college.
      *
      * @param \AppBundle\Entity\College $college
      */
@@ -167,7 +166,7 @@ class AcademicDegree
     }
 
     /**
-     * Get colleges
+     * Get colleges.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

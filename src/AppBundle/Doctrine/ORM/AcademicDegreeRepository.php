@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 2/05/15
- * Time: 11:25
+ * Time: 11:25.
  */
-
 namespace AppBundle\Doctrine\ORM;
+
 use Doctrine\ORM\EntityRepository;
 
 class AcademicDegreeRepository extends EntityRepository

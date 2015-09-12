@@ -1,15 +1,14 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 24/03/15
- * Time: 21:14
+ * Time: 21:14.
  */
-
 namespace AppBundle\Behat;
 
 use AppBundle\Entity\User;
-use AppBundle\Entity\StudentDelegation;
 use Behat\Gherkin\Node\TableNode;
 use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
@@ -29,7 +28,6 @@ class UserContext  extends DefaultContext
             $this->getEntityManager()->persist($user);
             $this->getEntityManager()->flush();
         }
-
     }
 
     /**
@@ -39,5 +37,4 @@ class UserContext  extends DefaultContext
     {
         $this->assertSession()->elementsCount('css', '.user', $number);
     }
-
 }

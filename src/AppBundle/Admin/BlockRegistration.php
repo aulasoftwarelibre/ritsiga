@@ -1,32 +1,28 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 2/05/15
- * Time: 19:01
+ * Time: 19:01.
  */
-
 namespace AppBundle\Admin;
-
 
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Validator\ErrorElement;
-
 
 class BlockRegistration extends BaseBlockService
 {
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'url'      => false,
-            'title'    => 'Insert the rss title',
+            'url' => false,
+            'title' => 'Insert the rss title',
             'template' => 'SonataBlockBundle:Block:block_core_rss.html.twig',
         ));
     }
@@ -37,7 +33,7 @@ class BlockRegistration extends BaseBlockService
             'keys' => array(
                 array('url', 'url', array('required' => false)),
                 array('title', 'text', array('required' => false)),
-            )
+            ),
         ));
     }
 
@@ -66,7 +62,7 @@ class BlockRegistration extends BaseBlockService
                 'http' => array(
                     'user_agent' => 'Sonata/RSS Reader',
                     'timeout' => 2,
-                )
+                ),
             );
 
             // retrieve contents with a specific stream context to avoid php errors
@@ -84,9 +80,9 @@ class BlockRegistration extends BaseBlockService
         }
 
         return $this->renderResponse($blockContext->getTemplate(), array(
-            'feeds'     => $feeds,
-            'block'     => $blockContext->getBlock(),
-            'settings'  => $settings
+            'feeds' => $feeds,
+            'block' => $blockContext->getBlock(),
+            'settings' => $settings,
         ), $response);
     }
 }

@@ -1,16 +1,16 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 4/06/15
- * Time: 13:37
+ * Time: 13:37.
  */
-
 namespace AppBundle\Form;
+
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ResponsibleType extends AbstractType
 {
@@ -36,7 +36,7 @@ class ResponsibleType extends AbstractType
     {
         parent::configureOptions($resolver);
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Registration'
+            'data_class' => 'AppBundle\Entity\Registration',
         ));
     }
 

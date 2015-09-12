@@ -1,25 +1,26 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/04/15
- * Time: 17:24
+ * Time: 17:24.
  */
-
 namespace AppBundle\Entity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Student Delegation
+ * Student Delegation.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\StudentDelegationRepository")
  */
-
-class StudentDelegation {
+class StudentDelegation
+{
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -54,19 +55,19 @@ class StudentDelegation {
      */
     private $province;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="postcode", type="integer", length=5)
      */
     private $postcode;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="phone", type="integer", length=20, nullable=true)
      */
     private $phone;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="fax", type="integer", length=20, nullable=true)
      */
@@ -127,7 +128,7 @@ class StudentDelegation {
     private $users;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -137,15 +138,15 @@ class StudentDelegation {
     /**
      * @return string
      */
-    function __toString()
+    public function __toString()
     {
         return $this->getName();
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -153,7 +154,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -167,7 +168,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -177,7 +178,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
      *
@@ -191,7 +192,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get address
+     * Get address.
      *
      * @return string
      */
@@ -201,7 +202,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
      *
@@ -215,7 +216,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string
      */
@@ -225,7 +226,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set province
+     * Set province.
      *
      * @param string $province
      *
@@ -239,7 +240,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get province
+     * Get province.
      *
      * @return string
      */
@@ -249,9 +250,9 @@ class StudentDelegation {
     }
 
     /**
-     * Set postcode
+     * Set postcode.
      *
-     * @param integer $postcode
+     * @param int $postcode
      *
      * @return StudentDelegation
      */
@@ -263,9 +264,9 @@ class StudentDelegation {
     }
 
     /**
-     * Get postcode
+     * Get postcode.
      *
-     * @return integer
+     * @return int
      */
     public function getPostcode()
     {
@@ -273,9 +274,9 @@ class StudentDelegation {
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
-     * @param integer $phone
+     * @param int $phone
      *
      * @return StudentDelegation
      */
@@ -287,9 +288,9 @@ class StudentDelegation {
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
-     * @return integer
+     * @return int
      */
     public function getPhone()
     {
@@ -297,9 +298,9 @@ class StudentDelegation {
     }
 
     /**
-     * Set fax
+     * Set fax.
      *
-     * @param integer $fax
+     * @param int $fax
      *
      * @return StudentDelegation
      */
@@ -311,9 +312,9 @@ class StudentDelegation {
     }
 
     /**
-     * Get fax
+     * Get fax.
      *
-     * @return integer
+     * @return int
      */
     public function getFax()
     {
@@ -321,7 +322,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set web
+     * Set web.
      *
      * @param string $web
      *
@@ -335,7 +336,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get web
+     * Get web.
      *
      * @return string
      */
@@ -345,7 +346,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -359,7 +360,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -369,7 +370,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set twitter
+     * Set twitter.
      *
      * @param string $twitter
      *
@@ -383,7 +384,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get twitter
+     * Get twitter.
      *
      * @return string
      */
@@ -393,7 +394,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set facebook
+     * Set facebook.
      *
      * @param string $facebook
      *
@@ -407,7 +408,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get facebook
+     * Get facebook.
      *
      * @return string
      */
@@ -417,7 +418,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set cif
+     * Set cif.
      *
      * @param string $cif
      *
@@ -431,7 +432,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get cif
+     * Get cif.
      *
      * @return string
      */
@@ -441,7 +442,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -455,7 +456,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -465,7 +466,7 @@ class StudentDelegation {
     }
 
     /**
-     * Set college
+     * Set college.
      *
      * @param \AppBundle\Entity\College $college
      *
@@ -479,7 +480,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get college
+     * Get college.
      *
      * @return \AppBundle\Entity\College
      */
@@ -489,7 +490,7 @@ class StudentDelegation {
     }
 
     /**
-     * Add user
+     * Add user.
      *
      * @param \AppBundle\Entity\User $user
      *
@@ -503,7 +504,7 @@ class StudentDelegation {
     }
 
     /**
-     * Remove user
+     * Remove user.
      *
      * @param \AppBundle\Entity\User $user
      */
@@ -513,7 +514,7 @@ class StudentDelegation {
     }
 
     /**
-     * Get users
+     * Get users.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -521,5 +522,4 @@ class StudentDelegation {
     {
         return $this->users;
     }
-
 }

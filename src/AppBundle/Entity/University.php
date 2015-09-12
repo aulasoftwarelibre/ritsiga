@@ -1,24 +1,26 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/04/15
- * Time: 12:43
+ * Time: 12:43.
  */
-
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * University
+ * University.
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class University {
+class University
+{
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -53,19 +55,19 @@ class University {
      */
     private $province;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="postcode", type="integer", length=5)
      */
     private $postcode;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="phone", type="integer", length=20, nullable=true)
      */
     private $phone;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="fax", type="integer", length=20, nullable=true)
      */
@@ -122,7 +124,7 @@ class University {
     private $colleges;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -130,9 +132,9 @@ class University {
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -140,7 +142,7 @@ class University {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -154,7 +156,7 @@ class University {
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -164,7 +166,7 @@ class University {
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
      *
@@ -178,7 +180,7 @@ class University {
     }
 
     /**
-     * Get address
+     * Get address.
      *
      * @return string
      */
@@ -188,7 +190,7 @@ class University {
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
      *
@@ -202,7 +204,7 @@ class University {
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string
      */
@@ -212,7 +214,7 @@ class University {
     }
 
     /**
-     * Set province
+     * Set province.
      *
      * @param string $province
      *
@@ -226,7 +228,7 @@ class University {
     }
 
     /**
-     * Get province
+     * Get province.
      *
      * @return string
      */
@@ -236,9 +238,9 @@ class University {
     }
 
     /**
-     * Set postcode
+     * Set postcode.
      *
-     * @param integer $postcode
+     * @param int $postcode
      *
      * @return University
      */
@@ -250,9 +252,9 @@ class University {
     }
 
     /**
-     * Get postcode
+     * Get postcode.
      *
-     * @return integer
+     * @return int
      */
     public function getPostcode()
     {
@@ -260,9 +262,9 @@ class University {
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
-     * @param integer $phone
+     * @param int $phone
      *
      * @return University
      */
@@ -274,9 +276,9 @@ class University {
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
-     * @return integer
+     * @return int
      */
     public function getPhone()
     {
@@ -284,9 +286,9 @@ class University {
     }
 
     /**
-     * Set fax
+     * Set fax.
      *
-     * @param integer $fax
+     * @param int $fax
      *
      * @return University
      */
@@ -298,9 +300,9 @@ class University {
     }
 
     /**
-     * Get fax
+     * Get fax.
      *
-     * @return integer
+     * @return int
      */
     public function getFax()
     {
@@ -308,7 +310,7 @@ class University {
     }
 
     /**
-     * Set web
+     * Set web.
      *
      * @param string $web
      *
@@ -322,7 +324,7 @@ class University {
     }
 
     /**
-     * Get web
+     * Get web.
      *
      * @return string
      */
@@ -332,7 +334,7 @@ class University {
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -346,7 +348,7 @@ class University {
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -356,7 +358,7 @@ class University {
     }
 
     /**
-     * Set twitter
+     * Set twitter.
      *
      * @param string $twitter
      *
@@ -370,7 +372,7 @@ class University {
     }
 
     /**
-     * Get twitter
+     * Get twitter.
      *
      * @return string
      */
@@ -380,7 +382,7 @@ class University {
     }
 
     /**
-     * Set facebook
+     * Set facebook.
      *
      * @param string $facebook
      *
@@ -394,7 +396,7 @@ class University {
     }
 
     /**
-     * Get facebook
+     * Get facebook.
      *
      * @return string
      */
@@ -404,7 +406,7 @@ class University {
     }
 
     /**
-     * Set cif
+     * Set cif.
      *
      * @param string $cif
      *
@@ -418,7 +420,7 @@ class University {
     }
 
     /**
-     * Get cif
+     * Get cif.
      *
      * @return string
      */
@@ -428,7 +430,7 @@ class University {
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -442,7 +444,7 @@ class University {
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -452,7 +454,7 @@ class University {
     }
 
     /**
-     * Add college
+     * Add college.
      *
      * @param \AppBundle\Entity\College $college
      *
@@ -466,7 +468,7 @@ class University {
     }
 
     /**
-     * Remove college
+     * Remove college.
      *
      * @param \AppBundle\Entity\College $college
      */
@@ -476,7 +478,7 @@ class University {
     }
 
     /**
-     * Get colleges
+     * Get colleges.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -486,7 +488,7 @@ class University {
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
      *
@@ -500,7 +502,7 @@ class University {
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */

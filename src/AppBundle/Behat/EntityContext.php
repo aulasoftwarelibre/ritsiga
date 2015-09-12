@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 26/08/15
- * Time: 20:39
+ * Time: 20:39.
  */
-
 namespace AppBundle\Behat;
-
 
 use AppBundle\Entity\College;
 use AppBundle\Entity\StudentDelegation;
@@ -17,14 +16,12 @@ use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
 class EntityContext extends DefaultContext
 {
-
     /**
      * @Given existen las universidades:
      */
     public function thereAreUniversities(TableNode $tableNode)
     {
-        foreach($tableNode->getHash() as $universityHash)
-        {
+        foreach ($tableNode->getHash() as $universityHash) {
             $university = new University();
             $university->setName($universityHash['nombre']);
             $university->setCity($universityHash['ciudad']);
@@ -37,7 +34,6 @@ class EntityContext extends DefaultContext
             $this->getEntityManager()->persist($university);
         }
         $this->getEntityManager()->flush();
-
     }
 
     /**
@@ -45,8 +41,7 @@ class EntityContext extends DefaultContext
      */
     public function thereAreColleges(TableNode $tableNode)
     {
-        foreach($tableNode->getHash() as $collegeHash)
-        {
+        foreach ($tableNode->getHash() as $collegeHash) {
             $college = new College();
             $college->setName($collegeHash['nombre']);
             $college->setCity($collegeHash['ciudad']);
@@ -57,7 +52,6 @@ class EntityContext extends DefaultContext
             $this->getEntityManager()->persist($college);
         }
         $this->getEntityManager()->flush();
-
     }
 
     /**
@@ -65,8 +59,7 @@ class EntityContext extends DefaultContext
      */
     public function thereAreStudentDelegations(TableNode $tableNode)
     {
-        foreach($tableNode->getHash() as $studentdelegationHash)
-        {
+        foreach ($tableNode->getHash() as $studentdelegationHash) {
             $student_delegation = new StudentDelegation();
             $student_delegation->setName($studentdelegationHash['nombre']);
             $student_delegation->setCity($studentdelegationHash['ciudad']);
@@ -77,6 +70,5 @@ class EntityContext extends DefaultContext
             $this->getEntityManager()->persist($student_delegation);
         }
         $this->getEntityManager()->flush();
-
     }
 }

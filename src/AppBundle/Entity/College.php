@@ -1,19 +1,19 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/04/15
- * Time: 12:45
+ * Time: 12:45.
  */
-
 namespace AppBundle\Entity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * College
+ * College.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\CollegeRepository")
@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
 class College
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -56,19 +56,19 @@ class College
      */
     private $province;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="postcode", type="integer", length=5)
      */
     private $postcode;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="phone", type="integer", length=20, nullable=true)
      */
     private $phone;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="fax", type="integer", length=20, nullable=true)
      */
@@ -129,9 +129,8 @@ class College
      */
     private $students_delegations;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -140,9 +139,9 @@ class College
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -150,7 +149,7 @@ class College
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -164,7 +163,7 @@ class College
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -174,7 +173,7 @@ class College
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
      *
@@ -188,7 +187,7 @@ class College
     }
 
     /**
-     * Get address
+     * Get address.
      *
      * @return string
      */
@@ -198,7 +197,7 @@ class College
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
      *
@@ -212,7 +211,7 @@ class College
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string
      */
@@ -222,7 +221,7 @@ class College
     }
 
     /**
-     * Set province
+     * Set province.
      *
      * @param string $province
      *
@@ -236,7 +235,7 @@ class College
     }
 
     /**
-     * Get province
+     * Get province.
      *
      * @return string
      */
@@ -246,9 +245,9 @@ class College
     }
 
     /**
-     * Set postcode
+     * Set postcode.
      *
-     * @param integer $postcode
+     * @param int $postcode
      *
      * @return College
      */
@@ -260,9 +259,9 @@ class College
     }
 
     /**
-     * Get postcode
+     * Get postcode.
      *
-     * @return integer
+     * @return int
      */
     public function getPostcode()
     {
@@ -270,9 +269,9 @@ class College
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
-     * @param integer $phone
+     * @param int $phone
      *
      * @return College
      */
@@ -284,9 +283,9 @@ class College
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
-     * @return integer
+     * @return int
      */
     public function getPhone()
     {
@@ -294,9 +293,9 @@ class College
     }
 
     /**
-     * Set fax
+     * Set fax.
      *
-     * @param integer $fax
+     * @param int $fax
      *
      * @return College
      */
@@ -308,9 +307,9 @@ class College
     }
 
     /**
-     * Get fax
+     * Get fax.
      *
-     * @return integer
+     * @return int
      */
     public function getFax()
     {
@@ -318,7 +317,7 @@ class College
     }
 
     /**
-     * Set web
+     * Set web.
      *
      * @param string $web
      *
@@ -332,7 +331,7 @@ class College
     }
 
     /**
-     * Get web
+     * Get web.
      *
      * @return string
      */
@@ -342,7 +341,7 @@ class College
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -356,7 +355,7 @@ class College
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -366,7 +365,7 @@ class College
     }
 
     /**
-     * Set twitter
+     * Set twitter.
      *
      * @param string $twitter
      *
@@ -380,7 +379,7 @@ class College
     }
 
     /**
-     * Get twitter
+     * Get twitter.
      *
      * @return string
      */
@@ -390,7 +389,7 @@ class College
     }
 
     /**
-     * Set facebook
+     * Set facebook.
      *
      * @param string $facebook
      *
@@ -404,7 +403,7 @@ class College
     }
 
     /**
-     * Get facebook
+     * Get facebook.
      *
      * @return string
      */
@@ -414,7 +413,7 @@ class College
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -428,7 +427,7 @@ class College
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -438,7 +437,7 @@ class College
     }
 
     /**
-     * Set university
+     * Set university.
      *
      * @param \AppBundle\Entity\University $university
      *
@@ -452,7 +451,7 @@ class College
     }
 
     /**
-     * Get university
+     * Get university.
      *
      * @return \AppBundle\Entity\University
      */
@@ -462,7 +461,7 @@ class College
     }
 
     /**
-     * Add academicDegree
+     * Add academicDegree.
      *
      * @param \AppBundle\Entity\AcademicDegree $academicDegree
      *
@@ -476,7 +475,7 @@ class College
     }
 
     /**
-     * Remove academicDegree
+     * Remove academicDegree.
      *
      * @param \AppBundle\Entity\AcademicDegree $academicDegree
      */
@@ -486,7 +485,7 @@ class College
     }
 
     /**
-     * Get academicDegrees
+     * Get academicDegrees.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -496,7 +495,7 @@ class College
     }
 
     /**
-     * Add studentsDelegation
+     * Add studentsDelegation.
      *
      * @param \AppBundle\Entity\College $studentsDelegation
      *
@@ -510,7 +509,7 @@ class College
     }
 
     /**
-     * Remove studentsDelegation
+     * Remove studentsDelegation.
      *
      * @param \AppBundle\Entity\College $studentsDelegation
      */
@@ -520,7 +519,7 @@ class College
     }
 
     /**
-     * Get studentsDelegations
+     * Get studentsDelegations.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

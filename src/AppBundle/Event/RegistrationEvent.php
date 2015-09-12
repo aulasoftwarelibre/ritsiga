@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/07/15
- * Time: 17:46
+ * Time: 17:46.
  */
-
 namespace AppBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;

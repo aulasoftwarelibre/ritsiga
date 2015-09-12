@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 28/03/15
- * Time: 11:13
+ * Time: 11:13.
  */
-
 namespace AppBundle\Admin;
 
 use Doctrine\ORM\QueryBuilder;
@@ -27,13 +27,12 @@ class ConventionAdmin extends Admin
         $alias = current($query->getRootAliases());
         $convention = $this->getConfigurationPool()->getContainer()->get('ritsiga.site.manager')->getCurrentSite();
 
-        if($convention->getId()) {
-            $query->andWhere($query->expr()->eq( $alias . '.id', $convention->getId() ));
+        if ($convention->getId()) {
+            $query->andWhere($query->expr()->eq($alias.'.id', $convention->getId()));
         }
 
         return $query;
     }
-
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -66,9 +65,9 @@ class ConventionAdmin extends Admin
             ->add('startsAt', null, array('label' => 'label.startsAt'))
             ->add('endsAt', null, array('label' => 'label.endsAt'))
             ->add('email')
-            ->add('image',null,array(
+            ->add('image', null, array(
                 'template' => 'backend/image/image.html.twig',
-                'label' => 'Imagen'
+                'label' => 'Imagen',
             ))
         ;
     }
@@ -101,12 +100,12 @@ class ConventionAdmin extends Admin
                     'template' => 'CRUD/list__show_convention.html.twig',
                 ),
                 'download_acreditation' => array(
-                    'template' => 'CRUD/list__action_acreditation.html.twig'
+                    'template' => 'CRUD/list__action_acreditation.html.twig',
                 ),
                 'download_invoice' => array(
-                    'template' => 'CRUD/list__action_invoice.html.twig'
-                )
-            )))
+                    'template' => 'CRUD/list__action_invoice.html.twig',
+                ),
+            ), ))
         ;
     }
 

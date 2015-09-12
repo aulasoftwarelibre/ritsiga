@@ -6,7 +6,6 @@ use AppBundle\Entity\College;
 use AppBundle\Entity\University;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
@@ -18,8 +17,9 @@ class DefaultController extends Controller
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $conventions = $this->getDoctrine()->getRepository('AppBundle:Convention')->findConventionsAvailables();
-	    return $this->render(':frontend/conventions:list_convetions.html.twig', array('conventions' => $conventions,
-        'user'=> $user,));
+
+        return $this->render(':frontend/conventions:list_convetions.html.twig', array('conventions' => $conventions,
+        'user' => $user, ));
     }
 
     /**
@@ -28,8 +28,9 @@ class DefaultController extends Controller
     public function getColleges(University $university)
     {
         $response = $this->getDoctrine()->getRepository('AppBundle:College')->findCollegeByUniversity($university);
+
         return new Response(json_encode($response), 200, array(
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/json',
         ));
     }
 
@@ -41,7 +42,7 @@ class DefaultController extends Controller
         $response = $this->getDoctrine()->getRepository('AppBundle:StudentDelegation')->findStudentDelegationByCollege($college);
 
         return new Response(json_encode($response), 200, array(
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/json',
         ));
     }
 }

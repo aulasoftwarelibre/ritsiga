@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 1/09/15
- * Time: 22:26
+ * Time: 22:26.
  */
-
 namespace AppBundle\Behat;
 
 use AppBundle\Entity\Registration;

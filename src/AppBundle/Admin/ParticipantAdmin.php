@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 25/07/15
- * Time: 10:51
+ * Time: 10:51.
  */
-
 namespace AppBundle\Admin;
 
 use Doctrine\ORM\QueryBuilder;
@@ -87,16 +87,16 @@ class ParticipantAdmin  extends Admin
             ->add('last_name', null, array('label' => 'label.last_name'))
             ->add('phone', null, array('label' => 'label.phone'))
             ->add('registration.user.university', null, array(
-                'label' => 'label.university'
+                'label' => 'label.university',
             ))
             ->add('registration.user.college', null, array(
-                'label' => 'label.college'
+                'label' => 'label.college',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                ), 'label' => 'label.actions'))
+                ), 'label' => 'label.actions', ))
         ;
     }
 }

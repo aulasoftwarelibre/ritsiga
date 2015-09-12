@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 4/06/15
- * Time: 12:46
+ * Time: 12:46.
  */
-
 namespace AppBundle\Form;
+
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -32,7 +33,7 @@ class StudentDelegationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\StudentDelegation'
+            'data_class' => 'AppBundle\Entity\StudentDelegation',
         ));
     }
 
@@ -40,5 +41,4 @@ class StudentDelegationType extends AbstractType
     {
         return 'student_delegation';
     }
-
 }

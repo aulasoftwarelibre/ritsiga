@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 3/08/15
- * Time: 19:48
+ * Time: 19:48.
  */
-
 namespace AppBundle\Form;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,7 +27,7 @@ class TravelInformationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Registration'
+            'data_class' => 'AppBundle\Entity\Registration',
         ));
     }
 
@@ -35,5 +35,4 @@ class TravelInformationType extends AbstractType
     {
         return 'registration';
     }
-
 }

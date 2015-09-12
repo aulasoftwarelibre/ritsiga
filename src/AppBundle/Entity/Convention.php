@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Convention
+ * Convention.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ConventionRepository")
@@ -15,9 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Convention
 {
-
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -100,7 +99,7 @@ class Convention
     private $email;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="maintenance", type="boolean", nullable=false)
      */
@@ -169,7 +168,7 @@ class Convention
         return $this->name;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -177,12 +176,11 @@ class Convention
         $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
         $this->participants_types = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -190,7 +188,7 @@ class Convention
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -204,7 +202,7 @@ class Convention
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -214,7 +212,7 @@ class Convention
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -228,7 +226,7 @@ class Convention
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -238,7 +236,7 @@ class Convention
     }
 
     /**
-     * Set site code
+     * Set site code.
      *
      * @param string $slug
      *
@@ -252,7 +250,7 @@ class Convention
     }
 
     /**
-     * Get site code
+     * Get site code.
      *
      * @return string
      */
@@ -262,7 +260,7 @@ class Convention
     }
 
     /**
-     * Set web
+     * Set web.
      *
      * @param string $web
      *
@@ -276,7 +274,7 @@ class Convention
     }
 
     /**
-     * Get web
+     * Get web.
      *
      * @return string
      */
@@ -286,7 +284,7 @@ class Convention
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
      *
@@ -300,7 +298,7 @@ class Convention
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return string
      */
@@ -310,7 +308,7 @@ class Convention
     }
 
     /**
-     * Set mimeType
+     * Set mimeType.
      *
      * @param string $mimeType
      *
@@ -324,7 +322,7 @@ class Convention
     }
 
     /**
-     * Get mimeType
+     * Get mimeType.
      *
      * @return string
      */
@@ -334,7 +332,7 @@ class Convention
     }
 
     /**
-     * Set path
+     * Set path.
      *
      * @param string $path
      *
@@ -348,7 +346,7 @@ class Convention
     }
 
     /**
-     * Get path
+     * Get path.
      *
      * @return string
      */
@@ -358,7 +356,7 @@ class Convention
     }
 
     /**
-     * Set startsAt
+     * Set startsAt.
      *
      * @param \DateTime $startsAt
      *
@@ -372,7 +370,7 @@ class Convention
     }
 
     /**
-     * Get startsAt
+     * Get startsAt.
      *
      * @return \DateTime
      */
@@ -382,7 +380,7 @@ class Convention
     }
 
     /**
-     * Set endsAt
+     * Set endsAt.
      *
      * @param \DateTime $endsAt
      *
@@ -396,7 +394,7 @@ class Convention
     }
 
     /**
-     * Get endsAt
+     * Get endsAt.
      *
      * @return \DateTime
      */
@@ -406,7 +404,7 @@ class Convention
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -420,7 +418,7 @@ class Convention
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -430,9 +428,9 @@ class Convention
     }
 
     /**
-     * Set maintenance
+     * Set maintenance.
      *
-     * @param boolean $maintenance
+     * @param bool $maintenance
      *
      * @return Convention
      */
@@ -444,9 +442,9 @@ class Convention
     }
 
     /**
-     * Get maintenance
+     * Get maintenance.
      *
-     * @return boolean
+     * @return bool
      */
     public function getMaintenance()
     {
@@ -454,7 +452,7 @@ class Convention
     }
 
     /**
-     * Add registration
+     * Add registration.
      *
      * @param \AppBundle\Entity\Registration $registration
      *
@@ -468,7 +466,7 @@ class Convention
     }
 
     /**
-     * Remove registration
+     * Remove registration.
      *
      * @param \AppBundle\Entity\Registration $registration
      */
@@ -478,7 +476,7 @@ class Convention
     }
 
     /**
-     * Get registrations
+     * Get registrations.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -488,7 +486,7 @@ class Convention
     }
 
     /**
-     * Add administrator
+     * Add administrator.
      *
      * @param \AppBundle\Entity\User $administrator
      *
@@ -502,7 +500,7 @@ class Convention
     }
 
     /**
-     * Remove administrator
+     * Remove administrator.
      *
      * @param \AppBundle\Entity\User $administrator
      */
@@ -512,7 +510,7 @@ class Convention
     }
 
     /**
-     * Get administrators
+     * Get administrators.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -569,10 +567,8 @@ class Convention
         $this->instagram = $instagram;
     }
 
-
-
     /**
-     * Add participantsType
+     * Add participantsType.
      *
      * @param \AppBundle\Entity\ParticipantType $participantsType
      *
@@ -586,7 +582,7 @@ class Convention
     }
 
     /**
-     * Remove participantsType
+     * Remove participantsType.
      *
      * @param \AppBundle\Entity\ParticipantType $participantsType
      */
@@ -596,7 +592,7 @@ class Convention
     }
 
     /**
-     * Get participantsTypes
+     * Get participantsTypes.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 3/05/15
- * Time: 17:27
+ * Time: 17:27.
  */
-
 namespace AppBundle\Twig;
+
 use AppBundle\Site\SiteManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use AppBundle\Entity\Convention;
@@ -26,14 +27,14 @@ class ConventionExtension extends \Twig_Extension
     /**
      * @param RequestStack $requestStack
      */
-    function __construct($requestStack, SiteManager $siteManager)
+    public function __construct($requestStack, SiteManager $siteManager)
     {
         $this->siteManager = $siteManager;
         $this->requestStack = $requestStack;
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getGlobals()
     {
@@ -43,7 +44,7 @@ class ConventionExtension extends \Twig_Extension
     }
 
     /**
-     * Returns the current convention
+     * Returns the current convention.
      *
      * @return Convention
      */

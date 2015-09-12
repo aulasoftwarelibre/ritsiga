@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/04/15
- * Time: 18:59
+ * Time: 18:59.
  */
-
 namespace AppBundle\Security\Core\User;
-
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
@@ -15,9 +14,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class FOSUBUserProvider extends BaseClass
 {
-
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
@@ -69,6 +67,7 @@ class FOSUBUserProvider extends BaseClass
             $user->setPassword($username);
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
+
             return $user;
         }
 
@@ -76,12 +75,11 @@ class FOSUBUserProvider extends BaseClass
         $user = parent::loadUserByOAuthUserResponse($response);
 
         $serviceName = $response->getResourceOwner()->getName();
-        $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
+        $setter = 'set'.ucfirst($serviceName).'AccessToken';
 
         //update access token
         $user->$setter($response->getAccessToken());
 
         return $user;
     }
-
 }

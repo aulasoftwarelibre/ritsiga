@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/04/15
- * Time: 11:29
+ * Time: 11:29.
  */
-
 namespace AppBundle\Process\Step;
 
 use AppBundle\Form\UniversityType;
@@ -21,7 +21,7 @@ class UniversityStep extends BaseStep
 
         return $this->render(':frontend/registration/process:university.html.twig', array(
             'form' => $form->createView(),
-            'context' => $context
+            'context' => $context,
         ));
     }
 
@@ -38,14 +38,14 @@ class UniversityStep extends BaseStep
             $em = $this->getDoctrine()->getManager();
             $em->persist($university);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans( 'Your university has been successfully updated'));
+            $this->addFlash('warning', $this->get('translator')->trans('Your university has been successfully updated'));
 
             return $this->complete();
         }
 
         return $this->render(':frontend/registration/process:university.html.twig', array(
             'form' => $form->createView(),
-            'context' => $context
+            'context' => $context,
         ));
     }
 }

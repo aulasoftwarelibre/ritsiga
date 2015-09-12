@@ -1,23 +1,20 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 19/04/15
- * Time: 20:24
+ * Time: 20:24.
  */
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Convention;
-use AppBundle\Entity\Registration;
-use AppBundle\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-
 /**
- * Class ConventionController
- * @package AppBundle\Controller
+ * Class ConventionController.
+ *
  * @Route(path="/convention/{slug}")
  */
 class ConventionController extends Controller
@@ -35,9 +32,8 @@ class ConventionController extends Controller
 
         return $this->render(':frontend/conventions:convention.html.twig', array(
             'convention' => $convention,
-            'user'=> $user,
+            'user' => $user,
             'inscriptions' => $inscriptions,
         ));
     }
-
 }

@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 22/03/15
- * Time: 19:29
+ * Time: 19:29.
  */
-
 namespace AppBundle\Behat;
-
 
 use AppBundle\Entity\Convention;
 use Behat\Gherkin\Node\TableNode;
@@ -15,7 +14,6 @@ use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
 class ConventionContext extends DefaultContext
 {
-
     /**
      * @Given existen las asambleas:
      */

@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 24/03/15
- * Time: 22:09
+ * Time: 22:09.
  */
-
 namespace AppBundle\Entity;
 
 use AppBundle\Security\Core\Role\OrganizerRole;
@@ -68,6 +68,7 @@ class User extends BaseUser
         if ($this->getStudentDelegation()) {
             return $this->getStudentDelegation()->getCollege();
         }
+
         return;
     }
 
@@ -92,10 +93,10 @@ class User extends BaseUser
      */
     public function getUniversity()
     {
-        if ($this->getStudentDelegation())
-        {
+        if ($this->getStudentDelegation()) {
             return $this->getStudentDelegation()->getCollege()->getUniversity();
         }
+
         return;
     }
 
@@ -196,7 +197,7 @@ class User extends BaseUser
     }
 
     /**
-     * Add adminConvention
+     * Add adminConvention.
      *
      * @param \AppBundle\Entity\Convention $adminConvention
      *
@@ -210,7 +211,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove adminConvention
+     * Remove adminConvention.
      *
      * @param \AppBundle\Entity\Convention $adminConvention
      */
@@ -230,22 +231,24 @@ class User extends BaseUser
      * @return String containing either just a URL or a complete image tag
      * @source http://gravatar.com/site/implement/images/php/
      */
-    public function getGravatar($s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+    public function getGravatar($s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array())
+    {
         $url = '//www.gravatar.com/avatar/';
-        $url .= md5( strtolower( trim( $this->getEmail() ) ) );
+        $url .= md5(strtolower(trim($this->getEmail())));
         $url .= "?s=$s&d=$d&r=$r";
-        if ( $img ) {
-            $url = '<img src="' . $url . '"';
-            foreach ( $atts as $key => $val )
-                $url .= ' ' . $key . '="' . $val . '"';
+        if ($img) {
+            $url = '<img src="'.$url.'"';
+            foreach ($atts as $key => $val) {
+                $url .= ' '.$key.'="'.$val.'"';
+            }
             $url .= ' />';
         }
+
         return $url;
     }
 
-
     /**
-     * Add registration
+     * Add registration.
      *
      * @param \AppBundle\Entity\Registration $registration
      *
@@ -259,7 +262,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove registration
+     * Remove registration.
      *
      * @param \AppBundle\Entity\Registration $registration
      */
@@ -269,7 +272,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get registrations
+     * Get registrations.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

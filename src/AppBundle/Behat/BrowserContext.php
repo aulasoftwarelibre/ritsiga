@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 25/08/15
- * Time: 20:03
+ * Time: 20:03.
  */
-
 namespace AppBundle\Behat;
-
 
 use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 

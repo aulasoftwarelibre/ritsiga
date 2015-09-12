@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 23/08/15
- * Time: 20:26
+ * Time: 20:26.
  */
-
 namespace AppBundle\Controller;
-
 
 use AppBundle\Entity\Participant;
 use AppBundle\Entity\ParticipantType;
@@ -17,14 +16,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * Class ParticipantController
- * @package AppBundle\Controller
+ * Class ParticipantController.
+ *
  * @Route(path="/convention/{slug}")
  */
 class ParticipantController extends Controller
 {
-
-
     /**
      * @Route("/nueva-inscripcion/{participanttype}", name="participant_new")
      * Muestra pantalla de nueva inscripción
@@ -38,12 +35,10 @@ class ParticipantController extends Controller
 
         $user = $this->getUser();
 
-        if (!$registration)
-        {
+        if (!$registration) {
             return $this->redirectToRoute('sylius_flow_start', array('scenarioAlias' => 'asamblea'));
         }
-        if ($registration->getStatus()!=Registration::STATUS_OPEN)
-        {
+        if ($registration->getStatus() != Registration::STATUS_OPEN) {
             return $this->redirectToRoute('registration');
         }
 
@@ -54,30 +49,27 @@ class ParticipantController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $num_participants = $this->getDoctrine()->getRepository('AppBundle:Participant')->getNumParticipationsTypesAvailables($registration,$participanttype);
-            if ($participanttype && ($participanttype->getNumParticipants() > $num_participants))
-            {
+            $num_participants = $this->getDoctrine()->getRepository('AppBundle:Participant')->getNumParticipationsTypesAvailables($registration, $participanttype);
+            if ($participanttype && ($participanttype->getNumParticipants() > $num_participants)) {
                 $participant->setParticipantType($participanttype);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($participant);
                 $em->flush();
-                return $this->redirectToRoute('registration');
-            }
-            else
-            {
-                $this->addFlash('warning', $this->get('translator')->trans( 'Sorry, the seats are already occupied'));
-                return $this->redirectToRoute('registration');
-            }
 
+                return $this->redirectToRoute('registration');
+            } else {
+                $this->addFlash('warning', $this->get('translator')->trans('Sorry, the seats are already occupied'));
+
+                return $this->redirectToRoute('registration');
+            }
         }
+
         return $this->render(':frontend/registration:participant.html.twig', array(
-            'user'=> $user,
+            'user' => $user,
             'registration' => $registration,
-            'form'=> $form->createView(),
+            'form' => $form->createView(),
         ));
-
     }
-
 
     /**
      * @Route("/editar-inscripcion/{id}", name="participant_edit")
@@ -90,41 +82,36 @@ class ParticipantController extends Controller
         $user = $this->getUser();
         $registration = $this->getDoctrine()->getRepository('AppBundle:Registration')->findOneBy(array('user' => $user, 'convention' => $convention));
         $participanttype = $participant->getParticipantType();
-        if (!$registration)
-        {
+        if (!$registration) {
             return $this->redirectToRoute('sylius_flow_start', array('scenarioAlias' => 'asamblea'));
         }
-        if ($registration->getStatus()!=Registration::STATUS_OPEN || $participant->getRegistration() != $registration)
-        {
+        if ($registration->getStatus() != Registration::STATUS_OPEN || $participant->getRegistration() != $registration) {
             return $this->redirectToRoute('registration');
         }
         $form = $this->createForm($this->get('ritsiga.participant.form.type'), $participant);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $num_participants = $this->getDoctrine()->getRepository('AppBundle:Participant')->getNumParticipationsTypesAvailables($registration,$participanttype);
-            if ($participanttype && ($participanttype->getNumParticipants() > $num_participants))
-            {
+            $num_participants = $this->getDoctrine()->getRepository('AppBundle:Participant')->getNumParticipationsTypesAvailables($registration, $participanttype);
+            if ($participanttype && ($participanttype->getNumParticipants() > $num_participants)) {
                 $participant->setParticipantType($participanttype);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($participant);
                 $em->flush();
-                return $this->redirectToRoute('registration');
-            }
-            else
-            {
-                $this->addFlash('warning', $this->get('translator')->trans( 'Sorry, the seats are already occupied'));
-                return $this->redirectToRoute('registration');
-            }
 
+                return $this->redirectToRoute('registration');
+            } else {
+                $this->addFlash('warning', $this->get('translator')->trans('Sorry, the seats are already occupied'));
+
+                return $this->redirectToRoute('registration');
+            }
         }
+
         return $this->render(':frontend/registration:participant.html.twig', array(
-            'user'=> $user,
+            'user' => $user,
             'registration' => $registration,
-            'form'=> $form->createView(),
+            'form' => $form->createView(),
         ));
-
     }
-
 
     /**
      * @Route("/borrar_inscripcion/{id}", name="participant_delete")
@@ -136,12 +123,12 @@ class ParticipantController extends Controller
         $convention = $siteManager->getCurrentSite();
         $user = $this->getUser();
         $registration = $this->getDoctrine()->getRepository('AppBundle:Registration')->findOneBy(array('user' => $user, 'convention' => $convention));
-        if ($registration->getStatus()==Registration::STATUS_OPEN && $participant->getRegistration() == $registration)
-        {
+        if ($registration->getStatus() == Registration::STATUS_OPEN && $participant->getRegistration() == $registration) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($participant);
             $em->flush();
         }
+
         return $this->redirectToRoute('registration');
     }
 }

@@ -1,25 +1,26 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 31/05/15
- * Time: 18:00
+ * Time: 18:00.
  */
-
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ParticipantType
+ * ParticipantType.
  *
  * @ORM\Entity
  * @ORM\Table(name="ParticipantType")
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ParticipationTypeRepository")
  */
-
-class ParticipantType {
+class ParticipantType
+{
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -71,7 +72,7 @@ class ParticipantType {
     private $price;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="num_participants", type="integer")
      */
@@ -99,7 +100,7 @@ class ParticipantType {
     private $public;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -240,7 +241,7 @@ class ParticipantType {
     }
 
     /**
-     * Add participant
+     * Add participant.
      *
      * @param \AppBundle\Entity\Participant $participant
      *
@@ -254,7 +255,7 @@ class ParticipantType {
     }
 
     /**
-     * Remove participant
+     * Remove participant.
      *
      * @param \AppBundle\Entity\Participant $participant
      */
@@ -264,7 +265,7 @@ class ParticipantType {
     }
 
     /**
-     * Get participants
+     * Get participants.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -274,7 +275,7 @@ class ParticipantType {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isReduced()
     {
@@ -282,7 +283,7 @@ class ParticipantType {
     }
 
     /**
-     * @param boolean $reduced
+     * @param bool $reduced
      */
     public function setReduced($reduced)
     {
@@ -290,7 +291,7 @@ class ParticipantType {
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPublic()
     {
@@ -298,7 +299,7 @@ class ParticipantType {
     }
 
     /**
-     * @param boolean $public
+     * @param bool $public
      */
     public function setPublic($public)
     {

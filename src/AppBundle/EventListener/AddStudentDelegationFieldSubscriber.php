@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 07/09/15
- * Time: 17:38
+ * Time: 17:38.
  */
-
 namespace AppBundle\EventListener;
-
 
 use AppBundle\Entity\College;
 use AppBundle\Entity\User;
@@ -51,10 +50,10 @@ class AddStudentDelegationFieldSubscriber implements EventSubscriberInterface
 
     private function addStudentDelegationForm(FormInterface $form, $college)
     {
-        $form->add($this->factory->createNamed('studentdelegation','entity', null, array(
-            'class'         => 'AppBundle:StudentDelegation',
+        $form->add($this->factory->createNamed('studentdelegation', 'entity', null, array(
+            'class' => 'AppBundle:StudentDelegation',
             'auto_initialize' => false,
-            'label'         => 'label.student_delegation',
+            'label' => 'label.student_delegation',
             'query_builder' => function (EntityRepository $repository) use ($college) {
                 $qb = $repository->createQueryBuilder('student')
                     ->innerJoin('student.college', 'college');
@@ -70,7 +69,7 @@ class AddStudentDelegationFieldSubscriber implements EventSubscriberInterface
                 }
 
                 return $qb;
-            }
+            },
         )));
     }
 
@@ -84,7 +83,7 @@ class AddStudentDelegationFieldSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $college = ($data->getStudentDelegation()) ? $data->getStudentDelegation()->getCollege() : null ;
+        $college = ($data->getStudentDelegation()) ? $data->getStudentDelegation()->getCollege() : null;
         $this->addStudentDelegationForm($form, $college);
     }
 
@@ -97,7 +96,7 @@ class AddStudentDelegationFieldSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $college = array_key_exists('college', $data) ? $data['college'] : null ;
+        $college = array_key_exists('college', $data) ? $data['college'] : null;
         $this->addStudentDelegationForm($form, $college);
     }
 }

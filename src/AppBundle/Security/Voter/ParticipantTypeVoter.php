@@ -1,21 +1,18 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 22/08/15
- * Time: 01:31
+ * Time: 01:31.
  */
-
 namespace AppBundle\Security\Voter;
 
-
-use AppBundle\Entity\ParticipantType;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class ParticipantTypeVoter extends AbstractOrganizationVoter
 {
-
-    function getClass()
+    public function getClass()
     {
         return 'AppBundle\Entity\ParticipantType';
     }

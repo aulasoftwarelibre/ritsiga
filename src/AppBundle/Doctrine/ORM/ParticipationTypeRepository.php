@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tfg
  * Date: 4/06/15
- * Time: 19:04
+ * Time: 19:04.
  */
-
 namespace AppBundle\Doctrine\ORM;
+
 use AppBundle\Entity\Convention;
 use Doctrine\ORM\EntityRepository;
 
@@ -24,7 +25,7 @@ class ParticipationTypeRepository extends  EntityRepository
                 ORDER BY o.endDate DESC
             ')
             ->setParameter('today', new \DateTime())
-            ->setParameter('public', TRUE)
+            ->setParameter('public', true)
             ->setParameter('convention', $convention)
         ;
 
