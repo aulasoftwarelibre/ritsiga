@@ -39,7 +39,7 @@ class ConventionAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'label.name'))
-            ->add('code', 'text', array('label' => 'label.code'))
+            ->add('slug', 'text', array('label' => 'label.slug'))
             ->add('description', null, array('label' => 'Descripción', 'required' => false, 'attr' => array('class' => 'ckeditor')))
             ->add('startsAt', 'sonata_type_date_picker', array('label' => 'label.startsAt'))
             ->add('endsAt', 'sonata_type_date_picker', array('label' => 'label.endsAt'))

@@ -49,7 +49,7 @@ abstract class AbstractOrganizationVoter implements VoterInterface
     public function supportsAttribute($attribute)
     {
         $entity = strtoupper(join('', array_slice(explode('\\', $this->getClass()), -1)));
-        $code = $this->siteManager->getCurrentSite()->getCode();
+        $code = $this->siteManager->getCurrentSite()->getSlug();
         return preg_match("/ROLE_{$code}_RITSIGA_ADMIN_{$entity}_[CREATE|DELETE|EDIT|VIEW]/", $attribute) === 1 ? true : false;
     }
 

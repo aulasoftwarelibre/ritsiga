@@ -46,7 +46,7 @@ class CoreContext extends DefaultContext
     public function iAmOnConventionSite($code)
     {
         $siteManager = $this->getContainer()->get('ritsiga.site.manager');
-        $site = $this->getEntityManager()->getRepository('AppBundle:Convention')->findOneBy(['code' => $code]);
+        $site = $this->getEntityManager()->getRepository('AppBundle:Convention')->findOneBy(['slug' => $code]);
         if (false === $site instanceof Convention) {
             throw new \Exception("Site not found: $code");
         }

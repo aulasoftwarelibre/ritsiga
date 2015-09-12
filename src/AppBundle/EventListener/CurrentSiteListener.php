@@ -20,7 +20,7 @@ class CurrentSiteListener {
 
     private $em;
 
-    private $baseCode;
+    private $baseSlug;
     /**
      * @var KernelInterface
      */
@@ -30,11 +30,11 @@ class CurrentSiteListener {
      */
     private $router;
 
-    public function __construct(SiteManager $siteManager, EntityManager $em, RouterInterface $router, $baseCode)
+    public function __construct(SiteManager $siteManager, EntityManager $em, RouterInterface $router, $baseSlug)
     {
         $this->siteManager = $siteManager;
         $this->em = $em;
-        $this->baseCode = $baseCode;
+        $this->baseSlug = $baseSlug;
         $this->router = $router;
     }
 
@@ -42,26 +42,26 @@ class CurrentSiteListener {
     {
         $context = $this->router->getContext();
         preg_match('/^\/convention\/([a-z]\w+)/', $context->getPathInfo(), $matches);
-        $code = isset($matches[1]) ? $matches[1] : $this->baseCode;
+        $slug = isset($matches[1]) ? $matches[1] : $this->baseSlug;
 
-        if (!$context->hasParameter('code')) {
-            $context->setParameter('code', $code);
+        if (!$context->hasParameter('slug')) {
+            $context->setParameter('slug', $slug);
         }
 
-        if ($this->baseCode == $code) {
+        if ($this->baseSlug == $slug) {
             $site = new Convention();
-            $site->setCode('ritsi');
+            $site->setSlug('ritsi');
             $this->siteManager->setCurrentSite($site);
             return;
         }
 
         $site = $this->em
             ->getRepository('AppBundle:Convention')
-            ->findOneBy(array('code' => $code));
+            ->findOneBy(array('slug' => $slug));
         if (!$site) {
             throw new NotFoundHttpException(sprintf(
-                'No site for code "%s"',
-                $code
+                'No site for slug "%s"',
+                $slug
             ));
         }
         $this->siteManager->setCurrentSite($site);

@@ -14,9 +14,13 @@
                 <source>label.endsAt</source>
                 <target>Fecha de finalización</target>
             </trans-unit>
-            <trans-unit id="3">
+            <trans-unit id="label.email">
                 <source>label.email</source>
                 <target>Email</target>
+            </trans-unit>
+            <trans-unit id="label.web">
+                <source>label.web</source>
+                <target>Web</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>label.convention</source>
@@ -151,8 +155,8 @@
                 <target>Número de Factura</target>
             </trans-unit>
             <trans-unit id="37">
-                <source>label.code</source>
-                <target>Código</target>
+                <source>label.slug</source>
+                <target>Identificador único</target>
             </trans-unit>
             <trans-unit id="38">
                 <source>label.type</source>
@@ -202,6 +206,10 @@
             <trans-unit id="label.date_of_birth">
                 <source>label.date_of_birth</source>
                 <target>Fecha de nacimiento</target>
+            </trans-unit>
+            <trans-unit id="help.admin_registration">
+                <source>help.admin_registration</source>
+                <target>Este campo indica la inscripción que está asociada a este participante.</target>
             </trans-unit>
         </body>
     </file>

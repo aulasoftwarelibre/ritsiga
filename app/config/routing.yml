@@ -34,7 +34,7 @@ sir_login:
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /convention/{code}/admin/
+    prefix: /convention/{slug}/admin/
 
 sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
@@ -43,13 +43,13 @@ sonata_user:
 _sonata_admin:
     resource: .
     type: sonata_admin
-    prefix: /convention/{code}/admin/
+    prefix: /convention/{slug}/admin/
 
 # Frontend
 
 sylius_flow:
     resource: "@SyliusFlowBundle/Resources/config/routing.yml"
-    prefix: /convention/{code}/inscription
+    prefix: /convention/{slug}/inscription
 
 app:
     resource: "@AppBundle/Controller/"

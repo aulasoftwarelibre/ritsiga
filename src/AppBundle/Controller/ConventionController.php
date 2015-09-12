@@ -18,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * Class ConventionController
  * @package AppBundle\Controller
- * @Route(path="/convention/{code}")
+ * @Route(path="/convention/{slug}")
  */
 class ConventionController extends Controller
 {

@@ -23,7 +23,7 @@ class ConventionCRUDController extends Controller
         $registrations = $convention->getRegistrations();
 
         $zip = new ZipArchive();
-        $title = $convention->getCode();
+        $title = $convention->getSlug();
         $filename = tempnam('/tmp/','ritsiGA-'.$title.'-');
         unlink($filename);
 
@@ -63,8 +63,8 @@ class ConventionCRUDController extends Controller
         $response->prepare($request);
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $convention->getCode().'-acreditaciones.zip',
-            iconv('UTF-8', 'ASCII//TRANSLIT', $convention->getCode().'-acreditaciones.zip')
+            $convention->getSlug().'-acreditaciones.zip',
+            iconv('UTF-8', 'ASCII//TRANSLIT', $convention->getSlug().'-acreditaciones.zip')
         );
 
         return $response;
@@ -75,7 +75,7 @@ class ConventionCRUDController extends Controller
         $registrations = $convention->getRegistrations();
 
         $zip = new ZipArchive();
-        $title = $convention->getCode();
+        $title = $convention->getSlug();
         $filename = tempnam('/tmp/','ritsiGA-'.$title.'-');
         unlink($filename);
 
@@ -113,8 +113,8 @@ class ConventionCRUDController extends Controller
         $response->prepare($request);
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $convention->getCode().'-facturas.zip',
-            iconv('UTF-8', 'ASCII//TRANSLIT', $convention->getCode().'-facturas.zip')
+            $convention->getSlug().'-facturas.zip',
+            iconv('UTF-8', 'ASCII//TRANSLIT', $convention->getSlug().'-facturas.zip')
         );
 
         return $response;

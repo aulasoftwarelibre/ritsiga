@@ -14,7 +14,7 @@
     {% if admin_pool is defined %}
         {% spaceless %}
             <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
-                {{ convention_code() }} - admin
+                {{ convention.slug }} - admin
             </a>
         {% endspaceless %}
     {% endif %}

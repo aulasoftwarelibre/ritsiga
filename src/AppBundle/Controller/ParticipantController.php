@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * Class ParticipantController
  * @package AppBundle\Controller
- * @Route(path="/convention/{code}")
+ * @Route(path="/convention/{slug}")
  */
 class ParticipantController extends Controller
 {

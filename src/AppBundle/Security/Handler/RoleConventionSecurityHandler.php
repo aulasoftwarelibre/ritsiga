@@ -31,7 +31,7 @@ class RoleConventionSecurityHandler extends RoleSecurityHandler
      */
     public function getBaseRole(AdminInterface $admin)
     {
-        $code = $this->siteManager->getCurrentSite()->getCode();
+        $code = $this->siteManager->getCurrentSite()->getSlug();
         return 'ROLE_'.str_replace('.', '_', $code . "." . strtoupper($admin->getCode())).'_%s';
     }
 }

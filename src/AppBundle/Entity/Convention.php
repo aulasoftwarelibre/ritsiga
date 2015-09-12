@@ -43,10 +43,10 @@ class Convention
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=255)
      * @Assert\NotBlank
      */
-    private $code;
+    private $slug;
 
     /**
      * @var string
@@ -240,13 +240,13 @@ class Convention
     /**
      * Set site code
      *
-     * @param string $code
+     * @param string $slug
      *
      * @return Convention
      */
-    public function setCode($code)
+    public function setSlug($slug)
     {
-        $this->code = strtolower($code);
+        $this->slug = strtolower($slug);
 
         return $this;
     }
@@ -256,9 +256,9 @@ class Convention
      *
      * @return string
      */
-    public function getCode()
+    public function getSlug()
     {
-        return $this->code;
+        return $this->slug;
     }
 
     /**

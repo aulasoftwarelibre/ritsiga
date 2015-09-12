@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 /**
  * Class RegistrationController
  * @package AppBundle\Controller
- * @Route(path="/convention/{code}")
+ * @Route(path="/convention/{slug}")
  */
 class RegistrationController extends Controller
 {

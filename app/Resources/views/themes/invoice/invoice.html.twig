@@ -77,7 +77,7 @@
             <dt>Entidad bancaria</dt><dd>BANCO SANTANDER, S.A.</dd>
             <dt>IBAN</dt><dd>ES10 0049 6560 3226 1603 9311</dd>
             <dt>Beneficiario</dt><dd>Asociación RITSI</dd>
-            <dt>Concepto</dt><dd>Referencia #{{ registration.id }} {{ registration.convention.code | upper }}</dd>
+            <dt>Concepto</dt><dd>Referencia #{{ registration.id }} {{ registration.convention.slug | upper }}</dd>
             <dt>Importe</dt><dd>{{ amount|number_format(2, ',') }}€</dd>
         </dl>
     </div>

@@ -17,7 +17,7 @@
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <button action="submit" class="btn btn-success">Enviar</button>
-                    <a href="{{ path('registration', {'code': convention.code}) }}" class="btn btn-danger">Cancelar</a>
+                    <a href="{{ path('registration', {'slug': convention.slug}) }}" class="btn btn-danger">Cancelar</a>
 
                 </div>
                 {{ form_end(form) }}
