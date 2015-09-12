@@ -87,13 +87,13 @@ services:
            - AppBundle\Entity\ParticipantType
            - ~
 
-    ritsiGA.admin.university:
-        class: AppBundle\Admin\UniversityAdmin
+    ritsiGA.admin.registration:
+        class: AppBundle\Admin\RegistrationAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Universidades" }
+           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Inscripciones" }
         arguments:
            - ~
-           - AppBundle\Entity\University
+           - AppBundle\Entity\Registration
            - ~
 
     ritsiGA.admin.participant:
@@ -103,6 +103,15 @@ services:
         arguments:
            - ~
            - AppBundle\Entity\Participant
+           - ~
+
+    ritsiGA.admin.university:
+        class: AppBundle\Admin\UniversityAdmin
+        tags:
+           - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Universidades" }
+        arguments:
+           - ~
+           - AppBundle\Entity\University
            - ~
 
     ritsiGA.admin.college:
@@ -121,15 +130,6 @@ services:
         arguments:
            - ~
            - AppBundle\Entity\StudentDelegation
-           - ~
-
-    ritsiGA.admin.registration:
-        class: AppBundle\Admin\RegistrationAdmin
-        tags:
-           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Inscripciones" }
-        arguments:
-           - ~
-           - AppBundle\Entity\Registration
            - ~
 
     sonata.user.admin.group:
