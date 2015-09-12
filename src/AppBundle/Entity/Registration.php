@@ -399,10 +399,13 @@ class Registration {
         $this->invoicenumber = $invoicenumber;
     }
 
+    public function getDescription()
+    {
+        return sprintf("#%d - %s - %s", $this->getId(), $this->getUser()->getUniversity(), $this->getUser());
+    }
+
     public function __toString()
     {
         return $this->name;
     }
-
-
 }

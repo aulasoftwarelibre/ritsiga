@@ -41,6 +41,8 @@ class ParticipantAdmin  extends Admin
                 'query_builder' => $this->getRepository('registration')->getQueryRegistration($this->getCurrentConvention()),
                 'required' => true,
                 'label' => 'label.registration',
+                'choice_label' => 'description',
+                'help' => 'help.admin_registration',
             ])
             ->add('name', null, array('label' => 'label.name'))
             ->add('participant_type', null, [

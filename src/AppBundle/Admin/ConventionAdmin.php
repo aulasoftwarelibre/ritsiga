@@ -43,7 +43,8 @@ class ConventionAdmin extends Admin
             ->add('description', null, array('label' => 'Descripción', 'required' => false, 'attr' => array('class' => 'ckeditor')))
             ->add('startsAt', 'sonata_type_date_picker', array('label' => 'label.startsAt'))
             ->add('endsAt', 'sonata_type_date_picker', array('label' => 'label.endsAt'))
-            ->add('email', 'email', array('label' => 'Email'))
+            ->add('email', 'email', array('label' => 'label.email'))
+            ->add('web', 'email', array('label' => 'label.web'))
             ->add('administrators', null, array('label' => 'Administradores'))
             ->add('image', 'file', array(
                 'label' => 'Imagen',

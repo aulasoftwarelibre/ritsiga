@@ -14,6 +14,14 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class UniversityAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $datagridValues = array(
+        '_page' => 1,            // display the first page (default = 1)
+        '_sort_order' => 'ASC', // reverse order (default = 'ASC')
+        '_sort_by' => 'name'  // name of the ordered field
+    );
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -41,7 +49,7 @@ class UniversityAdmin extends Admin
             ->add('postcode', null, array('label' => 'label.postcode'))
             ->add('phone', null, array('label' => 'label.phone'))
             ->add('fax')
-            ->add('web')
+            ->add('web', 'url')
             ->add('cif')
             ->add('type', null, array('label' => 'label.type'))
             ->add('slug');
@@ -61,7 +69,7 @@ class UniversityAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('label' => 'label.name'))
+            ->addIdentifier('name', null, array('label' => 'label.name'))
             ->add('city', null, array('label' => 'label.city'))
             ->add('_action', 'actions', array(
                 'label' => 'label.actions',

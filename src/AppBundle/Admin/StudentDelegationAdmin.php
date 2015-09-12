@@ -14,6 +14,14 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class StudentDelegationAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $datagridValues = array(
+        '_page' => 1,            // display the first page (default = 1)
+        '_sort_order' => 'ASC', // reverse order (default = 'ASC')
+        '_sort_by' => 'college.university.name'  // name of the ordered field
+    );
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -35,7 +43,12 @@ class StudentDelegationAdmin extends Admin
             ->add('city', null, array('label' => 'label.city'))
             ->add('province', null, array('label' => 'label.province'))
             ->add('postcode', null, array('label' => 'label.postcode'))
+            ->add('phone', null, array('label' => 'label.phone'))
+            ->add('fax')
+            ->add('web', 'url')
+            ->add('cif')
             ->add('college', null, array('label' => 'label.college'))
+            ->add('college.university')
             ->add('slug');
     }
 
@@ -46,6 +59,8 @@ class StudentDelegationAdmin extends Admin
             ->add('name', null, array('label' => 'label.name'))
             ->add('city', null, array('label' => 'label.city'))
             ->add('province', null, array('label' => 'label.province'))
+            ->add('college', null, array('label' => 'label.college'))
+            ->add('college.university', null, array('label' => 'label.university'))
         ;
     }
 
@@ -53,8 +68,9 @@ class StudentDelegationAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('label' => 'label.name'))
+            ->addIdentifier('name', null, array('label' => 'label.name'))
             ->add('college', null, array('label' => 'label.college'))
+            ->add('college.university', null, array('label' => 'label.university'))
             ->add('_action', 'actions', array(
                 'label' => 'label.actions',
                 'actions' => array(
