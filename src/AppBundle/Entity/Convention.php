@@ -77,7 +77,7 @@ class Convention
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="starts_at", type="datetime")
+     * @ORM\Column(name="starts_at", type="date")
      * @Assert\NotBlank
      */
     private $startsAt;
@@ -85,7 +85,7 @@ class Convention
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="ends_at", type="datetime")
+     * @ORM\Column(name="ends_at", type="date")
      * @Assert\NotBlank
      */
     private $endsAt;

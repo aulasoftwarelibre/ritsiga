@@ -57,8 +57,12 @@ class ParticipantTypeAdmin  extends Admin
                 'label' => 'label.public',
                 'help' => 'help.public',
             ))
-            ->add('startDate', 'sonata_type_datetime_picker', array('label' => 'label.startsAt'))
-            ->add('endDate', 'sonata_type_datetime_picker', array('label' => 'label.endsAt'))
+            ->add('startDate', 'sonata_type_date_picker', array(
+                'label' => 'label.startsAt',
+            ))
+            ->add('endDate', 'sonata_type_date_picker', array(
+                'label' => 'label.endsAt',
+            ))
             ->add('price', null, array('label' => 'label.price'))
             ->add('num_participants', null, array('label' => 'label.numparticipants'));
     }
