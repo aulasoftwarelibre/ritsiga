@@ -85,6 +85,20 @@ class ParticipantType {
     private $participants;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="reduced", type="boolean", nullable=false, options={"default" = FALSE})
+     */
+    private $reduced;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="public", type="boolean", nullable=false, options={"default" = TRUE})
+     */
+    private $public;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -225,8 +239,6 @@ class ParticipantType {
         return $this->name;
     }
 
-
-
     /**
      * Add participant
      *
@@ -259,5 +271,37 @@ class ParticipantType {
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isReduced()
+    {
+        return $this->reduced;
+    }
+
+    /**
+     * @param boolean $reduced
+     */
+    public function setReduced($reduced)
+    {
+        $this->reduced = $reduced;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * @param boolean $public
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
     }
 }

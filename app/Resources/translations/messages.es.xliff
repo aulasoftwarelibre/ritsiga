@@ -211,6 +211,24 @@
                 <source>help.admin_registration</source>
                 <target>Este campo indica la inscripción que está asociada a este participante.</target>
             </trans-unit>
+            <trans-unit id="label.reduced">
+                <source>label.reduced</source>
+                <target>Subvencionada</target>
+            </trans-unit>
+            <trans-unit id="help.reduced">
+                <source>help.reduced</source>
+                <target>Se indica si este tipo de inscripción tiene un precio reducido por subvención. Las entradas
+                subvencionadas están limitadas por universidad.</target>
+            </trans-unit>
+            <trans-unit id="label.public">
+                <source>label.public</source>
+                <target>Pública</target>
+            </trans-unit>
+            <trans-unit id="help.public">
+                <source>help.public</source>
+                <target>Indica si esta entrada se muestra en el listado del frontend. En caso contrario solo puede ser
+                asignada desde el backend.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

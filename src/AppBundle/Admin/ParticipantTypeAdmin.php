@@ -49,6 +49,14 @@ class ParticipantTypeAdmin  extends Admin
             ])
             ->add('name', null, array('label' => 'label.name'))
             ->add('description', null, array('label' => 'label.description'))
+            ->add('reduced', null, array(
+                'label' => 'label.reduced',
+                'help' => 'help.reduced',
+            ))
+            ->add('public', null, array(
+                'label' => 'label.public',
+                'help' => 'help.public',
+            ))
             ->add('startDate', 'sonata_type_datetime_picker', array('label' => 'label.startsAt'))
             ->add('endDate', 'sonata_type_datetime_picker', array('label' => 'label.endsAt'))
             ->add('price', null, array('label' => 'label.price'))

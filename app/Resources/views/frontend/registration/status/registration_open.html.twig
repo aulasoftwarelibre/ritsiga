@@ -17,7 +17,7 @@
                         </tr>
                 {% for type in types %}
                     <tr>
-                        <td><h6>{{ type.name }}</h6></td>
+                        <td><h6>{{ type.name }} {% if type.reduced %}<span class="label label-success">{{ 'label.reduced' | trans | upper }}</span>{% endif %} </h6></td>
                         <td><h6>{{ type.endDate|date('d-m-Y') }}</h6></td>
                         <td><h6>{{ type.price }} €</h6></td>
                         <td><a href="{{ path('participant_new', {'participanttype': type.id}) }}" class="btn btn-warning add_inscription btn-xs" style="margin-bottom: 10px;">Añadir</a>

@@ -20,9 +20,13 @@ class ParticipationTypeRepository extends  EntityRepository
                 FROM AppBundle:ParticipantType o
                 WHERE :today < o.endDate
                 AND o.convention = :convention
+                AND o.public = :public
                 ORDER BY o.endDate DESC
-            ')->setParameter('today', new \DateTime())
-            ->setParameter('convention', $convention);
+            ')
+            ->setParameter('today', new \DateTime())
+            ->setParameter('public', TRUE)
+            ->setParameter('convention', $convention)
+        ;
 
         return $consulta->getResult();
     }
