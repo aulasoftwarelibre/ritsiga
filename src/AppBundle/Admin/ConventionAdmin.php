@@ -39,9 +39,23 @@ class ConventionAdmin extends Admin
         $formMapper
             ->add('name', 'text', array('label' => 'label.name'))
             ->add('slug', 'text', array('label' => 'label.slug'))
-            ->add('description', null, array('label' => 'Descripción', 'required' => false, 'attr' => array('class' => 'ckeditor')))
+            ->add('description', null, array(
+                'label' => 'Descripción',
+                'required' => false,
+                'attr' => array('class' => 'ckeditor'),
+            ))
             ->add('startsAt', 'sonata_type_date_picker', array('label' => 'label.startsAt'))
             ->add('endsAt', 'sonata_type_date_picker', array('label' => 'label.endsAt'))
+            ->add('seats', null, array(
+                'label' => 'label.seats',
+                'help' => 'help.seats',
+                'required' => true,
+            ))
+            ->add('reduced_seats', null, array(
+                'label' => 'label.reduced_seats',
+                'help' => 'help.reduced_seats',
+                'required' => true,
+            ))
             ->add('email', 'email', array('label' => 'label.email'))
             ->add('web', 'email', array('label' => 'label.web'))
             ->add('administrators', null, array('label' => 'Administradores'))
@@ -88,9 +102,15 @@ class ConventionAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('label' => 'label.name'))
+            ->addIdentifier('name', null, array('label' => 'label.name'))
             ->add('startsAt', null, array('label' => 'label.startsAt'))
             ->add('endsAt', null, array('label' => 'label.endsAt'))
+            ->add('seats', null, array(
+                'label' => 'label.seats',
+            ))
+            ->add('reduced_seats', null, array(
+                'label' => 'label.reduced_seats',
+            ))
             ->add('_action', 'actions', array(
                 'label' => 'label.action',
             'actions' => array(

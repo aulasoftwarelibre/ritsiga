@@ -14,6 +14,14 @@
                 <source>label.endsAt</source>
                 <target>Fecha de finalización</target>
             </trans-unit>
+            <trans-unit id="help.startsAt">
+                <source>help.startsAt</source>
+                <target>Primer día de venta de entradas (inclusive)</target>
+            </trans-unit>
+            <trans-unit id="help.endsAt">
+                <source>help.endsAt</source>
+                <target>Último día de venta de entradas (inclusive)</target>
+            </trans-unit>
             <trans-unit id="label.email">
                 <source>label.email</source>
                 <target>Email</target>
@@ -228,6 +236,22 @@
                 <source>help.public</source>
                 <target>Indica si esta entrada se muestra en el listado del frontend. En caso contrario solo puede ser
                 asignada desde el backend.</target>
+            </trans-unit>
+            <trans-unit id="label.seats">
+                <source>label.seats</source>
+                <target>Plazas</target>
+            </trans-unit>
+            <trans-unit id="help.seats">
+                <source>help.seats</source>
+                <target>Indique el máximo de plazas por Universidad, incluidas las subvencionadas.</target>
+            </trans-unit>
+            <trans-unit id="label.reduced_seats">
+                <source>label.reduced_seats</source>
+                <target>Plazas subvencionadas</target>
+            </trans-unit>
+            <trans-unit id="help.reduced_seats">
+                <source>help.reduced_seats</source>
+                <target>Indique el máximo número de plazas subvencionadas por Universidad.</target>
             </trans-unit>
         </body>
     </file>

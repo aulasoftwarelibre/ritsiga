@@ -143,12 +143,14 @@ class Convention
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
+
     /**
      * @var string
      *
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
     private $facebook;
+
     /**
      * @var string
      *
@@ -163,10 +165,31 @@ class Convention
      */
     private $participants_types;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="seats", type="integer", nullable=false, options={"default": 10})
+     * @Assert\Range(min="1")
+     */
+    private $seats;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="reduced_seats", type="integer", nullable=false, options={"default": 3})
+     * @Assert\Range(min="0")
+     * @Assert\Expression(
+     *      "value <= this.getSeats()",
+     *      message="error.too_many_reduced_seats"
+     * )
+     */
+    private $reduced_seats;
+
     public function __toString()
     {
         return $this->name;
     }
+
     /**
      * Constructor.
      */
@@ -599,5 +622,37 @@ class Convention
     public function getParticipantsTypes()
     {
         return $this->participants_types;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeats()
+    {
+        return $this->seats;
+    }
+
+    /**
+     * @param int $seats
+     */
+    public function setSeats($seats)
+    {
+        $this->seats = $seats;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReducedSeats()
+    {
+        return $this->reduced_seats;
+    }
+
+    /**
+     * @param int $reduced_seats
+     */
+    public function setReducedSeats($reduced_seats)
+    {
+        $this->reduced_seats = $reduced_seats;
     }
 }

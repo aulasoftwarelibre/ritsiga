@@ -124,7 +124,7 @@ class ParticipantType
     }
 
     /**
-     * @return mixed
+     * @return Convention
      */
     public function getConvention()
     {
@@ -132,7 +132,7 @@ class ParticipantType
     }
 
     /**
-     * @param mixed $convention
+     * @param Convention $convention
      */
     public function setConvention($convention)
     {

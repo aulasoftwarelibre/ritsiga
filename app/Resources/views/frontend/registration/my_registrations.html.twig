@@ -19,9 +19,6 @@
                         {% for open in registrations_open %}
                             <div class="card">
                                 <a href="{{ path('registration', {'slug': open.convention.slug}) }}">
-                        <div class="row">
-                            <img class="col-md-12" src="{{ asset('/images/' ~ open.convention.image) }}">
-                        </div>
                         <div class="callout">
                             <h4>{{ open.convention }}</h4>
                             Del {{ open.convention.startsAt|date('d-m-Y') }} al {{ open.convention.endsAt|date('d-m-Y') }}
@@ -50,9 +47,6 @@
                     {% for open in registrations_paid %}
                         <div class="card">
                             <a href="{{ path('registration', {'slug': open.convention.slug}) }}">
-                                <div class="row">
-                                    <img class="col-md-12" src="{{ asset('/images/' ~ open.convention.image) }}">
-                                </div>
                                 <div class="callout">
                                     <h4>{{ open.convention }}</h4>
                                     Del {{ open.convention.startsAt|date('d-m-Y') }} al {{ open.convention.endsAt|date('d-m-Y') }}

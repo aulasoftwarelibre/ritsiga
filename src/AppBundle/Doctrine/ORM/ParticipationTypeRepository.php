@@ -19,12 +19,10 @@ class ParticipationTypeRepository extends  EntityRepository
         $consulta = $em->createQuery('
                 SELECT o
                 FROM AppBundle:ParticipantType o
-                WHERE :today < o.endDate
-                AND o.convention = :convention
+                WHERE o.convention = :convention
                 AND o.public = :public
-                ORDER BY o.endDate DESC
+                ORDER BY o.startDate DESC
             ')
-            ->setParameter('today', new \DateTime())
             ->setParameter('public', true)
             ->setParameter('convention', $convention)
         ;
@@ -38,7 +36,7 @@ class ParticipationTypeRepository extends  EntityRepository
             ->where(':today < o.endDate')
             ->andWhere('o.convention = :convention')
             ->orderBy('o.endDate', 'DESC')
-            ->setParameter('today', new \DateTime())
+            ->setParameter('today', new \DateTime('today'))
             ->setParameter('convention', $convention);
 
         return $query;

@@ -3,6 +3,7 @@
 namespace AppBundle\Doctrine\ORM;
 
 use AppBundle\Entity\Convention;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -19,12 +20,46 @@ class ConventionRepository extends EntityRepository
         $consulta = $em->createQuery('
             SELECT o
             FROM AppBundle:Convention o
-            WHERE :today < o.endsAt
+            WHERE :today <= o.endsAt
             AND o.maintenance = FALSE
             ORDER BY o.endsAt DESC
-        ')->setParameter('today', new \DateTime());
+        ')->setParameter('today', new \DateTime('today'));
 
         return $consulta->getResult();
+    }
+
+    /**
+     * @param Convention $convention
+     * @param User       $user
+     * @param bool|false $reduced
+     *
+     * @return mixed
+     */
+    public function countSeats($convention, $user, $reduced = false)
+    {
+        $university = $user->getUniversity();
+
+        $qb = $this->createQueryBuilder('convention');
+
+        $query = $qb->select($qb->expr()->count('participants'))
+            ->leftJoin('convention.registrations', 'registrations')
+            ->leftJoin('registrations.user', 'user')
+            ->leftJoin('registrations.participants', 'participants')
+            ->leftJoin('user.student_delegation', 'ore')
+            ->leftJoin('ore.college', 'college')
+            ->where('college.university = :university')
+            ->andWhere('convention = :convention')
+            ->setParameter('convention', $convention)
+            ->setParameter('university', $university)
+        ;
+
+        if ($reduced === true) {
+            $query = $query->leftJoin('participants.participant_type', 'type')
+                ->andWhere('type.reduced = TRUE')
+            ;
+        }
+
+        return $query->getQuery()->getSingleScalarResult();
     }
 
     public function getQueryConvention(Convention $convention)

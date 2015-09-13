@@ -9,22 +9,33 @@
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped table-bordered">
-                        <tr>
-                            <th><h5>Tipo de Entrada</h5></th>
-                            <th><h5>Fin de la Venta</h5></th>
-                            <th><h5>Precio</h5></th>
-                            <th><h5>Acción</h5></th>
-                        </tr>
-                {% for type in types %}
-                    <tr>
-                        <td><h6>{{ type.name }} {% if type.reduced %}<span class="label label-success">{{ 'label.reduced' | trans | upper }}</span>{% endif %} </h6></td>
-                        <td><h6>{{ type.endDate|date('d-m-Y') }}</h6></td>
-                        <td><h6>{{ type.price }} €</h6></td>
-                        <td><a href="{{ path('participant_new', {'participanttype': type.id}) }}" class="btn btn-warning add_inscription btn-xs" style="margin-bottom: 10px;">Añadir</a>
-                        </td>
-                    </tr>
-
-                {% endfor %}
+                        <thead>
+                            <tr>
+                                <th><h5>Tipo de Entrada</h5></th>
+                                <th><h5>Precio</h5></th>
+                                <th><h5>Acción</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for type in types %}
+                            <tr>
+                                <td class="small">
+                                    {{ type.name }}<br/><small>Disponible del {{ type.startDate|date('d-m') }} al {{ type.endDate|date('d-m') }}</small>
+                                    {% if type.reduced %}<span class="label label-success">{{ 'label.reduced' | trans | upper }}</span>{% endif %}
+                                </td>
+                                <td class="small">{{ type.price }}€</td>
+                                <td>
+                                    {% if not is_granted('REGISTRATION_OPEN', type) %}
+                                        <span class="label label-danger"><small>No disponible</small></span>
+                                    {% elseif not is_granted('SEATS_AVAILABLE', type) %}
+                                        <span class="label label-danger"><small>Agotadas</small></span>
+                                    {% else %}
+                                        <a href="{{ path('participant_new', {'participanttype': type.id}) }}" class="btn btn-success add_inscription btn-xs" style="margin-bottom: 10px;"><i class="fa fa-plus"></i> Añadir</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
                     </table>
                 </div>
             </div><!-- /.row -->

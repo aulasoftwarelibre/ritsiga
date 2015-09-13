@@ -47,8 +47,12 @@ class ParticipantTypeAdmin  extends Admin
                 'required' => true,
                 'label' => 'label.convention',
             ])
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('description', null, array('label' => 'label.description'))
+            ->add('name', null, array(
+                'label' => 'label.name',
+            ))
+            ->add('description', null, array(
+                'label' => 'label.description',
+            ))
             ->add('reduced', null, array(
                 'label' => 'label.reduced',
                 'help' => 'help.reduced',
@@ -58,13 +62,17 @@ class ParticipantTypeAdmin  extends Admin
                 'help' => 'help.public',
             ))
             ->add('startDate', 'sonata_type_date_picker', array(
-                'label' => 'label.startsAt',
+                'label' => 'label.startsAtstartsAt',
+                'help' => 'help.startsAt',
             ))
             ->add('endDate', 'sonata_type_date_picker', array(
                 'label' => 'label.endsAt',
+                'help' => 'help.endsAt',
             ))
-            ->add('price', null, array('label' => 'label.price'))
-            ->add('num_participants', null, array('label' => 'label.numparticipants'));
+            ->add('price', null, array(
+                'label' => 'label.price',
+            ))
+        ;
     }
 
     // Fields to be shown on filter forms
@@ -76,7 +84,7 @@ class ParticipantTypeAdmin  extends Admin
             ->add('startDate', null, array('label' => 'label.startsAt'))
             ->add('endDate', null, array('label' => 'label.endsAt'))
             ->add('price', null, array('label' => 'label.price'))
-            ->add('num_participants', null, array('label' => 'label.numparticipants'));
+        ;
     }
 
     // Fields to be shown on lists
@@ -87,13 +95,22 @@ class ParticipantTypeAdmin  extends Admin
             ->add('startDate', null, array('label' => 'label.startsAt'))
             ->add('endDate', null, array('label' => 'label.endsAt'))
             ->add('price', null, array('label' => 'label.price'))
-            ->add('num_participants', null, array('label' => 'label.numparticipants'))
+            ->add('reduced', 'boolean', array(
+                'label' => 'label.reduced',
+                'editable' => true,
+            ))
+            ->add('public', 'boolean', array(
+                'label' => 'label.public',
+                'editable' => true,
+            ))
             ->add('_action', 'actions', array(
                 'label' => 'label.actions',
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                ), ));
+                ),
+            ))
+        ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
@@ -102,10 +119,11 @@ class ParticipantTypeAdmin  extends Admin
             ->add('name', null, array('label' => 'label.name'))
             ->add('convention', null, array('label' => 'label.convention'))
             ->add('description', null, array('label' => 'label.description'))
+            ->add('reduced', 'boolean', array('label' => 'label.reduced'))
+            ->add('public', 'boolean', array('label' => 'label.public'))
             ->add('startDate', null, array('label' => 'label.startsAt'))
             ->add('endDate', null, array('label' => 'label.endsAt'))
             ->add('price', null, array('label' => 'label.price'))
-            ->add('num_participants', null, array('label' => 'label.numparticipants'))
         ;
     }
 }

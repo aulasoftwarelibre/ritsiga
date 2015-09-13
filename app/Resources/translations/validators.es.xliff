@@ -6,6 +6,10 @@
                 <source>error.select_degree</source>
                 <target>Debe seleccionar al menos una titulación entre las disponibles.</target>
             </trans-unit>
+            <trans-unit id="error.too_many_reduced_seats">
+                <source>error.too_many_reduced_seats</source>
+                <target>Las plazas subvencionadas no pueden ser superiores a las disponibles.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
