@@ -6,8 +6,9 @@
  * Date: 15/07/15
  * Time: 18:53.
  */
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Frontend;
 
+use AppBundle\Controller\Controller;
 use AppBundle\Entity\Registration;
 use AppBundle\Entity\Participant;
 use AppBundle\Event\RegistrationEvent;
@@ -15,7 +16,6 @@ use AppBundle\Event\RegistrationEvents;
 use AppBundle\Form\TravelInformationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,16 +28,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class RegistrationController extends Controller
 {
-    public function getRegistration()
-    {
-        $siteManager = $this->container->get('ritsiga.site.manager');
-        $convention = $siteManager->getCurrentSite();
-        $user = $this->getUser();
-        $registration = $this->getDoctrine()->getRepository('AppBundle:Registration')->findOneBy(array('user' => $user, 'convention' => $convention));
-
-        return $registration;
-    }
-
     private function setRegistrationStatus(Registration $registration, $status)
     {
         $registration->setStatus($status);
@@ -54,15 +44,19 @@ class RegistrationController extends Controller
      */
     public function showRegistrations()
     {
-        $user = $this->getUser();
-        $registrations_open = $this->getDoctrine()->getRepository('AppBundle:Registration')->findBy(array('status' => Registration::STATUS_CONFIRMED));
-        $registrations_paid = $this->getDoctrine()->getRepository('AppBundle:Registration')->findBy(array('status' => Registration::STATUS_PAID));
+        $registrations_open = $this->get('ritsiga.repository.registration')->findBy([
+            'status' => Registration::STATUS_CONFIRMED,
+            'user' => $this->getUser(),
+        ]);
+        $registrations_paid = $this->get('ritsiga.repository.registration')->findBy([
+            'status' => Registration::STATUS_PAID,
+            'user' => $this->getUser(),
+        ]);
 
-        return [
-            'user' => $user,
+        return $this->render('frontend/registration/my_registrations.html.twig', [
             'registrations_open' => $registrations_open,
             'registrations_paid' => $registrations_paid,
-        ];
+        ]);
     }
 
     /**
@@ -101,55 +95,24 @@ class RegistrationController extends Controller
      */
     public function registrationAction(Request $request)
     {
-        $siteManager = $this->container->get('ritsiga.site.manager');
-        $convention = $siteManager->getCurrentSite();
         $registration = $this->getRegistration();
-        $user = $this->getUser();
+        $convention = $this->getConvention();
 
         if (!$registration) {
             return $this->redirectToRoute('sylius_flow_start', array('scenarioAlias' => 'asamblea'));
         }
-        $participant = new Participant();
 
-        $types = $this->getDoctrine()->getRepository('AppBundle:ParticipantType')->findParticipationsTypesAvailables($convention);
-        $types_availables = array();
-        if ($types) {
-            foreach ($types as $type) {
-                $num_participants = $this->getDoctrine()->getRepository('AppBundle:Participant')->getNumParticipationsTypesAvailables($registration, $type);
-                if ($type && ($type->getNumParticipants() > $num_participants)) {
-                    array_push($types_availables, $type);
-                }
-            }
-        }
+        $types_availables = $this->getDoctrine()->getRepository('AppBundle:ParticipantType')->findParticipationsTypesAvailables($convention);
 
-        $participant = new Participant();
-        $participant->setRegistration($registration);
-        $form = $this->createForm($this->get('ritsiga.participant.form.type'), $participant);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $participant_type = $this->getDoctrine()->getRepository('AppBundle:ParticipantType')->findOneBy(array('id' => $form['participant_type']->getData()));
-            $num_participants = $this->getDoctrine()->getRepository('AppBundle:Participant')->getNumParticipationsTypesAvailables($registration, $participant_type);
-            if ($participant_type && ($participant_type->getNumParticipants() > $num_participants)) {
-                $participant->setParticipantType($participant_type);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($participant);
-                $em->flush();
-            } else {
-                $this->addFlash('warning', $this->get('translator')->trans('Sorry, the seats are already occupied'));
-            }
-        }
         if ($registration->getStatus() == Registration::STATUS_OPEN) {
             return $this->render(':frontend/registration/status:registration_open.html.twig', array(
-                'user' => $user,
                 'registration' => $registration,
                 'types' => $types_availables,
-                'form' => $form->createView(),
             ));
         }
+
         if ($registration->getStatus() == Registration::STATUS_CONFIRMED) {
             return $this->render(':frontend/registration/status:registration_confirmed.html.twig', array(
-                'user' => $user,
                 'registration' => $registration,
                 'entity_bank' => $this->container->getParameter('entity_bank'),
                 'organization' => $this->container->getParameter('organization'),
@@ -157,17 +120,17 @@ class RegistrationController extends Controller
                 'amount' => $registration->getAmount(),
             ));
         }
+
         if ($registration->getStatus() == Registration::STATUS_CANCELLED) {
             return $this->render(':frontend/registration/status:registration_cancelled.html.twig', array(
-                'user' => $user,
                 'registration' => $registration,
             ));
         }
+
         if ($registration->getStatus() == Registration::STATUS_PAID) {
             $this->addFlash('info', $this->get('translator')->trans('El registro se encuentra pagado y confirmado'));
 
             return $this->render(':frontend/registration/status:registration_paid.html.twig', array(
-                'user' => $user,
                 'registration' => $registration,
                 'entity_bank' => $this->container->getParameter('entity_bank'),
                 'organization' => $this->container->getParameter('organization'),
@@ -182,6 +145,9 @@ class RegistrationController extends Controller
      */
     public function downloadAcreditationAction(Participant $participant)
     {
+        $registration = $participant->getRegistration();
+        $this->denyAccessUnlessGranted('REGISTRATION_OWNER', $registration);
+
         $this->get('kernel')->getRootDir();
         $fileToDownload = $this->get('kernel')->getRootDir().'/../private/documents/acreditations/'.$participant->getId().'.pdf';
         $response = new BinaryFileResponse($fileToDownload);
@@ -196,11 +162,11 @@ class RegistrationController extends Controller
     }
 
     /**
-     * @Route("/descargar_factura/{registration}", name="invoice_download")
+     * @Route("/descargar_factura", name="invoice_download")
      */
-    public function downloadInvoiceAction(Registration $registration)
+    public function downloadInvoiceAction()
     {
-        $this->get('kernel')->getRootDir();
+        $registration = $this->getRegistration();
         $fileToDownload = $this->get('kernel')->getRootDir().'/../private/documents/invoices/'.$registration->getId().'.pdf';
         $response = new BinaryFileResponse($fileToDownload);
         $response->trustXSendfileTypeHeader();

@@ -181,6 +181,18 @@ services:
         factory_method: getRepository
         arguments: ['AppBundle\Entity\Registration']
 
+    ritsiga.repository.college:
+        class: AppBundle\Doctrine\ORM\CollegeRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['AppBundle\Entity\College']
+
+    ritsiga.repository.student_delegation:
+        class: AppBundle\Doctrine\ORM\StudentDelegationRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['AppBundle\Entity\StudentDelegation']
+
 ## TWIG
 
     ritsiGA.twig.conventionextension:
