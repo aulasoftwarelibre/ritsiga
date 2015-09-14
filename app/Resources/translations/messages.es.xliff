@@ -253,6 +253,22 @@
                 <source>help.reduced_seats</source>
                 <target>Indique el máximo número de plazas subvencionadas por Universidad.</target>
             </trans-unit>
+            <trans-unit id="label.inscription_type">
+                <source>label.inscription_type</source>
+                <target>Tipo de inscripción</target>
+            </trans-unit>
+            <trans-unit id="title.inscription_resume">
+                <source>title.inscription_resume</source>
+                <target>Resumen de inscripción</target>
+            </trans-unit>
+            <trans-unit id="title.inscriptions">
+                <source>title.inscriptions</source>
+                <target>Inscripciones</target>
+            </trans-unit>
+            <trans-unit id="label.dni">
+                <source>label.dni</source>
+                <target>DNI</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

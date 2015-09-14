@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Resumen Inscripción</h3>
+                    <h3 class="box-title"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> {{ 'title.inscription_resume' | trans }}</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -15,11 +15,11 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <p><strong>Universidad:</strong> {{ registration.user.university }}</p>
-                            <p><strong>Facultad:</strong> {{ registration.user.college }}</p>
-                            <p><strong>Delegacióń de Estudiantes:</strong> {{ registration.user.studentDelegation }}</p>
-                            <p><strong>Nombre:</strong> {{ registration.name }}</p>
-                            <p><strong>Cargo:</strong> {{ registration.position }}</p>
+                            <p><strong>{{ 'label.university' | trans }}:</strong> {{ registration.user.university }}</p>
+                            <p><strong>{{ 'label.college' | trans }}</strong> {{ registration.user.college }}</p>
+                            <p><strong>{{ 'label.student_delegation' | trans }}:</strong> {{ registration.user.studentDelegation }}</p>
+                            <p><strong>{{ 'label.name' | trans }}:</strong> {{ registration.name }}</p>
+                            <p><strong>{{ 'label.position' | trans }}</strong> {{ registration.position }}</p>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- ./box-body -->
@@ -34,7 +34,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Inscripciones</h3>
+                    <h3 class="box-title"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> {{ 'title.inscriptions' | trans }}</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -45,12 +45,12 @@
                         <div class="col-md-12">
                             <table class="table table-hover">
                                 <tbody><tr>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>DNI</th>
-                                    <th>Teléfono</th>
-                                    <th>Tipo de Inscripción</th>
-                                    <th>Acciones</th>
+                                    <th>{{ 'label.name' | trans }}</th>
+                                    <th>{{ 'label.last_name' | trans }}</th>
+                                    <th>{{ 'label.dni' | trans }}</th>
+                                    <th>{{ 'label.phone' | trans }}</th>
+                                    <th>{{ 'label.inscription_type' | trans }}</th>
+                                    <th>{{ 'label.actions' | trans }}</th>
                                 </tr></tbody>
                                 {% for inscription in registration.participants %}
                                     <tr>
