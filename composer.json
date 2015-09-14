@@ -1,8 +1,25 @@
 {
-    "name": "sgomez/sf2-behat-skel",
-    "license": "MIT",
+    "name": "aulasoftwarelibre/ritsiga",
+    "license": "GPL-3.0",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution with Behat",
+    "description": "Gestión de Asambleas de Sectoriales Estudiantiles",
+    "authors": [
+        {
+            "name": "Sergio Pino Márquez",
+            "email": "sergiormb88@gmail.com",
+            "role": "Author"
+        },
+        {
+            "name": "Sergio Gómez Bachiller",
+            "email": "decano@gmail.com",
+            "role": "Mentor"
+        },
+        {
+            "name": "Ezequiel Herruzo Herruzo",
+            "email": "eze@uco.es",
+            "role": "Mentor"
+        }
+    ],
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
