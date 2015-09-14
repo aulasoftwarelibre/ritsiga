@@ -11,6 +11,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Registration.
@@ -401,6 +402,24 @@ class Registration
     public function getDescription()
     {
         return sprintf('#%d - %s - %s', $this->getId(), $this->getUser()->getUniversity(), $this->getUser());
+    }
+
+    /**
+     * @param ExecutionContextInterface $context
+     * @Assert\Callback(groups={"travel"})
+     */
+    public function validateTravel(ExecutionContextInterface $context)
+    {
+        if (!$this->getArrivaldate() || !$this->getDeparturedate()) {
+            return;
+        }
+
+        if ($this->getDeparturedate() > $this->getArrivaldate()) {
+            $context->buildViolation('error.travel_date_incorrect')
+                ->atPath('arrivaldate')
+                ->addViolation()
+            ;
+        }
     }
 
     public function __toString()

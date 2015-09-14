@@ -269,6 +269,18 @@
                 <source>label.dni</source>
                 <target>DNI</target>
             </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="action.return">
+                <source>action.return</source>
+                <target>Volver</target>
+            </trans-unit>
+            <trans-unit id="action.cancel">
+                <source>action.cancel</source>
+                <target>Cancelar</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

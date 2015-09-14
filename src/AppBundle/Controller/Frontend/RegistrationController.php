@@ -185,8 +185,6 @@ class RegistrationController extends Controller
      */
     public function travelInformationAction(Request $request)
     {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
         $registration = $this->getRegistration();
         if ($registration->getStatus() == Registration::STATUS_OPEN) {
             return $this->redirectToRoute('registration');
@@ -195,13 +193,15 @@ class RegistrationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $em->persist($registration);
             $em->flush();
             $this->addFlash('info', $this->get('translator')->trans('Your travel information has been successfully updated'));
+
+            return $this->redirectToRoute('registration');
         }
 
         return $this->render(':frontend/registration:travel_information.html.twig', array(
-            'user' => $user,
             'registration' => $registration,
             'form' => $form->createView(),
         ));

@@ -33,10 +33,10 @@ class ParticipantType extends AbstractType
                 'pickerOptions' => array(
                     'startView' => 'decade',
                     'minView' => 'month',
-                    'format' => 'yyyy/mm/dd',
+                    'format' => 'dd/mm/yyyy',
                     'weekStart' => 1,
                     'autoclose' => true,
-                    'initialDate' => '1990/01/01',
+                    'initialDate' => '01/01/1990',
                 ),
             ))
             ->add('size', 'choice', array(

@@ -44,11 +44,15 @@
                     <div class="col-md-10"><h3 class="box-title">Formulario</h3></div>
                 </div>
             </div><!-- /.box-header -->
-            <div class="box-body">
             {{ form_start(form) }}
+            <div class="box-body">
             {{ form_widget(form) }}
-            {{ form_end(form) }}
             </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-success">{{ 'action.save' | trans }}</button>
+                <a href="{{ path('registration') }}" class="btn btn-danger">{{ 'action.return' | trans }}</a>
+            </div>
+            {{ form_end(form) }}
             </div><!-- /.box -->
         </div><!-- /.col -->
 

@@ -10,6 +10,10 @@
                 <source>error.too_many_reduced_seats</source>
                 <target>Las plazas subvencionadas no pueden ser superiores a las disponibles.</target>
             </trans-unit>
+            <trans-unit id="error.travel_date_incorrect">
+                <source>error.travel_date_incorrect</source>
+                <target>La fecha de llegada no puede ser anterior a la de salida.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
