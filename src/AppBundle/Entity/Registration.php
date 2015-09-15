@@ -414,7 +414,7 @@ class Registration
             return;
         }
 
-        if ($this->getDeparturedate() > $this->getArrivaldate()) {
+        if ($this->getDeparturedate() < $this->getArrivaldate()) {
             $context->buildViolation('error.travel_date_incorrect')
                 ->atPath('arrivaldate')
                 ->addViolation()

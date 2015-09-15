@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="9">
                 <source>label.departuredate</source>
-                <target>Fecha de salida</target>
+                <target>Fecha de regreso</target>
             </trans-unit>
             <trans-unit id="10">
                 <source>label.arrivaldate</source>

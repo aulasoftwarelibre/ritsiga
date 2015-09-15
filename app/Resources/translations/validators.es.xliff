@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="error.travel_date_incorrect">
                 <source>error.travel_date_incorrect</source>
-                <target>La fecha de llegada no puede ser anterior a la de salida.</target>
+                <target>La fecha de llegada no puede ser posterior a la de salida.</target>
             </trans-unit>
         </body>
     </file>

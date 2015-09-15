@@ -22,16 +22,16 @@
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <p>Esta información ayudará a los organizadores de la asamblea para gestionar
-                        las llegadas de todos los visitantes desde los diferentes puntos de España
+                    <p>
+                        Esta información ayudará a la organización a gestionar las llegadas de todos los visitantes
+                        desde los diferentes puntos de España.
                     </p>
                     <p>
-                        Rellena este formulario con la fecha y hora de salida desde tu ciudad, el medio de
-                        transporte que utilizaras para llegar al destino y la hora aproximada de llegada.
+                        Rellena este formulario con la fecha y hora de llegada a la sede y la fecha y hora
+                        de regreso a tu ciudad.
                     </p>
                     <p>
-                        Además si necesitas especificar algo más del viaje puedes hacerlo en el Comentario
-                        ¡¡BUEN VIAJE!!
+                        Además si necesitas especificar algo más puedes dejarnos un comentario. ¡Buen viaje!
                     </p>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -46,7 +46,11 @@
             </div><!-- /.box-header -->
             {{ form_start(form) }}
             <div class="box-body">
-            {{ form_widget(form) }}
+                {{ form_row(form.arrivaldate) }}
+                {{ form_row(form.departuredate) }}
+                {{ form_row(form.transport) }}
+                {{ form_row(form.comentary) }}
+                {{ form_rest(form) }}
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <button type="submit" class="btn btn-success">{{ 'action.save' | trans }}</button>
