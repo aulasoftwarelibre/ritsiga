@@ -63,16 +63,9 @@ class Convention
     private $image;
 
     /**
-     * @ORM\Column(name="mime_type", type="string", nullable=true)
-     * @Gedmo\UploadableFileMimeType
+     * @var string
      */
-    private $mimeType;
-
-    /**
-     * @ORM\Column(name="path", type="string", length=255, nullable=true)
-     * @Gedmo\UploadableFilePath
-     */
-    private $path;
+    private $file;
 
     /**
      * @var \DateTime
@@ -355,27 +348,19 @@ class Convention
     }
 
     /**
-     * Set path.
-     *
-     * @param string $path
-     *
-     * @return Convention
+     * @return string
      */
-    public function setPath($path)
+    public function getFile()
     {
-        $this->path = $path;
-
-        return $this;
+        return $this->file;
     }
 
     /**
-     * Get path.
-     *
-     * @return string
+     * @param string $file
      */
-    public function getPath()
+    public function setFile($file)
     {
-        return $this->path;
+        $this->file = $file;
     }
 
     /**

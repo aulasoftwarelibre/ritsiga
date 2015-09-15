@@ -59,7 +59,7 @@ class ConventionAdmin extends Admin
             ->add('email', 'email', array('label' => 'label.email'))
             ->add('web', 'email', array('label' => 'label.web'))
             ->add('administrators', null, array('label' => 'Administradores'))
-            ->add('image', 'file', array(
+            ->add('file', 'file', array(
                 'label' => 'Imagen',
                 'data_class' => null,
                 'attr' => ['class' => 'filestyle'],
@@ -113,33 +113,33 @@ class ConventionAdmin extends Admin
             ))
             ->add('_action', 'actions', array(
                 'label' => 'label.action',
-            'actions' => array(
-                'delete' => array(),
-                'edit' => array(),
-                'show' => array(
-                    'template' => 'CRUD/list__show_convention.html.twig',
-                ),
-                'download_acreditation' => array(
-                    'template' => 'CRUD/list__action_acreditation.html.twig',
-                ),
-                'download_invoice' => array(
-                    'template' => 'CRUD/list__action_invoice.html.twig',
-                ),
-            ), ))
-        ;
+                'actions' => array(
+                    'delete' => array(),
+                    'edit' => array(),
+                    'show' => array(
+                        'template' => 'CRUD/list__show_convention.html.twig',
+                    ),
+                    'download_acreditation' => array(
+                        'template' => 'CRUD/list__action_acreditation.html.twig',
+                    ),
+                    'download_invoice' => array(
+                        'template' => 'CRUD/list__action_invoice.html.twig',
+                    ),
+            ),
+        ));
     }
 
     public function prePersist($object)
     {
-        if ($object->getImage()) {
-            $this->getConfigurationPool()->getContainer()->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
+        if ($object->getFile()) {
+            $this->getConfigurationPool()->getContainer()->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getFile());
         }
     }
 
     public function preUpdate($object)
     {
-        if ($object->getImage()) {
-            $this->getConfigurationPool()->getContainer()->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
+        if ($object->getFile()) {
+            $this->getConfigurationPool()->getContainer()->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getFile());
         }
     }
 
