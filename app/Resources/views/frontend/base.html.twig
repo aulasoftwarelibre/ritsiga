@@ -44,6 +44,11 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                    {% if is_granted('ROLE_RITSIGA_ORGANIZER_' ~ convention.slug , convention) %}
+                    <li class="tasks-menu">
+                        <a href="{{ url('sonata_admin_dashboard') }}"><span class="fa fa-wrench" aria-hidden="true"></span> Administrar</a></center>
+                    </li>
+                    {% endif %}
                     {% if not app.user %}
                     <li class="tasks-menu">
                         <a href="{{ url('fos_user_security_login') }}"><i class="fa fa-sign-in"></i> {{ 'Login' | trans }}</a>
