@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,6 +18,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="Participant")
  * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ParticipantRepository")
+ * @UniqueEntity(
+ *      fields={"dni", "registration"},
+ *      repositoryMethod="findUniqueParticipant",
+ *      errorPath="dni",
+ *      message="error.duplicate_dni"
+ * )
  */
 class Participant
 {

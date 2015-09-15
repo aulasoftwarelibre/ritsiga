@@ -41,6 +41,7 @@ class ParticipantType extends AbstractType
             ))
             ->add('size', 'choice', array(
                 'label' => 'label.size',
+                'required' => false,
                 'placeholder' => 'help.select_size',
                 'choices' => ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
                 'choices_as_values' => true,

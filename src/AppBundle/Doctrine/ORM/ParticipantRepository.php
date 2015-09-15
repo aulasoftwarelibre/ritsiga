@@ -27,4 +27,30 @@ class ParticipantRepository extends EntityRepository
 
         return $consulta->getSingleScalarResult();
     }
+
+    /**
+     * Función que busca si un DNI se ha utilizado ya en una asamblea para dar de alta a un asistente
+     * Recibe como parámetros el dni y el id del registro.
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function findUniqueParticipant(array $params)
+    {
+        /** @var Registration $registration */
+        $registration = $this->getEntityManager()->getRepository('AppBundle:Registration')->find($params['registration']);
+        $dni = $params['dni'];
+
+        $qb = $this->createQueryBuilder('participant');
+        $query = $qb->leftJoin('participant.registration', 'registration')
+            ->where('participant.dni = :dni')
+            ->andWhere('registration.convention = :convention')
+            ->setParameter('dni', $dni)
+            ->setParameter('convention', $registration->getConvention())
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
 }
