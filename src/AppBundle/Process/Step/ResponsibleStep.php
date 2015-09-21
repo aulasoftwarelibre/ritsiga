@@ -9,6 +9,7 @@
 namespace AppBundle\Process\Step;
 
 use AppBundle\Entity\Registration;
+use AppBundle\Entity\TaxData;
 use AppBundle\Form\ResponsibleType;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
@@ -19,7 +20,10 @@ class ResponsibleStep extends BaseStep
         $convention = $this->getCurrentSite();
         $registration = new Registration();
         $registration->setConvention($convention);
+        $taxdata = TaxData::copyFromUniversity($this->getUser()->getUniversity());
+        $registration->setTaxdata($taxdata);
         $form = $this->createForm(new ResponsibleType(), $registration);
+
 
         return $this->render(':frontend/registration/process:responsible.html.twig', array(
             'form' => $form->createView(),
@@ -33,6 +37,8 @@ class ResponsibleStep extends BaseStep
         $convention = $this->getCurrentSite();
         $registration = new Registration();
         $registration->setConvention($convention);
+        $taxdata = TaxData::copyFromUniversity($this->getUser()->getUniversity());
+        $registration->setTaxdata($taxdata);
         $form = $this->createForm(new ResponsibleType(), $registration);
 
         $form->handleRequest($request);

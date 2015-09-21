@@ -27,7 +27,11 @@ class StudentDelegationType extends AbstractType
             ->add('phone', null, array('label' => 'label.phone'))
             ->add('facebook')
             ->add('twitter')
-            ->add('cif', null, array('label' => 'label.cif'));
+            ->add('cif', null, array(
+                'label' => 'label.cif',
+                'required' => false,
+            ))
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

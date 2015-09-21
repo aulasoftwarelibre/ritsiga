@@ -29,6 +29,12 @@ class ResponsibleType extends AbstractType
                     'field_help' => 'help.responsible_position',
                 ),
             ))
+            ->add('taxdata', 'taxdata', array(
+                'label' => 'label.taxdata',
+                'attr' => [
+                    'field_help' => 'help.taxdata',
+                ]
+            ))
         ;
     }
 
@@ -37,6 +43,7 @@ class ResponsibleType extends AbstractType
         parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Registration',
+            'validation_groups' => ['Default', 'taxdata']
         ));
     }
 

@@ -108,7 +108,7 @@
             </trans-unit>
             <trans-unit id="23">
                 <source>label.cif</source>
-                <target>CIF</target>
+                <target>NIF</target>
             </trans-unit>
             <trans-unit id="24">
                 <source>Your university has been successfully updated</source>
@@ -280,6 +280,15 @@
             <trans-unit id="action.cancel">
                 <source>action.cancel</source>
                 <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="label.taxdata">
+                <source>label.taxdata</source>
+                <target>Datos fiscales</target>
+            </trans-unit>
+            <trans-unit id="help.taxdata">
+                <source>help.taxdata</source>
+                <target>Por defecto los datos fiscales para la facturación son los de su Universidad. Si necesita
+                facturar a otra organización por favor modifique los datos indicados.</target>
             </trans-unit>
         </body>
     </file>

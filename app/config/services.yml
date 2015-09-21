@@ -162,6 +162,11 @@ services:
         scope: request
         public: false
 
+    ritsiga.form_type.tax_data_type:
+        class: AppBundle\Form\Type\TaxDataType
+        tags:
+            - { name: form.type, alias: taxdata }
+
 ## REPOSITORY
     ritsiga.repository.convention:
         class: AppBundle\Doctrine\ORM\ConventionRepository

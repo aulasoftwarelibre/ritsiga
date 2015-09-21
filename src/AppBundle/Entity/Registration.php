@@ -125,6 +125,14 @@ class Registration
     private $invoicenumber;
 
     /**
+     * @var TaxData
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TaxData", mappedBy="registration", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $taxdata;
+
+    /**
      * Get id.
      *
      * @return int
@@ -422,6 +430,28 @@ class Registration
         }
     }
 
+    /**
+     * @return TaxData
+     */
+    public function getTaxdata()
+    {
+        return $this->taxdata;
+    }
+
+    /**
+     * @param TaxData $taxdata
+     */
+    public function setTaxdata($taxdata)
+    {
+        $this->taxdata = $taxdata;
+        $taxdata->setRegistration($this);
+    }
+
+    /**
+     * Get Registration name
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->name;
