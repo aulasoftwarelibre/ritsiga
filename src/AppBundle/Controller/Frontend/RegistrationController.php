@@ -17,9 +17,8 @@ use AppBundle\Form\TravelInformationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class RegistrationController.
@@ -117,7 +116,6 @@ class RegistrationController extends Controller
                 'entity_bank' => $this->container->getParameter('entity_bank'),
                 'organization' => $this->container->getParameter('organization'),
                 'iban' => $this->container->getParameter('iban'),
-                'amount' => $registration->getAmount(),
             ));
         }
 
@@ -135,7 +133,6 @@ class RegistrationController extends Controller
                 'entity_bank' => $this->container->getParameter('entity_bank'),
                 'organization' => $this->container->getParameter('organization'),
                 'iban' => $this->container->getParameter('iban'),
-                'amount' => $registration->getAmount(),
             ));
         }
     }
@@ -148,17 +145,25 @@ class RegistrationController extends Controller
         $registration = $participant->getRegistration();
         $this->denyAccessUnlessGranted('REGISTRATION_OWNER', $registration);
 
-        $this->get('kernel')->getRootDir();
-        $fileToDownload = $this->get('kernel')->getRootDir().'/../private/documents/acreditations/'.$participant->getId().'.pdf';
-        $response = new BinaryFileResponse($fileToDownload);
-        $response->trustXSendfileTypeHeader();
-        $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $participant->getName().$participant->getLastName().'_acreditacion.pdf',
-            iconv('UTF-8', 'ASCII//TRANSLIT', $participant->getId())
+        $filename = sprintf("acreditacion-%s-%d-%s.pdf",
+            $this->getConvention()->getSlug(),
+            $this->getRegistration()->getId(),
+            $this->get('sonata.core.slugify.cocur')->slugify($participant->getLastName() . '-' . $participant->getName())
         );
 
-        return $response;
+        $html = $this->renderView(':themes/acreditation:acreditation.html.twig', array(
+            'participant' => $participant,
+            'registration' => $registration,
+        ));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'"'
+            )
+        );
     }
 
     /**
@@ -166,17 +171,14 @@ class RegistrationController extends Controller
      */
     public function downloadInvoiceAction()
     {
-        $registration = $this->getRegistration();
-        $fileToDownload = $this->get('kernel')->getRootDir().'/../private/documents/invoices/'.$registration->getId().'.pdf';
-        $response = new BinaryFileResponse($fileToDownload);
-        $response->trustXSendfileTypeHeader();
-        $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $registration->getConvention()->getName().'_factura.pdf',
-            iconv('UTF-8', 'ASCII//TRANSLIT', $registration->getId())
+        return new Response(
+            $this->get('ritsiga.business.document_generator')->generateInvoice($this->getRegistration(), $filename),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'"'
+            )
         );
-
-        return $response;
     }
 
     /**

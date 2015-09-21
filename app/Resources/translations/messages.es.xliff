@@ -290,6 +290,10 @@
                 <target>Por defecto los datos fiscales para la facturación son los de su Universidad. Si necesita
                 facturar a otra organización por favor modifique los datos indicados.</target>
             </trans-unit>
+            <trans-unit id="label.certificate_data">
+                <source>label.certificate_data</source>
+                <target>Datos del certificado</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

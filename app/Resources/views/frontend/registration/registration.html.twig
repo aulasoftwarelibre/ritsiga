@@ -14,8 +14,20 @@
                             <p><strong>{{ 'label.university' | trans }}:</strong> {{ registration.user.university }}</p>
                             <p><strong>{{ 'label.college' | trans }}:</strong> {{ registration.user.college }}</p>
                             <p><strong>{{ 'label.student_delegation' | trans }}:</strong> {{ registration.user.studentDelegation }}</p>
-                            <p><strong>{{ 'label.name' | trans }}:</strong> {{ registration.name }}</p>
-                            <p><strong>{{ 'label.position' | trans }}:</strong> {{ registration.position }}</p>
+                            <p><strong>{{ 'label.certificate_data' | trans }}:</strong>
+                            <ul>
+                                <li>{{ 'label.name' | trans }}:</strong> {{ registration.name }}</li>
+                                <li>{{ 'label.position' | trans }}:</strong> {{ registration.position }}</li>
+                            </ul>
+                            </p>
+                            <p><strong>{{ 'label.taxdata' | trans }}:</strong>
+                                <ul>
+                                    <li><strong>{{ 'label.name' | trans }}:</strong> {{ registration.taxdata.name }}</li>
+                                    <li><strong>{{ 'label.address' | trans }}:</strong> {{ registration.taxdata.address | nl2br }}</li>
+                                    <li><strong>{{ 'label.city' | trans }}:</strong> {{ registration.taxdata.city }} ({{ registration.taxdata.postcode }})</li>
+                                    <li><strong>{{ 'label.cif' | trans }}:</strong> {{ registration.taxdata.cif }}</li>
+                                </ul>
+                            </p>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- ./box-body -->
@@ -50,7 +62,7 @@
                                         <td>{{ inscription.lastname }}</td>
                                         <td>{{ inscription.dni }}</td>
                                         <td>{{ inscription.phone }}</td>
-                                        <td>{{ inscription.participanttype.name|title }}</td>
+                                        <td>{{ inscription.ticket.name|title }}</td>
                                         {% block column_action %}
                                        {% endblock %}
                                     </tr>

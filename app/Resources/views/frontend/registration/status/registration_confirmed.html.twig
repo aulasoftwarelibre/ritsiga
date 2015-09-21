@@ -12,7 +12,7 @@
             <p>IBAN: {{ iban }}</p>
             <p>Beneficiario: {{ organization }}</p>
             <p>Concepto: Referencia #{{ registration.id }} {{ registration.convention.slug | upper }}</p>
-            <p>Importe: {{ amount }} €</p>
+            <p>Importe: {{ registration.amount }} €</p>
                 <a class="btn btn-primary btn-sm" href="{{ path('invoice_download') }}" ><i class="glyphicon glyphicon-download"></i> Descargar factura</a>
             </div>
         </div><!-- /.row -->

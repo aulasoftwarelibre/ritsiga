@@ -66,6 +66,11 @@ services:
         class: AppBundle\Security\Core\User\FOSUBUserProvider
         arguments: [ @fos_user.user_manager, { google: google_id, sir: sir_id } ]
 
+##### LÓGICA DE NEGOCIO
+
+    ritsiga.business.document_generator:
+        class: AppBundle\Business\DocumentGenerator
+        arguments: [ @knp_snappy.pdf, @twig ]
 
 ##### SONATA ADMIN ######
 
