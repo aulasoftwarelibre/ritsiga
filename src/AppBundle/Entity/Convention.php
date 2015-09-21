@@ -154,9 +154,9 @@ class Convention
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ParticipantType", mappedBy="convention")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="convention")
      */
-    private $participants_types;
+    private $tickets;
 
     /**
      * @var int
@@ -190,7 +190,7 @@ class Convention
     {
         $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->participants_types = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -321,30 +321,6 @@ class Convention
     public function getImage()
     {
         return $this->image;
-    }
-
-    /**
-     * Set mimeType.
-     *
-     * @param string $mimeType
-     *
-     * @return Convention
-     */
-    public function setMimeType($mimeType)
-    {
-        $this->mimeType = $mimeType;
-
-        return $this;
-    }
-
-    /**
-     * Get mimeType.
-     *
-     * @return string
-     */
-    public function getMimeType()
-    {
-        return $this->mimeType;
     }
 
     /**
@@ -578,13 +554,13 @@ class Convention
     /**
      * Add participantsType.
      *
-     * @param \AppBundle\Entity\ParticipantType $participantsType
+     * @param \AppBundle\Entity\Ticket $participantsType
      *
      * @return Convention
      */
-    public function addParticipantsType(\AppBundle\Entity\ParticipantType $participantsType)
+    public function addTicket(Ticket $participantsType)
     {
-        $this->participants_types[] = $participantsType;
+        $this->tickets[] = $participantsType;
 
         return $this;
     }
@@ -592,11 +568,11 @@ class Convention
     /**
      * Remove participantsType.
      *
-     * @param \AppBundle\Entity\ParticipantType $participantsType
+     * @param \AppBundle\Entity\Ticket $participantsType
      */
-    public function removeParticipantsType(\AppBundle\Entity\ParticipantType $participantsType)
+    public function removeTicket(Ticket $participantsType)
     {
-        $this->participants_types->removeElement($participantsType);
+        $this->tickets->removeElement($participantsType);
     }
 
     /**
@@ -604,9 +580,9 @@ class Convention
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getParticipantsTypes()
+    public function getTickets()
     {
-        return $this->participants_types;
+        return $this->tickets;
     }
 
     /**
