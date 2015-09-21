@@ -9,7 +9,7 @@
 namespace AppBundle\Security\Voter;
 
 use AppBundle\Doctrine\ORM\ConventionRepository;
-use AppBundle\Entity\ParticipantType;
+use AppBundle\Entity\Ticket;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -22,6 +22,8 @@ class AvailableSeatsVoter extends AbstractVoter
 
     /**
      * AvailableSeatsVoter constructor.
+     *
+     * @param ConventionRepository $repository
      */
     public function __construct(ConventionRepository $repository)
     {
@@ -31,7 +33,7 @@ class AvailableSeatsVoter extends AbstractVoter
     protected function getSupportedClasses()
     {
         return [
-            'AppBundle\Entity\ParticipantType',
+            'AppBundle\Entity\Ticket',
         ];
     }
 
@@ -45,7 +47,7 @@ class AvailableSeatsVoter extends AbstractVoter
 
     /**
      * @param string          $attribute
-     * @param ParticipantType $object
+     * @param Ticket $object
      * @param null            $user
      *
      * @return bool

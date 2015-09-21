@@ -14,7 +14,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ParticipantTypeAdmin  extends Admin
+class TicketAdmin  extends Admin
 {
     /**
      * {@inheritdoc}
@@ -33,10 +33,10 @@ class ParticipantTypeAdmin  extends Admin
         return $query;
     }
 
-    public function prePersist($participant_type)
+    public function prePersist($ticket)
     {
         $convention = $this->getConfigurationPool()->getContainer()->get('ritsiga.site.manager')->getCurrentSite();
-        $participant_type->setConvention($convention);
+        $ticket->setConvention($convention);
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -62,7 +62,7 @@ class ParticipantTypeAdmin  extends Admin
                 'help' => 'help.public',
             ))
             ->add('startDate', 'sonata_type_date_picker', array(
-                'label' => 'label.startsAtstartsAt',
+                'label' => 'label.startsAt',
                 'help' => 'help.startsAt',
             ))
             ->add('endDate', 'sonata_type_date_picker', array(

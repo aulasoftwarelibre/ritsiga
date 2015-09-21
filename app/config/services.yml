@@ -78,13 +78,13 @@ services:
            - AppBundle\Entity\Convention
            - AppBundle:Backend\ConventionCRUD
 
-    ritsiGA.admin.participanttype:
-        class: AppBundle\Admin\ParticipantTypeAdmin
+    ritsiGA.admin.ticket:
+        class: AppBundle\Admin\TicketAdmin
         tags:
            - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Tipos de Participantes" }
         arguments:
            - ~
-           - AppBundle\Entity\ParticipantType
+           - AppBundle\Entity\Ticket
            - ~
 
     ritsiGA.admin.registration:
@@ -146,7 +146,7 @@ services:
 
     ritsiga.participant.form.type:
         class: AppBundle\Form\ParticipantType
-        arguments: [@ritsiga.site.manager, @ritsiga.repository.participanttype]
+        arguments: [@ritsiga.site.manager, @ritsiga.repository.ticket]
         tags:
            - { name: form.type, alias: participant }
 
@@ -169,11 +169,11 @@ services:
         factory_method: getRepository
         arguments: ['AppBundle\Entity\Convention']
 
-    ritsiga.repository.participanttype:
-        class: AppBundle\Doctrine\ORM\ParticipationTypeRepository
+    ritsiga.repository.ticket:
+        class: AppBundle\Doctrine\ORM\TicketRepository
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
-        arguments: ['AppBundle\Entity\ParticipantType']
+        arguments: ['AppBundle\Entity\Ticket']
 
     ritsiga.repository.registration:
         class: AppBundle\Doctrine\ORM\RegistrationRepository
@@ -222,7 +222,7 @@ services:
            - { name: security.voter }
 
     ritsiGA.security_voter.participantype_voter:
-        class: AppBundle\Security\Voter\ParticipantTypeVoter
+        class: AppBundle\Security\Voter\TicketVoter
         arguments: [@ritsiga.site.manager, @security.role_hierarchy]
         tags:
            - { name: security.voter }

@@ -9,8 +9,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Registration.
@@ -101,7 +103,7 @@ class Participant
     private $registration;
 
     /** @ORM\ManyToOne(
-     * targetEntity="\AppBundle\Entity\ParticipantType",
+     * targetEntity="\AppBundle\Entity\Ticket",
      * inversedBy="participants"
      * )
      * @ORM\JoinColumn(
@@ -109,7 +111,14 @@ class Participant
      *     onDelete="CASCADE",
      * )
      */
-    private $participant_type;
+    private $ticket;
+
+    /**
+     * @var string
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"name", "last_name"}, unique=true, updatable=true)
+     */
+    private $slug;
 
     /**
      * Get id.
@@ -224,7 +233,7 @@ class Participant
      *
      * @return Participant
      */
-    public function setRegistration(\AppBundle\Entity\Registration $registration = null)
+    public function setRegistration(Registration $registration = null)
     {
         $this->registration = $registration;
 
@@ -244,17 +253,33 @@ class Participant
     /**
      * @return mixed
      */
-    public function getParticipantType()
+    public function getTicket()
     {
-        return $this->participant_type;
+        return $this->ticket;
     }
 
     /**
-     * @param mixed $participant_type
+     * @param mixed $ticket
      */
-    public function setParticipantType($participant_type)
+    public function setTicket($ticket)
     {
-        $this->participant_type = $participant_type;
+        $this->ticket = $ticket;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     /**

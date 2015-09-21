@@ -8,21 +8,21 @@
  */
 namespace AppBundle\Doctrine\ORM;
 
-use AppBundle\Entity\ParticipantType;
+use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Registration;
 use Doctrine\ORM\EntityRepository;
 
 class ParticipantRepository extends EntityRepository
 {
-    public function getNumParticipationsTypesAvailables(Registration $registration, ParticipantType $participantType)
+    public function getNumParticipationsTypesAvailables(Registration $registration, Ticket $ticket)
     {
         $em = $this->getEntityManager();
         $consulta = $em->createQuery('
                 SELECT count(o.id)
                 FROM AppBundle:Participant o
-                WHERE :participant_type = o.participant_type
+                WHERE :ticket = o.ticket
                 AND o.registration = :registration
-            ')->setParameter('participant_type', $participantType)
+            ')->setParameter('ticket', $ticket)
             ->setParameter('registration', $registration);
 
         return $consulta->getSingleScalarResult();

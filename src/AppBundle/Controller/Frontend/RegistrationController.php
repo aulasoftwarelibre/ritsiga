@@ -102,12 +102,12 @@ class RegistrationController extends Controller
             return $this->redirectToRoute('sylius_flow_start', array('scenarioAlias' => 'asamblea'));
         }
 
-        $types_availables = $this->getDoctrine()->getRepository('AppBundle:ParticipantType')->findParticipationsTypesAvailables($convention);
-
         if ($registration->getStatus() == Registration::STATUS_OPEN) {
+            $tickets = $this->getDoctrine()->getRepository('AppBundle:Ticket')->findTicketsAvailability($convention);
+
             return $this->render(':frontend/registration/status:registration_open.html.twig', array(
                 'registration' => $registration,
-                'types' => $types_availables,
+                'tickets' => $tickets,
             ));
         }
 

@@ -11,13 +11,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ParticipantType.
+ * Ticket.
  *
- * @ORM\Entity
- * @ORM\Table(name="ParticipantType")
- * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ParticipationTypeRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\TicketRepository")
+ * @ORM\Table(name="Ticket")
  */
-class ParticipantType
+class Ticket
 {
     /**
      * @var int
@@ -33,7 +32,7 @@ class ParticipantType
      *     nullable=false,
      *     onDelete="CASCADE",
      * )
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Convention", inversedBy="participants_types") */
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Convention", inversedBy="tickets") */
     private $convention;
 
     /**
@@ -72,16 +71,9 @@ class ParticipantType
     private $price;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="num_participants", type="integer")
-     */
-    private $num_participants;
-
-    /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participant", mappedBy="participant_type")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participant", mappedBy="ticket")
      */
     private $participants;
 
@@ -220,21 +212,10 @@ class ParticipantType
     }
 
     /**
-     * @return int
+     * Return name
+     *
+     * @return string
      */
-    public function getNumParticipants()
-    {
-        return $this->num_participants;
-    }
-
-    /**
-     * @param int $num_participants
-     */
-    public function setNumParticipants($num_participants)
-    {
-        $this->num_participants = $num_participants;
-    }
-
     public function __toString()
     {
         return $this->name;
@@ -245,7 +226,7 @@ class ParticipantType
      *
      * @param \AppBundle\Entity\Participant $participant
      *
-     * @return ParticipantType
+     * @return Ticket
      */
     public function addParticipant(\AppBundle\Entity\Participant $participant)
     {

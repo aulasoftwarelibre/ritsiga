@@ -10,11 +10,11 @@ namespace AppBundle\Security\Voter;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
-class ParticipantTypeVoter extends AbstractOrganizationVoter
+class TicketVoter extends AbstractOrganizationVoter
 {
     public function getClass()
     {
-        return 'AppBundle\Entity\ParticipantType';
+        return 'AppBundle\Entity\Ticket';
     }
 
     public function vote(TokenInterface $token, $object, array $attributes)

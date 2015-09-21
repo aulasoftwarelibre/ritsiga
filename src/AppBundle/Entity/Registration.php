@@ -313,7 +313,7 @@ class Registration
         $participants = $this->getParticipants();
         $amount = 0;
         foreach ($participants as $participant) {
-            $amount += $participant->getParticipantType()->getPrice();
+            $amount += $participant->getTicket()->getPrice();
         }
 
         return $amount;

@@ -46,9 +46,9 @@ class ParticipantAdmin  extends Admin
             ])
             ->add('name', null, array('label' => 'label.name'))
             ->add('participant_type', null, [
-                'query_builder' => $this->getRepository('participanttype')->getParticipationsTypesAvailables($this->getCurrentConvention()),
+                'query_builder' => $this->getRepository('ticket')->getParticipationsTypesAvailables($this->getCurrentConvention()),
                 'required' => true,
-                'label' => 'label.participanttype',
+                'label' => 'label.ticket',
             ])
             ->add('last_name', null, array('label' => 'label.last_name'))
             ->add('phone', null, array('label' => 'label.phone'))

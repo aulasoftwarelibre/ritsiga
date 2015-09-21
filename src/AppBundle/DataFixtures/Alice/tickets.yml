@@ -1,41 +1,46 @@
-\AppBundle\Entity\ParticipantType:
+\AppBundle\Entity\Ticket:
     type1:
         name: Socios acreditados con subvención (primer plazo)
         convention: @pamplona2015
         description: <sentence($nbWords = 6)>
         startDate: <dateTimeBetween($startDate='-5 days', $endDate='-2 days')>
-        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+1 days')>
+        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+10 days')>
         price: 160
-        num_participants: 3
+        public: true
+        reduced: true
     type2:
         name: Socios acreditados con subvención (segundo plazo)
         convention: @pamplona2015
         description: <sentence($nbWords = 6)>
         startDate: <dateTimeBetween($startDate='-5 days', $endDate='-2 days')>
-        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+1 days')>
+        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+10 days')>
         price: 200
-        num_participants: 3
+        public: true
+        reduced: true
     type3:
         name: Observadores y socios acreditados sin subvención (primer plazo)
         convention: @pamplona2015
         description: <sentence($nbWords = 6)>
         startDate: <dateTimeBetween($startDate='-5 days', $endDate='-2 days')>
-        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+1 days')>
+        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+10 days')>
         price: 200
-        num_participants: 10
+        public: true
+        reduced: false
     type4:
-        name: Socios acreditados con subvención (segundo plazo)
+        name: Observadores y socios acreditados sin subvención (segundo plazo)
         convention: @pamplona2015
         description: <sentence($nbWords = 6)>
         startDate: <dateTimeBetween($startDate='-5 days', $endDate='-2 days')>
-        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+1 days')>
+        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+10 days')>
         price: 240
-        num_participants: 10
+        public: true
+        reduced: false
     type5:
         name: Invitados
-        convention: @cordoba2014
+        convention: @pamplona2015
         description: <sentence($nbWords = 6)>
         startDate: <dateTimeBetween($startDate='-5 days', $endDate='-2 days')>
-        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+1 days')>
+        endDate: <dateTimeBetween($startDate='-1 days', $endDate='+10 days')>
         price: 240
-        num_participants: 10
+        public: false
+        reduced: false

@@ -10,7 +10,7 @@ namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Controller\Controller;
 use AppBundle\Entity\Participant;
-use AppBundle\Entity\ParticipantType;
+use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Registration;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,10 +23,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ParticipantController extends Controller
 {
     /**
-     * @Route("/nueva-inscripcion/{participanttype}", name="participant_new")
+     * @Route("/nueva-inscripcion/{ticket}", name="participant_new")
      * Muestra pantalla de nueva inscripción
      */
-    public function newParticipantAction(Request $request, ParticipantType $participanttype)
+    public function newParticipantAction(Request $request, Ticket $ticket)
     {
         $registration = $this->getRegistration();
 
@@ -38,7 +38,7 @@ class ParticipantController extends Controller
             return $this->redirectToRoute('registration');
         }
 
-        $this->denyAccessUnlessGranted(['SEATS_AVAILABLE', 'REGISTRATION_OPEN'], $participanttype);
+        $this->denyAccessUnlessGranted(['SEATS_AVAILABLE', 'REGISTRATION_OPEN'], $ticket);
 
         $participant = new Participant();
         $participant->setRegistration($registration);
@@ -46,7 +46,7 @@ class ParticipantController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $participant->setParticipantType($participanttype);
+            $participant->setTicket($ticket);
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();

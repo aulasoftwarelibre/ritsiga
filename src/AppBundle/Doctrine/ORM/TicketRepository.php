@@ -11,14 +11,14 @@ namespace AppBundle\Doctrine\ORM;
 use AppBundle\Entity\Convention;
 use Doctrine\ORM\EntityRepository;
 
-class ParticipationTypeRepository extends  EntityRepository
+class TicketRepository extends  EntityRepository
 {
-    public function findParticipationsTypesAvailables(Convention $convention)
+    public function findTicketsAvailability(Convention $convention)
     {
         $em = $this->getEntityManager();
         $consulta = $em->createQuery('
                 SELECT o
-                FROM AppBundle:ParticipantType o
+                FROM AppBundle:Ticket o
                 WHERE o.convention = :convention
                 AND o.public = :public
                 ORDER BY o.startDate DESC
@@ -30,7 +30,7 @@ class ParticipationTypeRepository extends  EntityRepository
         return $consulta->getResult();
     }
 
-    public function getParticipationsTypesAvailables(Convention $convention)
+    public function getTicketsAvailability(Convention $convention)
     {
         $query = $this->createQueryBuilder('o')
             ->where(':today < o.endDate')

@@ -17,20 +17,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% for type in types %}
+                        {% for ticket in tickets %}
                             <tr>
                                 <td class="small">
-                                    {{ type.name }}<br/><small>Disponible del {{ type.startDate|date('d-m') }} al {{ type.endDate|date('d-m') }}</small>
-                                    {% if type.reduced %}<span class="label label-success">{{ 'label.reduced' | trans | upper }}</span>{% endif %}
+                                    {{ ticket.name }}<br/><small>Disponible del {{ ticket.startDate|date('d-m') }} al {{ ticket.endDate|date('d-m') }}</small>
+                                    {% if ticket.reduced %}<span class="label label-success">{{ 'label.reduced' | trans | upper }}</span>{% endif %}
                                 </td>
-                                <td class="small">{{ type.price }}€</td>
+                                <td class="small">{{ ticket.price }}€</td>
                                 <td>
-                                    {% if not is_granted('REGISTRATION_OPEN', type) %}
+                                    {% if not is_granted('REGISTRATION_OPEN', ticket) %}
                                         <span class="label label-danger"><small>No disponible</small></span>
-                                    {% elseif not is_granted('SEATS_AVAILABLE', type) %}
+                                    {% elseif not is_granted('SEATS_AVAILABLE', ticket) %}
                                         <span class="label label-danger"><small>Agotadas</small></span>
                                     {% else %}
-                                        <a href="{{ path('participant_new', {'participanttype': type.id}) }}" class="btn btn-success add_inscription btn-xs" style="margin-bottom: 10px;"><i class="fa fa-plus"></i> Añadir</a>
+                                        <a href="{{ path('participant_new', {'ticket': ticket.id}) }}" class="btn btn-success add_inscription btn-xs" style="margin-bottom: 10px;"><i class="fa fa-plus"></i> Añadir</a>
                                     {% endif %}
                                 </td>
                             </tr>
