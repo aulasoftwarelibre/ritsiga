@@ -14,6 +14,10 @@
                 <source>error.travel_date_incorrect</source>
                 <target>La fecha de llegada no puede ser posterior a la de salida.</target>
             </trans-unit>
+            <trans-unit id="error.duplicate_invoice_number">
+                <source>error.duplicate_invoice_number</source>
+                <target>El número de factura está duplicado.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

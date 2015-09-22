@@ -42,12 +42,25 @@ class RegistrationAdmin extends Admin
                 'required' => true,
                 'label' => 'label.convention',
             ])
-            ->add('user', null, array('label' => 'label.user'))
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('position', null, array('label' => 'label.position'))
-            ->add('status', 'choice', array('label' => 'label.status', 'choices' => array(Registration::STATUS_OPEN => 'Abierta', Registration::STATUS_CONFIRMED => 'Confirmada', Registration::STATUS_CANCELLED => 'Cancelada', Registration::STATUS_PAID => 'Pagada'),
-        'required' => true, ))
-            ->add('invoicenumber', null, array('label' => 'label.invoicenumber'))
+            ->add('user', null, array(
+                'label' => 'label.user',
+            ))
+            ->add('name', null, array(
+                'label' => 'label.name',
+            ))
+            ->add('position', null, array(
+                'label' => 'label.position',
+            ))
+            ->add('status', 'choice', array(
+                'label' => 'label.status',
+                'choices' => array(
+                    Registration::STATUS_OPEN => 'Abierta',
+                    Registration::STATUS_CONFIRMED => 'Confirmada',
+                    Registration::STATUS_CANCELLED => 'Cancelada',
+                    Registration::STATUS_PAID => 'Pagada',
+                ),
+                'required' => true,
+            ))
         ;
     }
 
@@ -59,7 +72,6 @@ class RegistrationAdmin extends Admin
             ->add('name', null, array('label' => 'label.name'))
             ->add('position', null, array('label' => 'label.position'))
             ->add('status', null, array('label' => 'label.status'))
-            ->add('invoicenumber', null, array('label' => 'label.invoicenumber'))
         ;
     }
     // Fields to be shown on filter forms
@@ -71,7 +83,6 @@ class RegistrationAdmin extends Admin
             ->add('name', null, array('label' => 'label.name'))
             ->add('position', null, array('label' => 'label.position'))
             ->add('status', null, array('label' => 'label.status'))
-            ->add('invoicenumber', null, array('label' => 'label.invoicenumber'))
         ;
     }
 

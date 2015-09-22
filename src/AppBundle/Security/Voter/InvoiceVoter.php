@@ -3,16 +3,17 @@
 /**
  * Created by PhpStorm.
  * User: sergio
- * Date: 13/09/15
- * Time: 08:12.
+ * Date: 22/09/15
+ * Time: 21:17.
  */
 namespace AppBundle\Security\Voter;
 
+use AppBundle\Entity\Participant;
 use AppBundle\Entity\Registration;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class RegistrationOwnerVoter extends AbstractVoter
+class InvoiceVoter extends AbstractVoter
 {
     /**
      * Return an array of supported classes. This will be called by supportsClass.
@@ -22,7 +23,7 @@ class RegistrationOwnerVoter extends AbstractVoter
     protected function getSupportedClasses()
     {
         return [
-            'AppBundle\Entity\Registration',
+            'AppBundle\Entity\Participant',
         ];
     }
 
@@ -34,20 +35,18 @@ class RegistrationOwnerVoter extends AbstractVoter
     protected function getSupportedAttributes()
     {
         return [
-            'REGISTRATION_OWNER',
-            'INVOICE_OWNER',
+            'INVOICE_DOWNLOAD',
         ];
     }
 
     /**
-     * Perform a single access check operation on a given attribute, object and (optionally) user
-     * It is safe to assume that $attribute and $object's class pass supportsAttribute/supportsClass
-     * $user can be one of the following:
-     *   a UserInterface object (fully authenticated user)
-     *   a string               (anonymously authenticated user).
+     * Solo el usuario creador de la inscripción podrá descargar la factura si:
+     * - Está pagada.
+     * - Están publicadas.
+     * - Tiene número de factura.
      *
      * @param string               $attribute
-     * @param Registration         $object
+     * @param Participant          $object
      * @param UserInterface|string $user
      *
      * @return bool
@@ -58,6 +57,20 @@ class RegistrationOwnerVoter extends AbstractVoter
             return false;
         }
 
-        return $user == $object->getUser();
+        $registration = $object->getRegistration();
+
+        if ($registration->getStatus() !== Registration::STATUS_PAID) {
+            return false;
+        }
+
+        if (!$registration->getConvention()->isPublishedInvoices()) {
+            return false;
+        }
+
+        if (empty($object->getInvoiceNumber())) {
+            return false;
+        }
+
+        return $user == $registration->getUser();
     }
 }

@@ -99,6 +99,13 @@ class Convention
     private $maintenance = true;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="published_invoices", type="boolean", nullable=false, options={"default": 0})
+     */
+    private $published_invoices;
+
+    /**
      * @var string
      *
      * @ORM\OneToMany(targetEntity="Registration",mappedBy="convention")
@@ -615,5 +622,21 @@ class Convention
     public function setReducedSeats($reduced_seats)
     {
         $this->reduced_seats = $reduced_seats;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublishedInvoices()
+    {
+        return $this->published_invoices;
+    }
+
+    /**
+     * @param bool $published_invoices
+     */
+    public function setPublishedInvoices($published_invoices)
+    {
+        $this->published_invoices = $published_invoices;
     }
 }

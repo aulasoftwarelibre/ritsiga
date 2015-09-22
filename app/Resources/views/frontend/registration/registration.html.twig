@@ -56,13 +56,13 @@
                                     <th>{{ 'label.inscription_type' | trans }}</th>
                                     <th>{{ 'label.actions' | trans }}</th>
                                 </tr></tbody>
-                                {% for inscription in registration.participants %}
+                                {% for participant in registration.participants %}
                                     <tr>
-                                        <td>{{ inscription.name }}</td>
-                                        <td>{{ inscription.lastname }}</td>
-                                        <td>{{ inscription.dni }}</td>
-                                        <td>{{ inscription.phone }}</td>
-                                        <td>{{ inscription.ticket.name|title }}</td>
+                                        <td>{{ participant.name }}</td>
+                                        <td>{{ participant.lastname }}</td>
+                                        <td>{{ participant.dni }}</td>
+                                        <td>{{ participant.phone }}</td>
+                                        <td>{{ participant.ticket.name|title }}</td>
                                         {% block column_action %}
                                        {% endblock %}
                                     </tr>

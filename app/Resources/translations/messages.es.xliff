@@ -48,7 +48,11 @@
             </trans-unit>
             <trans-unit id="8">
                 <source>label.maintenance</source>
-                <target>Asamblea en mantenimiento</target>
+                <target>Modo mantenimiento</target>
+            </trans-unit>
+            <trans-unit id="label.published_invoices">
+                <source>label.published_invoices</source>
+                <target>Mostrar facturas</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>label.departuredate</source>
@@ -159,7 +163,7 @@
                 <target>Estado</target>
             </trans-unit>
             <trans-unit id="36">
-                <source>label.invoicenumber</source>
+                <source>label.invoice_number</source>
                 <target>Número de Factura</target>
             </trans-unit>
             <trans-unit id="37">
@@ -187,8 +191,8 @@
                 <target>Descripción</target>
             </trans-unit>
             <trans-unit id="43">
-                <source>label.participanttype</source>
-                <target>Tipo de participante</target>
+                <source>label.ticket</source>
+                <target>Tipo de inscripción</target>
             </trans-unit>
             <trans-unit id="help.responsible_name">
                 <source>help.responsible_name</source>
@@ -293,6 +297,27 @@
             <trans-unit id="label.certificate_data">
                 <source>label.certificate_data</source>
                 <target>Datos del certificado</target>
+            </trans-unit>
+            <trans-unit id="help.certificate_data">
+                <source>help.certificate_data</source>
+                <target>La acreditación es el documento formal que certifica
+                    que un asociado es representante oficial de las titulaciones que se
+                    imparten en una Universidad. Para poder generar las acreditaciones
+                    necesitamos que nos indique los datos de un cargo de tu delegación/consejo
+                    que pueda dar fe.
+                </target>
+            </trans-unit>
+            <trans-unit id="action.download_invoice_draft">
+                <source>action.download_invoice_draft</source>
+                <target>Descargar factura proforma</target>
+            </trans-unit>
+            <trans-unit id="action.download_certificate">
+                <source>action.download_certificate</source>
+                <target>Descargar certificado</target>
+            </trans-unit>
+            <trans-unit id="action.download_invoice">
+                <source>action.download_invoice</source>
+                <target>Descargar factura</target>
             </trans-unit>
         </body>
     </file>

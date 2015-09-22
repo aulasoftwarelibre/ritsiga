@@ -8,6 +8,7 @@
     slug: pamplona2015
     web: <url()>
     maintenance: false
+    published_invoices: false
     twitter: <word()>
     instagram: <word()>
     facebook: <word()>

@@ -24,19 +24,6 @@ services:
               event: kernel.request
               priority: 1
 
-    ritsiga.listener.generatepdf:
-        class: AppBundle\EventListener\GeneratePDFListener
-        arguments:
-           - "@knp_snappy.pdf"
-           - "@twig"
-           - "@kernel"
-        tags:
-           -
-              name: kernel.event_listener
-              method: onRegistrationConfirmed
-              event: registration.confirmed
-              priority: 0
-
     ritsiga.listener.maintenance:
         class: AppBundle\EventListener\MaintenanceListener
         arguments:
@@ -86,7 +73,7 @@ services:
     ritsiGA.admin.ticket:
         class: AppBundle\Admin\TicketAdmin
         tags:
-           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: "Tipos de Participantes" }
+           - { name: sonata.admin, manager_type: orm, group: "Asambleas", label: label.ticket }
         arguments:
            - ~
            - AppBundle\Entity\Ticket
@@ -257,6 +244,11 @@ services:
 
     ritsiGA.security_voter.registration_owner_voter:
         class: AppBundle\Security\Voter\RegistrationOwnerVoter
+        tags:
+            - { name: security.voter }
+
+    ritsiga.security_voter.invoice_voter:
+        class: AppBundle\Security\Voter\InvoiceVoter
         tags:
             - { name: security.voter }
 

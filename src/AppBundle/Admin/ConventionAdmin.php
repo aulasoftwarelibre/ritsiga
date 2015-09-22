@@ -69,6 +69,10 @@ class ConventionAdmin extends Admin
                 'label' => 'label.maintenance',
                 'required' => false,
             ))
+            ->add('published_invoices', 'checkbox', [
+                'label' => 'label.published_invoices',
+                'required' => false,
+            ])
         ;
     }
 
@@ -111,6 +115,14 @@ class ConventionAdmin extends Admin
             ->add('reduced_seats', null, array(
                 'label' => 'label.reduced_seats',
             ))
+            ->add('maintenance', 'boolean', [
+                'label' => 'label.maintenance',
+                'editable' => true,
+            ])
+            ->add('published_invoices', 'boolean', [
+                'label' => 'label.published_invoices',
+                'editable' => true,
+            ])
             ->add('_action', 'actions', array(
                 'label' => 'label.action',
                 'actions' => array(

@@ -45,14 +45,17 @@ class ParticipantAdmin  extends Admin
                 'help' => 'help.admin_registration',
             ])
             ->add('name', null, array('label' => 'label.name'))
-            ->add('participant_type', null, [
-                'query_builder' => $this->getRepository('ticket')->getParticipationsTypesAvailables($this->getCurrentConvention()),
+            ->add('ticket', null, [
+                'query_builder' => $this->getRepository('ticket')->getTicketsAvailability($this->getCurrentConvention()),
                 'required' => true,
                 'label' => 'label.ticket',
             ])
             ->add('last_name', null, array('label' => 'label.last_name'))
             ->add('phone', null, array('label' => 'label.phone'))
             ->add('dni')
+            ->add('invoice_number', null, [
+                'label' => 'label.invoice_number',
+            ])
         ;
     }
 
@@ -85,13 +88,14 @@ class ParticipantAdmin  extends Admin
         $listMapper
             ->add('name', null, array('label' => 'label.name'))
             ->add('last_name', null, array('label' => 'label.last_name'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('registration.user.university', null, array(
-                'label' => 'label.university',
-            ))
-            ->add('registration.user.college', null, array(
-                'label' => 'label.college',
-            ))
+            ->add('invoice_number', null, [
+                'label' => 'label.invoice_number',
+                'editable' => true,
+            ])
+            ->add('registration', null, [
+                'label' => 'label.registration',
+                'associated_tostring' => 'getDescription',
+            ])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

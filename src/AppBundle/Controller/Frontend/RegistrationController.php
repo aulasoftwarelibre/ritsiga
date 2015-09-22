@@ -10,7 +10,6 @@ namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Controller\Controller;
 use AppBundle\Entity\Registration;
-use AppBundle\Entity\Participant;
 use AppBundle\Event\RegistrationEvent;
 use AppBundle\Event\RegistrationEvents;
 use AppBundle\Form\TravelInformationType;
@@ -138,45 +137,16 @@ class RegistrationController extends Controller
     }
 
     /**
-     * @Route("/descargar_acreditacion/{participant}", name="acreditation_download")
-     */
-    public function downloadAcreditationAction(Participant $participant)
-    {
-        $registration = $participant->getRegistration();
-        $this->denyAccessUnlessGranted('REGISTRATION_OWNER', $registration);
-
-        $filename = sprintf("acreditacion-%s-%d-%s.pdf",
-            $this->getConvention()->getSlug(),
-            $this->getRegistration()->getId(),
-            $this->get('sonata.core.slugify.cocur')->slugify($participant->getLastName() . '-' . $participant->getName())
-        );
-
-        $html = $this->renderView(':themes/acreditation:acreditation.html.twig', array(
-            'participant' => $participant,
-            'registration' => $registration,
-        ));
-
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'.$filename.'"'
-            )
-        );
-    }
-
-    /**
-     * @Route("/descargar_factura", name="invoice_download")
+     * @Route("/descargar_factura", name="invoice_draft_download")
      */
     public function downloadInvoiceAction()
     {
         return new Response(
-            $this->get('ritsiga.business.document_generator')->generateInvoice($this->getRegistration(), $filename),
+            $this->get('ritsiga.business.document_generator')->generateInvoiceDraft($this->getRegistration(), $filename),
             200,
             array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'.$filename.'"'
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="'.$filename.'"',
             )
         );
     }

@@ -13,7 +13,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * Registration.
  *
@@ -25,6 +24,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      repositoryMethod="findUniqueParticipant",
  *      errorPath="dni",
  *      message="error.duplicate_dni"
+ * )
+ * @UniqueEntity(
+ *      fields={"invoice_number"},
+ *      message="error.duplicate_invoice_number"
  * )
  */
 class Participant
@@ -119,6 +122,13 @@ class Participant
      * @Gedmo\Slug(fields={"name", "last_name"}, unique=true, updatable=true)
      */
     private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="invoice_number", type="string", length=100, nullable=true)
+     */
+    private $invoice_number;
 
     /**
      * Get id.
@@ -328,6 +338,22 @@ class Participant
     public function setDateOfBirth($dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInvoiceNumber()
+    {
+        return $this->invoice_number;
+    }
+
+    /**
+     * @param string $invoice_number
+     */
+    public function setInvoiceNumber($invoice_number)
+    {
+        $this->invoice_number = $invoice_number;
     }
 
     /**

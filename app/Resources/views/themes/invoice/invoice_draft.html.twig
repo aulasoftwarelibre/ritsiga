@@ -30,8 +30,8 @@
             <div class="cif">{{ registration.taxdata.cif }}</div>
         </div>
         <div id="invoice">
-            <h1>Factura número {{ participant.invoiceNumber }}</h1>
-            <div class="date">Fecha: {{ registration.createdAt | date('d/m/Y') }}</div>
+            <h1>Factura Proforma</h1>
+            <div class="date">Fecha: {{ "now"|date("d/m/Y")  }}</div>
         </div>
     </div>
     <table border="0" cellspacing="0" cellpadding="0">
@@ -44,21 +44,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="no">1</td>
-            <td class="desc">
-                <h3>{{ participant.ticket }}</h3>
-                A la {{ registration.convention }}, a favor de:<br/> {{ participant }}
-            </td>
-            <td class="unit">{{ participant.ticket.price|number_format(2, ',') }}€</td>
-            <td class="total">{{ participant.ticket.price|number_format(2, ',') }}€</td>
-        </tr>
+        {% for participant in registration.participants %}
+            <tr>
+                <td class="no">{{ loop.index }}</td>
+                <td class="desc">
+                    <h3>{{ participant.ticket }}</h3>
+                    A la {{ registration.convention }}, a favor de:<br/> {{ participant }}
+                </td>
+                <td class="unit">{{ participant.ticket.price|number_format(2, ',') }}€</td>
+                <td class="total">{{ participant.ticket.price|number_format(2, ',') }}€</td>
+            </tr>
+        {% endfor %}
         </tbody>
         <tfoot>
         <tr>
             <td colspan="2"></td>
             <td colspan="1">SUBTOTAL</td>
-            <td>{{ participant.ticket.price|number_format(2, ',') }}€</td>
+            <td>{{ registration.amount|number_format(2, ',') }}€</td>
         </tr>
         <tr>
             <td colspan="2"></td>
@@ -68,10 +70,20 @@
         <tr>
             <td colspan="2"></td>
             <td colspan="1">TOTAL</td>
-            <td>{{ participant.ticket.price|number_format(2, ',') }}€</td>
+            <td>{{ registration.amount|number_format(2, ',') }}€</td>
         </tr>
         </tfoot>
     </table>
+    <div id="notices">
+        <div>FORMA DE PAGO: TRANSFERENCIA</div>
+        <dl class="notice">
+            <dt>Entidad bancaria</dt><dd>BANCO SANTANDER, S.A.</dd>
+            <dt>IBAN</dt><dd>ES10 0049 6560 3226 1603 9311</dd>
+            <dt>Beneficiario</dt><dd>Asociación RITSI</dd>
+            <dt>Concepto</dt><dd>Referencia #{{ registration.id }} {{ registration.convention.slug | upper }}</dd>
+            <dt>Importe</dt><dd>{{ registration.amount|number_format(2, ',') }}€</dd>
+        </dl>
+    </div>
 </main>
 <footer>
     Asociación registrada en el Ministerio del Interior el 18 de Septiembre de 2002.
