@@ -24,7 +24,6 @@ class ResponsibleStep extends BaseStep
         $registration->setTaxdata($taxdata);
         $form = $this->createForm(new ResponsibleType(), $registration);
 
-
         return $this->render(':frontend/registration/process:responsible.html.twig', array(
             'form' => $form->createView(),
             'context' => $context,
@@ -37,8 +36,6 @@ class ResponsibleStep extends BaseStep
         $convention = $this->getCurrentSite();
         $registration = new Registration();
         $registration->setConvention($convention);
-        $taxdata = TaxData::copyFromUniversity($this->getUser()->getUniversity());
-        $registration->setTaxdata($taxdata);
         $form = $this->createForm(new ResponsibleType(), $registration);
 
         $form->handleRequest($request);
@@ -50,7 +47,7 @@ class ResponsibleStep extends BaseStep
             $em = $this->getDoctrine()->getManager();
             $em->persist($registration);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans('Your registration has been saved, you can now add registrations'));
+            $this->addFlash('warning', $this->get('translator')->trans('Your registration has been saved, you can now add taxdata'));
 
             return $this->complete();
         }

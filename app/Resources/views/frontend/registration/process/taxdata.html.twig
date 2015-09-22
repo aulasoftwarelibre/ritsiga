@@ -1,16 +1,20 @@
 {%  extends ":frontend/registration:step.html.twig" %}
 
 {% block titlestep %}
-    <h3 class="box-title">{{ 'label.certificate_data' |trans }}</h3>
+    <h3 class="box-title">{{ 'label.taxdata' |trans }}</h3>
 {% endblock %}
 {% block descriptionstep %}
-    {{ 'help.certificate_data'|trans }}
+    {{ 'help.taxdata'|trans }}
 {% endblock %}
 {% block formstep %}
     {{ form_errors(form) }}
 
     {{ form_row(form.name) }}
-    {{ form_row(form.position) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.province) }}
+    {{ form_row(form.postcode) }}
+    {{ form_row(form.cif) }}
 
     {{ form_rest(form) }}
 {% endblock %}

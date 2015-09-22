@@ -1,13 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sergio
  * Date: 21/09/15
- * Time: 20:29
+ * Time: 20:29.
  */
-
 namespace AppBundle\Form\Type;
-
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TaxDataType extends AbstractType
 {
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -55,6 +54,7 @@ class TaxDataType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\TaxData',
+            'validation_groups' => ['Default', 'taxdata'],
         ]);
     }
 

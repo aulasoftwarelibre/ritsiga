@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -118,19 +119,26 @@ class Registration
     private $comentary;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="invoice_number", type="string", length=100, nullable=true)
-     */
-    private $invoicenumber;
-
-    /**
      * @var TaxData
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\TaxData", mappedBy="registration", cascade={"persist"})
      * @Assert\Valid()
      */
     private $taxdata;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $created_at;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deleted_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updated_at;
 
     /**
      * Get id.
@@ -392,21 +400,10 @@ class Registration
     }
 
     /**
+     * Get registration description.
+     *
      * @return string
      */
-    public function getInvoicenumber()
-    {
-        return $this->invoicenumber;
-    }
-
-    /**
-     * @param string $invoicenumber
-     */
-    public function setInvoicenumber($invoicenumber)
-    {
-        $this->invoicenumber = $invoicenumber;
-    }
-
     public function getDescription()
     {
         return sprintf('#%d - %s - %s', $this->getId(), $this->getUser()->getUniversity(), $this->getUser());
@@ -448,7 +445,39 @@ class Registration
     }
 
     /**
-     * Get Registration name
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param \DateTime $created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param \DateTime $updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
+    }
+
+    /**
+     * Get Registration name.
      *
      * @return string
      */

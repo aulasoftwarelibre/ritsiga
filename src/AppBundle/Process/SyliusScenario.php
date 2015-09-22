@@ -22,6 +22,7 @@ class SyliusScenario extends ContainerAware implements ProcessScenarioInterface
             ->add('college', new Step\CollegeStep())
             ->add('student_delegation', new Step\StudentDelegationStep())
             ->add('responsible', new Step\ResponsibleStep())
+            ->add('taxdata', new Step\TaxdataStep())
             ->setRedirect('registration_open')
         ;
     }

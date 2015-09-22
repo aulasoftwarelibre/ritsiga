@@ -28,7 +28,7 @@
             $('#step_responsible').removeClass("btn-default").addClass("btn-warning");
             $('#step_participants').removeClass("btn-default").addClass("btn-warning");
         }
-        if ('{{ context.currentStep.name }}' == 'invoice') {
+        if ('{{ context.currentStep.name }}' == 'taxdata') {
             $('#step_university').removeClass("btn-default").addClass("btn-warning");
             $('#step_college').removeClass("btn-default").addClass("btn-warning");
             $('#step_student').removeClass("btn-default").addClass("btn-warning");
@@ -67,6 +67,9 @@
                                     </div>
                                     <div class="process-step">
                                         <button type="button" id="step_responsible" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-user fa-2x"></i></button>
+                                    </div>
+                                    <div class="process-step">
+                                        <button type="button" id="step_taxdata" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-euro fa-2x"></i></button>
                                     </div>
                                 </div>
                             </div>
