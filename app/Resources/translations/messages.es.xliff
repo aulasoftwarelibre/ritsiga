@@ -296,7 +296,7 @@
             </trans-unit>
             <trans-unit id="label.certificate_data">
                 <source>label.certificate_data</source>
-                <target>Datos del certificado</target>
+                <target>Datos de la acreditación</target>
             </trans-unit>
             <trans-unit id="help.certificate_data">
                 <source>help.certificate_data</source>
@@ -313,9 +313,9 @@
             </trans-unit>
             <trans-unit id="action.download_certificate">
                 <source>action.download_certificate</source>
-                <target>Descargar certificado</target>
+                <target>Descargar acreditación</target>
             </trans-unit>
-            <trans-unit id="action.download_invoice">
+            <trans-unit id="action.downlodad_invoice">
                 <source>action.download_invoice</source>
                 <target>Descargar factura</target>
             </trans-unit>
