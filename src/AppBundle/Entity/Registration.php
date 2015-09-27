@@ -476,6 +476,16 @@ class Registration
         $this->updated_at = $updated_at;
     }
 
+    public static function getStatusArrayChoice()
+    {
+        return [
+            self::STATUS_OPEN => 'status.open',
+            self::STATUS_CONFIRMED => 'status.confirmed',
+            self::STATUS_CANCELLED => 'status.cancelled',
+            self::STATUS_PAID => 'status.paid',
+        ];
+    }
+
     /**
      * Get Registration name.
      *

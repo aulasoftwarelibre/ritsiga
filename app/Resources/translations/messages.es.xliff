@@ -150,6 +150,10 @@
                 <source>label.numparticipants</source>
                 <target>Número de participantes</target>
             </trans-unit>
+            <trans-unit id="label.participants">
+                <source>label.participants</source>
+                <target>Participantes</target>
+            </trans-unit>
             <trans-unit id="33">
                 <source>label.gender</source>
                 <target>Género</target>
@@ -318,6 +322,26 @@
             <trans-unit id="action.downlodad_invoice">
                 <source>action.download_invoice</source>
                 <target>Descargar factura</target>
+            </trans-unit>
+            <trans-unit id="label.id_transfer">
+                <source>label.id_transfer</source>
+                <target>Id. Transferencia</target>
+            </trans-unit>
+            <trans-unit id="status.open">
+                <source>status.open</source>
+                <target>Abierta</target>
+            </trans-unit>
+            <trans-unit id="status.confirmed">
+                <source>status.confirmed</source>
+                <target>Confirmada</target>
+            </trans-unit>
+            <trans-unit id="status.paid">
+                <source>status.paid</source>
+                <target>Pagada</target>
+            </trans-unit>
+            <trans-unit id="status.cancel">
+                <source>status.cancelled</source>
+                <target>Cancelada</target>
             </trans-unit>
         </body>
     </file>

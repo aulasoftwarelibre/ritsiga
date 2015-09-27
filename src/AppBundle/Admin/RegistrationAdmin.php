@@ -53,12 +53,7 @@ class RegistrationAdmin extends Admin
             ))
             ->add('status', 'choice', array(
                 'label' => 'label.status',
-                'choices' => array(
-                    Registration::STATUS_OPEN => 'Abierta',
-                    Registration::STATUS_CONFIRMED => 'Confirmada',
-                    Registration::STATUS_CANCELLED => 'Cancelada',
-                    Registration::STATUS_PAID => 'Pagada',
-                ),
+                'choices' => Registration::getStatusArrayChoice(),
                 'required' => true,
             ))
         ;
@@ -67,22 +62,65 @@ class RegistrationAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('convention', null, array('label' => 'label.convention'))
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('position', null, array('label' => 'label.position'))
-            ->add('status', null, array('label' => 'label.status'))
+            ->with('label.registration')
+                ->add('id', null, [
+                    'label' => 'label.id_transfer',
+                ])
+                ->add('convention', null, [
+                    'label' => 'label.convention',
+                ])
+                ->add('status', 'choice', [
+                    'label' => 'label.status',
+                    'choices' => Registration::getStatusArrayChoice(),
+                    'catalogue' => 'messages',
+                ])
+                ->add('user', null, [
+                    'label' => 'label.user',
+                ])
+                ->add('user.university', null, [
+                    'label' => 'label.university',
+                ])
+                ->add('user.college', null, [
+                    'label' => 'label.college',
+                ])
+                ->add('participants', null, [
+                    'label' => 'label.participants',
+                ])
+            ->end()
+            ->with('label.certificate_data')
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('position', null, [
+                    'label' => 'label.position',
+                ])
+            ->end()
+            ->with('label.taxdata')
+                ->add('taxdata.name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('taxdata.address', null, [
+                    'label' => 'label.address',
+                ])
+                ->add('taxdata.cif', null, [
+                    'label' => 'label.cif',
+                ])
+            ->end()
         ;
     }
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
+            ->add('id', null, [
+                'label' => 'label.id_transfer',
+            ])
             ->add('convention', null, array('label' => 'label.convention'))
             ->add('name', null, array('label' => 'label.name'))
             ->add('position', null, array('label' => 'label.position'))
-            ->add('status', null, array('label' => 'label.status'))
+            ->add('status', null, array(
+                'label' => 'label.status',
+            ))
         ;
     }
 
@@ -90,19 +128,26 @@ class RegistrationAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('user.university', null, array(
+            ->add('id', null, [
+                'label' => 'label.id_transfer',
+            ])
+            ->add('user.university', null, [
                 'label' => 'label.university',
-            ))
-            ->add('user.college', null, array(
+            ])
+            ->add('user.college', null, [
                 'label' => 'label.college',
-            ))
-            ->add('status', null, array('label' => 'label.status'))
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                ), ))
+            ])
+            ->add('status', 'choice', [
+                'label' => 'label.status',
+                'choices' => Registration::getStatusArrayChoice(),
+                'catalogue' => 'messages',
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'show' => [],
+                ],
+            ])
         ;
     }
 }
