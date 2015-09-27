@@ -1,6 +1,6 @@
 @font-face {
     font-family: SourceSansPro;
-    src: url(SourceSansPro-Regular.ttf);
+    src: url(Play-Regular.ttf);
 }
 
 .clearfix:after {
@@ -195,7 +195,7 @@ table tfoot tr td:first-child {
 dt {
     float: left;
     clear: left;
-    width: 130px;
+    width: 150px;
     text-align: right;
     font-weight: bold;
     color: #dd4b39;
@@ -204,7 +204,7 @@ dt:after {
     content: ":";
 }
 dd {
-    margin: 0 0 0 140px;
+    margin: 0 0 0 160px;
 }
 
 footer {
