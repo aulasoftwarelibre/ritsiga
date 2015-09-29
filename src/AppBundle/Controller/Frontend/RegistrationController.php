@@ -141,8 +141,18 @@ class RegistrationController extends Controller
      */
     public function downloadInvoiceAction()
     {
+        $registration = $this->getRegistration();
+
+        if (!$this->getConvention()->isPublishedDraft()) {
+            throw $this->createNotFoundException();
+        }
+
+        if (!in_array($registration->getStatus(), [Registration::STATUS_PAID, Registration::STATUS_CONFIRMED])) {
+            throw $this->createNotFoundException();
+        }
+
         return new Response(
-            $this->get('ritsiga.business.document_generator')->generateInvoiceDraft($this->getRegistration(), $filename),
+            $this->get('ritsiga.business.document_generator')->generateInvoiceDraft($registration, $filename),
             200,
             array(
                 'Content-Type' => 'application/pdf',

@@ -3,17 +3,22 @@
 {% block right_box %}
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Resumen Facturación</h3>
+            <h3 class="box-title">Intrucciones para el pago de la inscripción</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    <p>Entidad: {{ entity_bank }}</p>
-                    <p>IBAN: {{ iban }}</p>
-                    <p>Beneficiario: {{ organization }}</p>
-                    <p>Concepto: Referencia #{{ registration.id }} {{ registration.convention.slug | upper }}</p>
-                    <p>Importe: {{ registration.amount }} €</p>
+                    {% if convention.publishedDraft %}
+                        <p>Entidad: {{ entity_bank }}</p>
+                        <p>IBAN: {{ iban }}</p>
+                        <p>Beneficiario: {{ organization }}</p>
+                        <p>Concepto: Referencia #{{ registration.id }} {{ registration.convention.slug | upper }}</p>
+                        <p>Importe: {{ registration.amount }} €</p>
                         <a class="btn btn-primary btn-sm" href="{{ path('invoice_draft_download') }}" ><i class="glyphicon glyphicon-download"></i> {{ 'action.download_invoice_draft' | trans }}</a>
+                    {% else %}
+                        Actualmente los costes de inscripción no están cerrados. No haga ninguna transferencia hasta que le sea notificado el coste final
+                        por parte de la organización o de la Junta Directiva.
+                    {% endif %}
                 </div>
             </div><!-- /.row -->
         </div><!-- ./box-body -->

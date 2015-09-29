@@ -48,11 +48,15 @@
             </trans-unit>
             <trans-unit id="8">
                 <source>label.maintenance</source>
-                <target>Modo mantenimiento</target>
+                <target>Mantenimiento</target>
+            </trans-unit>
+            <trans-unit id="label.published_draft">
+                <source>label.published_draft</source>
+                <target>Proforma</target>
             </trans-unit>
             <trans-unit id="label.published_invoices">
                 <source>label.published_invoices</source>
-                <target>Mostrar facturas</target>
+                <target>Facturas</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>label.departuredate</source>

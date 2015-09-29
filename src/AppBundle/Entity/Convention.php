@@ -101,6 +101,13 @@ class Convention
     /**
      * @var bool
      *
+     * @ORM\Column(name="published_draft", type="boolean", nullable=false, options={"default": 0})
+     */
+    private $published_draft;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="published_invoices", type="boolean", nullable=false, options={"default": 0})
      */
     private $published_invoices;
@@ -638,5 +645,21 @@ class Convention
     public function setPublishedInvoices($published_invoices)
     {
         $this->published_invoices = $published_invoices;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublishedDraft()
+    {
+        return $this->published_draft;
+    }
+
+    /**
+     * @param bool $published_draft
+     */
+    public function setPublishedDraft($published_draft)
+    {
+        $this->published_draft = $published_draft;
     }
 }

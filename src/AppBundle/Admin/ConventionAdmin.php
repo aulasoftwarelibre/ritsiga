@@ -69,6 +69,10 @@ class ConventionAdmin extends Admin
                 'label' => 'label.maintenance',
                 'required' => false,
             ))
+            ->add('published_draft', 'checkbox', [
+                'label' => 'label.published_draft',
+                'required' => false,
+            ])
             ->add('published_invoices', 'checkbox', [
                 'label' => 'label.published_invoices',
                 'required' => false,
@@ -117,6 +121,10 @@ class ConventionAdmin extends Admin
             ))
             ->add('maintenance', 'boolean', [
                 'label' => 'label.maintenance',
+                'editable' => true,
+            ])
+            ->add('published_draft', 'boolean', [
+                'label' => 'label.published_draft',
                 'editable' => true,
             ])
             ->add('published_invoices', 'boolean', [
