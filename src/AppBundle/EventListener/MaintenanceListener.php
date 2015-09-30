@@ -42,7 +42,7 @@ class MaintenanceListener
         }
 
         $route = $this->container->get('router')->getRouteCollection()->get($event->getRequest()->get('_route'));
-        if (route && preg_match('/^\/admin\/.*/', $route->getPath())) {
+        if ($route && preg_match('/^\/admin\/.*/', $route->getPath())) {
             return;
         }
 
