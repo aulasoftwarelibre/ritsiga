@@ -34,60 +34,138 @@ class ParticipantAdmin  extends Admin
         return $query;
     }
 
+    /**
+     * {@inheritdoc}
+     * @throws \RuntimeException
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('registration', null, [
-                'query_builder' => $this->getRepository('registration')->getQueryRegistration($this->getCurrentConvention()),
-                'required' => true,
-                'label' => 'label.registration',
-                'choice_label' => 'description',
-                'help' => 'help.admin_registration',
-            ])
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('ticket', null, [
-                'query_builder' => $this->getRepository('ticket')->getTicketsAvailability($this->getCurrentConvention()),
-                'required' => true,
-                'label' => 'label.ticket',
-            ])
-            ->add('last_name', null, array('label' => 'label.last_name'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('dni')
-            ->add('invoice_number', null, [
-                'label' => 'label.invoice_number',
-            ])
+            ->with('title.registration_data', ['class' => 'col-md-6'])
+                ->add('registration', null, [
+                    'query_builder' => $this->getRepository('registration')->getQueryRegistration($this->getCurrentConvention()),
+                    'required' => true,
+                    'label' => 'label.registration',
+                    'choice_label' => 'description',
+                    'help' => 'help.admin_registration',
+                    'property' => 'getDescription',
+                ])
+                ->add('ticket', null, [
+                    'query_builder' => $this->getRepository('ticket')->getTicketsAvailability($this->getCurrentConvention()),
+                    'required' => true,
+                    'label' => 'label.ticket',
+                ])
+                ->add('invoice_number', null, [
+                    'label' => 'label.invoice_number',
+                ])
+            ->end()
+            ->with('title.personal_data', ['class' => 'col-md-6'])
+                ->add('dni', null, [
+                    'label' => 'label.dni',
+                ])
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('last_name', null, [
+                    'label' => 'label.last_name',
+                ])
+                ->add('email', null, [
+                    'label' => 'label.email',
+                ])
+                ->add('phone', null, [
+                    'label' => 'label.phone',
+                ])
+                ->add('dateOfBirth', null, [
+                    'label' => 'label.date_of_birth',
+                ])
+                ->add('size', null, [
+                    'label' => 'label.size',
+                ])
+            ->end()
+
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     * @throws \RuntimeException
+     */
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('registration', null, array('label' => 'label.registration'))
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('last_name', null, array('label' => 'label.last_name'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('dni')
-            ->add('registration.convention', null, array('label' => 'label.convention'))
-        ;
-    }
-    // Fields to be shown on filter forms
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('last_name', null, array('label' => 'label.last_name'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('dni')
-            ->add('registration.convention', null, array('label' => 'label.convention'))
+            ->with('title.registration_data', ['class' => 'col-md-6'])
+                ->add('registration.convention', null, [
+                    'label' => 'label.convention',
+                ])
+                ->add('registration', null, [
+                    'label' => 'label.registration',
+                    'associated_tostring' => 'getDescription',
+                ])
+                ->add('ticket', null, [
+                    'label' => 'label.ticket',
+                ])
+                ->add('invoice_number', null, [
+                    'label' => 'label.invoice_number',
+                ])
+            ->end()
+            ->with('title.personal_data', ['class' => 'col-md-6'])
+                ->add('dni', null, [
+                    'label' => 'label.dni',
+                ])
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('last_name', null, [
+                    'label' => 'label.last_name',
+                ])
+                ->add('email', null, [
+                    'label' => 'label.email',
+                ])
+                ->add('phone', null, [
+                    'label' => 'label.phone',
+                ])
+                ->add('dateOfBirth', null, [
+                    'label' => 'label.date_of_birth',
+                ])
+                ->add('size', null, [
+                    'label' => 'label.size',
+                ])
+            ->end()
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * {@inheritdoc}
+     * @throws \RuntimeException
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('last_name', null, [
+                'label' => 'label.last_name',
+            ])
+            ->add('dni', null, [
+                'label' => 'label.dni',
+            ])
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @throws \RuntimeException
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('last_name', null, array('label' => 'label.last_name'))
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('last_name', null, [
+                'label' => 'label.last_name',
+            ])
             ->add('invoice_number', null, [
                 'label' => 'label.invoice_number',
                 'editable' => true,
@@ -96,11 +174,36 @@ class ParticipantAdmin  extends Admin
                 'label' => 'label.registration',
                 'associated_tostring' => 'getDescription',
             ])
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                ), 'label' => 'label.actions', ))
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'show' => [],
+                ],
+                'label' => 'label.actions',
+            ])
         ;
+    }
+
+    /**
+     * Devuelve los campos que se van a exportar para esta tabla
+     *
+     * @return array
+     */
+    public function getExportFields()
+    {
+        return [
+            'dni',
+            'name',
+            'last_name',
+            'email',
+            'phone',
+            'dateOfBirth',
+            'size',
+            'registration.description',
+            'ticket',
+            'invoice_number',
+            'registration.user.university',
+            'registration.user.college',
+        ];
     }
 }

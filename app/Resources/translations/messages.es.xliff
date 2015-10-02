@@ -347,6 +347,14 @@
                 <source>status.cancelled</source>
                 <target>Cancelada</target>
             </trans-unit>
+            <trans-unit id="title.registration_data">
+                <source>title.registration_data</source>
+                <target>Datos del registro</target>
+            </trans-unit>
+            <trans-unit id="title.personal_data">
+                <source>title.personal_data</source>
+                <target>Datos del participante</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
