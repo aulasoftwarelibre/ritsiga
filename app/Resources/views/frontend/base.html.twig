@@ -58,8 +58,13 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ app.user.gravatar(64) }}" class="user-image" alt="User Image"/>
-                                <span class="hidden-xs">{{ app.user.username }}</span>
+                                <span class="hidden-xs">Hola,
+                                {% if app.user.firstName %}
+                                    {{ app.user.firstName }}
+                                {% else %}
+                                    usuario
                                 {% endif %}
+                                </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -92,7 +97,7 @@
                                 </li>
                             </ul>
                         </li>
-
+                    {% endif %}
                     </ul>
                 </div>
             </nav>
