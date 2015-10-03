@@ -36,6 +36,7 @@ class ParticipantAdmin  extends Admin
 
     /**
      * {@inheritdoc}
+     *
      * @throws \RuntimeException
      */
     protected function configureFormFields(FormMapper $formMapper)
@@ -88,6 +89,7 @@ class ParticipantAdmin  extends Admin
 
     /**
      * {@inheritdoc}
+     *
      * @throws \RuntimeException
      */
     protected function configureShowFields(ShowMapper $showMapper)
@@ -136,6 +138,7 @@ class ParticipantAdmin  extends Admin
 
     /**
      * {@inheritdoc}
+     *
      * @throws \RuntimeException
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -155,6 +158,7 @@ class ParticipantAdmin  extends Admin
 
     /**
      * {@inheritdoc}
+     *
      * @throws \RuntimeException
      */
     protected function configureListFields(ListMapper $listMapper)
@@ -173,6 +177,9 @@ class ParticipantAdmin  extends Admin
             ->add('registration', null, [
                 'label' => 'label.registration',
                 'associated_tostring' => 'getDescription',
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'id'],
+                'sort_parent_association_mappings' => [['fieldName' => 'registration']],
             ])
             ->add('_action', 'actions', [
                 'actions' => [
@@ -185,7 +192,7 @@ class ParticipantAdmin  extends Admin
     }
 
     /**
-     * Devuelve los campos que se van a exportar para esta tabla
+     * Devuelve los campos que se van a exportar para esta tabla.
      *
      * @return array
      */
