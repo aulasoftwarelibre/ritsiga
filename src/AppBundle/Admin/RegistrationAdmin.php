@@ -37,32 +37,63 @@ class RegistrationAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('convention', null, [
-                'query_builder' => $this->getRepository('convention')->getQueryConvention($this->getCurrentConvention()),
-                'required' => true,
-                'label' => 'label.convention',
-            ])
-            ->add('user', null, array(
-                'label' => 'label.user',
-            ))
-            ->add('name', null, array(
-                'label' => 'label.name',
-            ))
-            ->add('position', null, array(
-                'label' => 'label.position',
-            ))
-            ->add('status', 'choice', array(
-                'label' => 'label.status',
-                'choices' => Registration::getStatusArrayChoice(),
-                'required' => true,
-            ))
+            ->with('title.inscriptions', ['class' => 'col-md-12'])
+                ->add('convention', null, [
+                    'query_builder' => $this->getRepository('convention')->getQueryConvention($this->getCurrentConvention()),
+                    'required' => true,
+                    'label' => 'label.convention',
+                ])
+                ->add('user', null, array(
+                    'label' => 'label.user',
+                ))
+                ->add('name', null, array(
+                    'label' => 'label.name',
+                ))
+                ->add('position', null, array(
+                    'label' => 'label.position',
+                ))
+                ->add('status', 'choice', array(
+                    'label' => 'label.status',
+                    'choices' => Registration::getStatusArrayChoice(),
+                    'required' => true,
+                ))
+            ->end()
+            ->with('label.taxdata', ['class' => 'col-md-6'])
+                ->add('taxdata.name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('taxdata.address', 'textarea', [
+                    'label' => 'label.address',
+                ])
+                ->add('taxdata.cif', null, [
+                    'label' => 'label.cif',
+                ])
+            ->end()
+            ->with('title.travel_info', ['class' => 'col-md-6'])
+                ->add('arrivaldate', 'sonata_type_date_picker', [
+                    'label' => 'label.arrivaldate',
+                    'required' => false,
+                ])
+                ->add('departuredate', 'sonata_type_date_picker', [
+                    'label' => 'label.departuredate',
+                    'required' => false,
+                ])
+                ->add('transport', null, [
+                    'label' => 'label.transport',
+                    'required' => false,
+                ])
+                ->add('comentary', null, [
+                    'label' => 'label.comentary',
+                    'required' => false,
+                ])
+            ->end()
         ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('label.registration')
+            ->with('label.registration', ['class' => 'col-md-6'])
                 ->add('id', null, [
                     'label' => 'label.id_transfer',
                 ])
@@ -87,7 +118,23 @@ class RegistrationAdmin extends Admin
                     'label' => 'label.participants',
                 ])
             ->end()
-            ->with('label.certificate_data')
+            ->with('title.travel_info', ['class' => 'col-md-6'])
+                ->add('arrivaldate', 'date', [
+                    'label' => 'label.arrivaldate',
+                    'format' => 'd/m/Y',
+                ])
+                ->add('departuredate', 'date', [
+                    'label' => 'label.departuredate',
+                    'format' => 'd/m/Y',
+                ])
+                ->add('transport', null, [
+                    'label' => 'label.transport',
+                ])
+                ->add('comentary', null, [
+                    'label' => 'label.comentary',
+                ])
+            ->end()
+            ->with('label.certificate_data', ['class' => 'col-md-6'])
                 ->add('name', null, [
                     'label' => 'label.name',
                 ])
@@ -95,7 +142,7 @@ class RegistrationAdmin extends Admin
                     'label' => 'label.position',
                 ])
             ->end()
-            ->with('label.taxdata')
+            ->with('label.taxdata', ['class' => 'col-md-6'])
                 ->add('taxdata.name', null, [
                     'label' => 'label.name',
                 ])

@@ -379,6 +379,10 @@
                 <source>title.profile_data</source>
                 <target>Datos del perfil</target>
             </trans-unit>
+            <trans-unit id="title.travel_info">
+                <source>title.travel_info</source>
+                <target>Datos del viaje</target>
+            </trans-unit>
             <trans-unit id="placeholder.university">
                 <source>placeholder.university</source>
                 <target>Selecciona tu universidad</target>
