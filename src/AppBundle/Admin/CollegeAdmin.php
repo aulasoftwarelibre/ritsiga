@@ -21,64 +21,152 @@ class CollegeAdmin extends Admin
     protected $datagridValues = array(
         '_page' => 1,            // display the first page (default = 1)
         '_sort_order' => 'ASC', // reverse order (default = 'ASC')
-        '_sort_by' => 'university.name',  // name of the ordered field
+        '_sort_by' => 'university',  // name of the ordered field
     );
 
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('address', null, array('label' => 'label.address'))
-            ->add('city', null, array('label' => 'label.city'))
-            ->add('province', null, array('label' => 'label.province'))
-            ->add('postcode', null, array('label' => 'label.postcode'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('fax')
-            ->add('web')
-            ->add('university', null, array('label' => 'label.university'))
-            ->add('slug');
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('address', null, array('label' => 'label.address'))
-            ->add('city', null, array('label' => 'label.city'))
-            ->add('province', null, array('label' => 'label.province'))
-            ->add('postcode', null, array('label' => 'label.postcode'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('fax')
-            ->add('web', 'url')
-            ->add('university', null, array('label' => 'label.university'))
-            ->add('slug');
-    }
-
-    // Fields to be shown on filter forms
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('university', null, array('label' => 'label.university'))
-            ->add('name', null, array('label' => 'label.name'))
+            ->with('title.college_data', ['class' => 'col-md-6'])
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('university', null, [
+                    'label' => 'label.university',
+                ])
+                ->add('academic_degrees', null, [
+                    'label' => 'label.academic_degrees',
+                ])
+            ->end()
+            ->with('title.contact_data', ['class' => 'col-md-6'])
+                ->add('address', 'textarea', [
+                    'label' => 'label.address',
+                ])
+                ->add('city', null, [
+                    'label' => 'label.city',
+                ])
+                ->add('province', null, [
+                    'label' => 'label.province',
+                ])
+                ->add('postcode', null, [
+                    'label' => 'label.postcode',
+                ])
+                ->add('phone', null, [
+                    'label' => 'label.phone',
+                ])
+                ->add('fax', null, [
+                    'label' => 'label.fax',
+                ])
+                ->add('web', null, [
+                    'label' => 'label.web',
+                ])
+            ->end()
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('title.college_data', ['class' => 'col-md-6'])
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('university', null, [
+                    'label' => 'label.university',
+                ])
+                ->add('slug', null, [
+                    'label' => 'label.slug',
+                ])
+                ->add('academic_degrees', null, [
+                    'label' => 'label.academic_degrees',
+                ])
+            ->end()
+            ->with('title.contact_data', ['class' => 'col-md-6'])
+                ->add('address', 'textarea', [
+                    'label' => 'label.address',
+                ])
+                ->add('city', null, [
+                    'label' => 'label.city',
+                ])
+                ->add('province', null, [
+                    'label' => 'label.province',
+                ])
+                ->add('postcode', null, [
+                    'label' => 'label.postcode',
+                ])
+                ->add('phone', null, [
+                    'label' => 'label.phone',
+                ])
+                ->add('fax', null, [
+                    'label' => 'label.fax',
+                ])
+                ->add('web', null, [
+                    'label' => 'label.web',
+                ])
+            ->end()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('university', null, [
+                'label' => 'label.university',
+            ])
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('city', null, [
+                'label' => 'label.city',
+            ])
+            ->add('province', null, [
+                'label' => 'label.province',
+            ])
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name', null, array(
+            ->addIdentifier('name', null, [
                 'label' => 'label.name',
-            ))
-            ->add('university', null, array(
+            ])
+            ->add('university', null, [
                 'label' => 'label.university',
-            ))
-            ->add('_action', 'actions', array(
-                'label' => 'label.action',
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                ), ))
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'name'],
+                'sort_parent_association_mappings' => [['fieldName' => 'university']],
+            ])
+            ->add('city', null, [
+                'label' => 'label.city',
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'show' => [],
+                ],
+                'label' => 'label.actions',
+            ])
         ;
     }
 }

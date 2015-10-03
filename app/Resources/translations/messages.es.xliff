@@ -86,6 +86,10 @@
                 <source>label.phone</source>
                 <target>Teléfono</target>
             </trans-unit>
+            <trans-unit id="label.fax">
+                <source>label.fax</source>
+                <target>Fax</target>
+            </trans-unit>
             <trans-unit id="16">
                 <source>Profile</source>
                 <target>Perfil</target>
@@ -354,6 +358,22 @@
             <trans-unit id="title.personal_data">
                 <source>title.personal_data</source>
                 <target>Datos del participante</target>
+            </trans-unit>
+            <trans-unit id="title.university_data">
+                <source>title.university_data</source>
+                <target>Datos de la universidad</target>
+            </trans-unit>
+            <trans-unit id="title.college_data">
+                <source>title.college_data</source>
+                <target>Datos del centro</target>
+            </trans-unit>
+            <trans-unit id="title.student_delegation_data">
+                <source>title.student_delegation_data</source>
+                <target>Datos del Órgano de Representación Estudiantil</target>
+            </trans-unit>
+            <trans-unit id="title.contact_data">
+                <source>title.contact_data</source>
+                <target>Datos de contacto</target>
             </trans-unit>
         </body>
     </file>

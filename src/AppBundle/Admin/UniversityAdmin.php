@@ -24,60 +24,150 @@ class UniversityAdmin extends Admin
         '_sort_by' => 'name',  // name of the ordered field
     );
 
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('address', null, array('label' => 'label.address'))
-            ->add('city', null, array('label' => 'label.city'))
-            ->add('province', null, array('label' => 'label.province'))
-            ->add('postcode', null, array('label' => 'label.postcode'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('fax')
-            ->add('web')
-            ->add('cif')
-            ->add('type', null, array('label' => 'label.type'))
-            ->add('slug');
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('address', null, array('label' => 'label.address'))
-            ->add('city', null, array('label' => 'label.city'))
-            ->add('province', null, array('label' => 'label.province'))
-            ->add('postcode', null, array('label' => 'label.postcode'))
-            ->add('phone', null, array('label' => 'label.phone'))
-            ->add('fax')
-            ->add('web', 'url')
-            ->add('cif')
-            ->add('type', null, array('label' => 'label.type'))
-            ->add('slug');
-    }
-
-    // Fields to be shown on filter forms
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('province', null, array('label' => 'label.province'))
-            ->add('city', null, array('label' => 'label.city'))
+            ->with('title.university_data', ['class' => 'col-md-6'])
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('cif', null, [
+                    'label' => 'label.cif',
+                ])
+                ->add('type', 'choice', [
+                    'label' => 'label.type',
+                    'choices' => ['Privada' => 'Privada', 'Pública' => 'Pública'],
+                ])
+            ->end()
+            ->with('title.contact_data', ['class' => 'col-md-6'])
+                ->add('address', 'textarea', [
+                    'label' => 'label.address',
+                ])
+                ->add('city', null, [
+                    'label' => 'label.city',
+                ])
+                ->add('province', null, [
+                    'label' => 'label.province',
+                ])
+                ->add('postcode', null, [
+                    'label' => 'label.postcode',
+                ])
+                ->add('phone', null, [
+                    'label' => 'label.phone',
+                ])
+                ->add('fax', null, [
+                    'label' => 'label.fax',
+                ])
+                ->add('web', null, [
+                    'label' => 'label.web',
+                ])
+            ->end()
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('title.university_data', ['class' => 'col-md-6'])
+                ->add('name', null, [
+                    'label' => 'label.name',
+                ])
+                ->add('cif', null, [
+                    'label' => 'label.cif',
+                ])
+                ->add('type', 'choice', [
+                    'label' => 'label.type',
+                    'choices' => ['Privada' => 'Privada', 'Pública' => 'Pública'],
+                ])
+            ->end()
+            ->with('title.contact_data', ['class' => 'col-md-6'])
+                ->add('address', 'textarea', [
+                    'label' => 'label.address',
+                ])
+                ->add('city', null, [
+                    'label' => 'label.city',
+                ])
+                ->add('province', null, [
+                    'label' => 'label.province',
+                ])
+                ->add('postcode', null, [
+                    'label' => 'label.postcode',
+                ])
+                ->add('phone', null, [
+                    'label' => 'label.phone',
+                ])
+                ->add('fax', null, [
+                    'label' => 'label.fax',
+                ])
+                ->add('web', null, [
+                    'label' => 'label.web',
+                ])
+            ->end()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('type', null, [
+                'label' => 'label.type',
+            ], 'choice', [
+                'choices' => ['Privada' => 'Privada', 'Pública' => 'Pública'],
+            ])
+            ->add('city', null, [
+                'label' => 'label.city',
+            ])
+            ->add('province', null, [
+                'label' => 'label.province',
+            ])
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name', null, array('label' => 'label.name'))
-            ->add('city', null, array('label' => 'label.city'))
-            ->add('_action', 'actions', array(
+            ->addIdentifier('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('type', null, [
+                'label' => 'label.type',
+            ])
+            ->add('city', null, [
+                'label' => 'label.city',
+            ])
+            ->add('province', null, [
+                'label' => 'label.province',
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'show' => [],
+                ],
                 'label' => 'label.actions',
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                ), ))
+            ])
         ;
     }
 }
