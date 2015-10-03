@@ -47,31 +47,31 @@ class TicketAdmin  extends Admin
                 'required' => true,
                 'label' => 'label.convention',
             ])
-            ->add('name', null, array(
+            ->add('name', null, [
                 'label' => 'label.name',
-            ))
-            ->add('description', null, array(
+            ])
+            ->add('description', null, [
                 'label' => 'label.description',
-            ))
-            ->add('reduced', null, array(
+            ])
+            ->add('reduced', null, [
                 'label' => 'label.reduced',
                 'help' => 'help.reduced',
-            ))
-            ->add('public', null, array(
+            ])
+            ->add('public', null, [
                 'label' => 'label.public',
                 'help' => 'help.public',
-            ))
-            ->add('startDate', 'sonata_type_date_picker', array(
+            ])
+            ->add('startDate', 'sonata_type_date_picker', [
                 'label' => 'label.startsAt',
                 'help' => 'help.startsAt',
-            ))
-            ->add('endDate', 'sonata_type_date_picker', array(
+            ])
+            ->add('endDate', 'sonata_type_date_picker', [
                 'label' => 'label.endsAt',
                 'help' => 'help.endsAt',
-            ))
-            ->add('price', null, array(
+            ])
+            ->add('price', null, [
                 'label' => 'label.price',
-            ))
+            ])
         ;
     }
 
@@ -79,11 +79,12 @@ class TicketAdmin  extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('description', null, array('label' => 'label.description'))
-            ->add('startDate', null, array('label' => 'label.startsAt'))
-            ->add('endDate', null, array('label' => 'label.endsAt'))
-            ->add('price', null, array('label' => 'label.price'))
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('description', null, [
+                'label' => 'label.description',
+            ])
         ;
     }
 
@@ -91,39 +92,67 @@ class TicketAdmin  extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('startDate', null, array('label' => 'label.startsAt'))
-            ->add('endDate', null, array('label' => 'label.endsAt'))
-            ->add('price', null, array('label' => 'label.price'))
-            ->add('reduced', 'boolean', array(
+            ->addIdentifier('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('startDate', null, [
+                'label' => 'label.startsAt',
+                'format' => 'd/m/Y',
+            ])
+            ->add('endDate', null, [
+                'label' => 'label.endsAt',
+                'format' => 'd/m/Y',
+            ])
+            ->add('price', null, [
+                'label' => 'label.price',
+            ])
+            ->add('reduced', 'boolean', [
                 'label' => 'label.reduced',
                 'editable' => true,
-            ))
-            ->add('public', 'boolean', array(
+            ])
+            ->add('public', 'boolean', [
                 'label' => 'label.public',
                 'editable' => true,
-            ))
-            ->add('_action', 'actions', array(
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'show' => [],
+                ],
                 'label' => 'label.actions',
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                ),
-            ))
+            ])
         ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('convention', null, array('label' => 'label.convention'))
-            ->add('description', null, array('label' => 'label.description'))
-            ->add('reduced', 'boolean', array('label' => 'label.reduced'))
-            ->add('public', 'boolean', array('label' => 'label.public'))
-            ->add('startDate', null, array('label' => 'label.startsAt'))
-            ->add('endDate', null, array('label' => 'label.endsAt'))
-            ->add('price', null, array('label' => 'label.price'))
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('convention', null, [
+                'label' => 'label.convention',
+            ])
+            ->add('description', null, [
+                'label' => 'label.description',
+            ])
+            ->add('reduced', 'boolean', [
+                'label' => 'label.reduced',
+            ])
+            ->add('public', 'boolean', [
+                'label' => 'label.public',
+            ])
+            ->add('startDate', 'date', [
+                'label' => 'label.startsAt',
+                'format' => 'd/m/Y',
+            ])
+            ->add('endDate', 'date', [
+                'label' => 'label.endsAt',
+                'format' => 'd/m/Y',
+            ])
+            ->add('price', null, [
+                'label' => 'label.price',
+            ])
         ;
     }
 }

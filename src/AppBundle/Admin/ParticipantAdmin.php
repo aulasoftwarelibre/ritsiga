@@ -76,7 +76,7 @@ class ParticipantAdmin  extends Admin
                 ->add('phone', null, [
                     'label' => 'label.phone',
                 ])
-                ->add('dateOfBirth', null, [
+                ->add('dateOfBirth', 'sonata_type_date_picker', [
                     'label' => 'label.date_of_birth',
                 ])
                 ->add('size', null, [
@@ -126,8 +126,9 @@ class ParticipantAdmin  extends Admin
                 ->add('phone', null, [
                     'label' => 'label.phone',
                 ])
-                ->add('dateOfBirth', null, [
+                ->add('dateOfBirth', 'date', [
                     'label' => 'label.date_of_birth',
+                    'format' => 'd/m/Y',
                 ])
                 ->add('size', null, [
                     'label' => 'label.size',
@@ -173,6 +174,12 @@ class ParticipantAdmin  extends Admin
             ->add('invoice_number', null, [
                 'label' => 'label.invoice_number',
                 'editable' => true,
+            ])
+            ->add('ticket', null, [
+                'label' => 'label.ticket',
+                'sortable' => true,
+                'sort_field_mapping' => ['fieldName' => 'name'],
+                'sort_parent_association_mappings' => [['fieldName' => 'ticket']],
             ])
             ->add('registration', null, [
                 'label' => 'label.registration',
