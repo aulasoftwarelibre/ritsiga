@@ -63,7 +63,7 @@ class ParticipantController extends Controller
     }
 
     /**
-     * @Route("/{id/edit", name="participant_edit")
+     * @Route("/{id}/edit", name="participant_edit")
      * Muestra pantalla de edición de un participante
      */
     public function editParticipantAction(Request $request, Participant $participant)
