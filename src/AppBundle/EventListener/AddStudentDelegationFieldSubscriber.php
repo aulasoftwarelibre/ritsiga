@@ -54,6 +54,7 @@ class AddStudentDelegationFieldSubscriber implements EventSubscriberInterface
             'class' => 'AppBundle:StudentDelegation',
             'auto_initialize' => false,
             'label' => 'label.student_delegation',
+            'placeholder' => 'placeholder.student_delegation',
             'query_builder' => function (EntityRepository $repository) use ($college) {
                 $qb = $repository->createQueryBuilder('student')
                     ->innerJoin('student.college', 'college');

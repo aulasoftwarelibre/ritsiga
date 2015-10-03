@@ -54,6 +54,7 @@ class AddUniversityFieldSubscriber implements EventSubscriberInterface
             'mapped' => false,
             'auto_initialize' => false,
             'label' => 'label.university',
+            'placeholder' => 'placeholder.university',
             'query_builder' => function (EntityRepository $repository) {
                 $qb = $repository->createQueryBuilder('university')
                 ->orderBy('university.name', 'ASC');

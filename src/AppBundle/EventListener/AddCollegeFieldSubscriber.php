@@ -54,6 +54,7 @@ class AddCollegeFieldSubscriber implements EventSubscriberInterface
             'class' => 'AppBundle:College',
             'mapped' => false,
             'auto_initialize' => false,
+            'placeholder' => 'placeholder.college',
             'label' => 'label.college',
             'query_builder' => function (EntityRepository $repository) use ($university) {
                 $qb = $repository->createQueryBuilder('college')

@@ -375,6 +375,26 @@
                 <source>title.contact_data</source>
                 <target>Datos de contacto</target>
             </trans-unit>
+            <trans-unit id="title.profile_data">
+                <source>title.profile_data</source>
+                <target>Datos del perfil</target>
+            </trans-unit>
+            <trans-unit id="placeholder.university">
+                <source>placeholder.university</source>
+                <target>Selecciona tu universidad</target>
+            </trans-unit>
+            <trans-unit id="placeholder.college">
+                <source>placeholder.college</source>
+                <target>Selecciona tu centro</target>
+            </trans-unit>
+            <trans-unit id="placeholder.student_delegation">
+                <source>placeholder.student_delegation</source>
+                <target>Selecciona tu Órgano de Representación Estudiantil</target>
+            </trans-unit>
+            <trans-unit id="action.profile_edit">
+                <source>action.profile_edit</source>
+                <target>Editar perfil</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
