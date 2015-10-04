@@ -37,60 +37,92 @@ class ConventionAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'label.name'))
-            ->add('slug', 'text', array('label' => 'label.slug'))
-            ->add('description', null, array(
-                'label' => 'Descripción',
-                'required' => false,
-                'attr' => array('class' => 'ckeditor'),
-            ))
-            ->add('startsAt', 'sonata_type_date_picker', array('label' => 'label.startsAt'))
-            ->add('endsAt', 'sonata_type_date_picker', array('label' => 'label.endsAt'))
-            ->add('seats', null, array(
-                'label' => 'label.seats',
-                'help' => 'help.seats',
-                'required' => true,
-            ))
-            ->add('reduced_seats', null, array(
-                'label' => 'label.reduced_seats',
-                'help' => 'help.reduced_seats',
-                'required' => true,
-            ))
-            ->add('email', 'email', array('label' => 'label.email'))
-            ->add('web', 'email', array('label' => 'label.web'))
-            ->add('administrators', null, array('label' => 'Administradores'))
-            ->add('file', 'file', array(
-                'label' => 'Imagen',
-                'data_class' => null,
-                'attr' => ['class' => 'filestyle'],
-                'required' => false,
-            ))
-            ->add('maintenance', 'checkbox', array(
-                'label' => 'label.maintenance',
-                'required' => false,
-            ))
-            ->add('published_draft', 'checkbox', [
-                'label' => 'label.published_draft',
-                'required' => false,
-            ])
-            ->add('published_invoices', 'checkbox', [
-                'label' => 'label.published_invoices',
-                'required' => false,
-            ])
+            ->with('title.convention_info', ['class' => 'col-md-6'])
+                ->add('name', 'text', [
+                    'label' => 'label.name',
+                ])
+                ->add('slug', 'text', [
+                    'label' => 'label.slug',
+                ])
+                ->add('description', null, [
+                    'label' => 'Descripción',
+                    'required' => false,
+                    'attr' => ['class' => 'ckeditor'],
+                ])
+                ->add('email', 'email', [
+                    'label' => 'label.email',
+                ])
+                ->add('web', 'email', [
+                    'label' => 'label.web',
+                ])
+                ->add('file', 'file', [
+                    'label' => 'Imagen',
+                    'data_class' => null,
+                    'attr' => ['class' => 'filestyle'],
+                    'required' => false,
+                    'help' => 'help.convention.image',
+                ])
+                ->add('calendar', null, [
+                    'label' => 'label.calendar',
+                    'required' => false,
+                    'help' => 'help.convention.calendar',
+                ])
+            ->end()
+            ->with('title.convention_parameters', ['class' => 'col-md-6'])
+                ->add('administrators', null, [
+                    'label' => 'Administradores',
+                ])
+                ->add('startsAt', 'sonata_type_date_picker', [
+                    'label' => 'label.startsAt',
+                ])
+                ->add('endsAt', 'sonata_type_date_picker', [
+                    'label' => 'label.endsAt',
+                ])
+                ->add('seats', null, [
+                    'label' => 'label.seats',
+                    'help' => 'help.seats',
+                    'required' => true,
+                ])
+                ->add('reduced_seats', null, [
+                    'label' => 'label.reduced_seats',
+                    'help' => 'help.reduced_seats',
+                    'required' => true,
+                ])
+                ->add('maintenance', 'checkbox', [
+                    'label' => 'label.maintenance',
+                    'required' => false,
+                ])
+                ->add('published_draft', 'checkbox', [
+                    'label' => 'label.published_draft',
+                    'required' => false,
+                ])
+                ->add('published_invoices', 'checkbox', [
+                    'label' => 'label.published_invoices',
+                    'required' => false,
+                ])
+            ->end()
         ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('startsAt', null, array('label' => 'label.startsAt'))
-            ->add('endsAt', null, array('label' => 'label.endsAt'))
-            ->add('email')
-            ->add('image', null, array(
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('startsAt', null, [
+                'label' => 'label.startsAt',
+            ])
+            ->add('endsAt', null, [
+                'label' => 'label.endsAt',
+            ])
+            ->add('email', null, [
+                'label' => 'label.email',
+            ])
+            ->add('image', null, [
                 'template' => 'backend/image/image.html.twig',
                 'label' => 'Imagen',
-            ))
+            ])
         ;
     }
 
@@ -98,11 +130,21 @@ class ConventionAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name', null, array('label' => 'label.name'))
-            ->add('startsAt', null, array('label' => 'label.startsAt'))
-            ->add('endsAt', null, array('label' => 'label.endsAt'))
-            ->add('email', null, array('label' => 'label.email'))
-            ->add('maintenance', null, array('label' => 'label.maintenance'))
+            ->add('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('startsAt', null, [
+                'label' => 'label.startsAt',
+            ])
+            ->add('endsAt', null, [
+                'label' => 'label.endsAt',
+            ])
+            ->add('email', null, [
+                'label' => 'label.email',
+            ])
+            ->add('maintenance', null, [
+                'label' => 'label.maintenance',
+            ])
         ;
     }
 
@@ -110,15 +152,21 @@ class ConventionAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name', null, array('label' => 'label.name'))
-            ->add('startsAt', null, array('label' => 'label.startsAt'))
-            ->add('endsAt', null, array('label' => 'label.endsAt'))
-            ->add('seats', null, array(
+            ->addIdentifier('name', null, [
+                'label' => 'label.name',
+            ])
+            ->add('startsAt', null, [
+                'label' => 'label.startsAt',
+            ])
+            ->add('endsAt', null, [
+                'label' => 'label.endsAt',
+            ])
+            ->add('seats', null, [
                 'label' => 'label.seats',
-            ))
-            ->add('reduced_seats', null, array(
+            ])
+            ->add('reduced_seats', null, [
                 'label' => 'label.reduced_seats',
-            ))
+            ])
             ->add('maintenance', 'boolean', [
                 'label' => 'label.maintenance',
                 'editable' => true,
@@ -131,22 +179,14 @@ class ConventionAdmin extends Admin
                 'label' => 'label.published_invoices',
                 'editable' => true,
             ])
-            ->add('_action', 'actions', array(
-                'label' => 'label.action',
-                'actions' => array(
-                    'delete' => array(),
-                    'edit' => array(),
-                    'show' => array(
-                        'template' => 'CRUD/list__show_convention.html.twig',
-                    ),
-                    'download_acreditation' => array(
-                        'template' => 'CRUD/list__action_acreditation.html.twig',
-                    ),
-                    'download_invoice' => array(
-                        'template' => 'CRUD/list__action_invoice.html.twig',
-                    ),
-            ),
-        ));
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [],
+                    'show' => [],
+                ],
+                'label' => 'label.actions',
+            ])
+        ;
     }
 
     public function prePersist($object)

@@ -192,6 +192,13 @@ class Convention
      */
     private $reduced_seats;
 
+    /**
+     * @var string
+     * @ORM\Column(name="calendar", type="string", length=255, nullable=true)
+     * @Assert\Url()
+     */
+    private $calendar;
+
     public function __toString()
     {
         return $this->name;
@@ -661,5 +668,21 @@ class Convention
     public function setPublishedDraft($published_draft)
     {
         $this->published_draft = $published_draft;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCalendar()
+    {
+        return $this->calendar;
+    }
+
+    /**
+     * @param string $calendar
+     */
+    public function setCalendar($calendar)
+    {
+        $this->calendar = $calendar;
     }
 }

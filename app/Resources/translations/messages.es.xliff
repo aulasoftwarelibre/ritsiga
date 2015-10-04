@@ -391,6 +391,26 @@
                 <source>action.profile_edit</source>
                 <target>Editar perfil</target>
             </trans-unit>
+            <trans-unit id="help.convention.image">
+                <source>help.convention.image</source>
+                <target>Preferentemente incluya una imagen de la ciudad de resolución 1200x300 aproximadamente.</target>
+            </trans-unit>
+            <trans-unit id="label.calendar">
+                <source>label.calendar</source>
+                <target>Calendario</target>
+            </trans-unit>
+            <trans-unit id="help.convention.calendar">
+                <source>help.convention.calendar</source>
+                <target>BETA: Incluya la url a la imagen de un calendario.</target>
+            </trans-unit>
+            <trans-unit id="title.convention_info">
+                <source>title.convention_info</source>
+                <target>Información de la Asamblea</target>
+            </trans-unit>
+            <trans-unit id="title.convention_parameters">
+                <source>title.convention_parameters</source>
+                <target>Parámetros de la Asamblea</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

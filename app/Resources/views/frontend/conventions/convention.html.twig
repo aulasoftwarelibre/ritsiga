@@ -25,18 +25,14 @@
 {% block content %}
 <div class="row">
     <div  class="col-md-6">
-    <div class="box box-danger">
-        <div class="box-header with-border">
-            <h3 class="box-title">Descripción</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div><!-- /.box-header -->
-        <div class="box-body">
-           {{ convention.description }}
-        </div><!-- /.box-body -->
-    </div>
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Descripción</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+               {{ convention.description }}
+            </div><!-- /.box-body -->
+        </div>
     </div>
 
     <div  class="col-md-6">
@@ -67,5 +63,19 @@
             {#</div>#}
         {#</div>#}
     </div>
+
+    {% if convention.calendar is not empty %}
+    <div  class="col-md-6">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ 'label.calendar' | trans }}</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <img class="img-responsive" src="{{ convention.calendar }}" alt="Calendario" />
+            </div><!-- /.box-body -->
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}
