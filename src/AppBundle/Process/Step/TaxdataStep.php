@@ -8,6 +8,7 @@
  */
 namespace AppBundle\Process\Step;
 
+use AppBundle\Entity\Registration;
 use AppBundle\Entity\TaxData;
 use AppBundle\Form\Type\TaxDataType;
 use FOS\RestBundle\View\View;
@@ -26,7 +27,8 @@ class TaxdataStep extends BaseStep
      */
     public function displayAction(ProcessContextInterface $context)
     {
-        $taxdata = TaxData::copyFromUniversity($this->getUser()->getUniversity());
+        $registration = $this->getCurrentRegistration();
+        $taxdata = $registration->getTaxdata();
         $form = $this->createForm(new TaxDataType(), $taxdata);
 
         return $this->render('frontend/registration/process/taxdata.html.twig', [
@@ -39,18 +41,20 @@ class TaxdataStep extends BaseStep
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
 
-        $taxdata = new TaxData();
         $registration = $this->getCurrentRegistration();
-        $taxdata->setRegistration($registration);
+        $taxdata = $registration->getTaxdata();
 
         $form = $this->createForm(new TaxDataType(), $taxdata);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $registration->setStatus(Registration::STATUS_OPEN);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($taxdata);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans('Your taxdata has been saved, you can now add registrations'));
+
+            $this->addFlash('success', 'success.taxdata');
 
             return $this->complete();
         }

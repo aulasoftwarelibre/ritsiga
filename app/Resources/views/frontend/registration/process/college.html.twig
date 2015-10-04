@@ -1,10 +1,12 @@
-{%  extends ":frontend/registration:step.html.twig" %}
+{%  extends "::frontend/registration/step.html.twig" %}
+
+{% use "::frontend/forms/college.html.twig" %}
+
 
 {% block titlestep %}
 <h3 class="box-title"> Su Centro</h3>
 {% endblock %}
-{% block formstep %}
-    {{ form_errors(form) }}
 
-    {{ form_rest(form) }}
+{% block descriptionstep %}
+    Introduzca los datos de su centro de estudios.
 {% endblock %}

@@ -8,20 +8,15 @@
  */
 namespace AppBundle\Process\Step;
 
-use AppBundle\Entity\Registration;
-use AppBundle\Entity\TaxData;
-use AppBundle\Form\ResponsibleType;
+use AppBundle\Form\Type\ResponsibleType;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
 class ResponsibleStep extends BaseStep
 {
     public function displayAction(ProcessContextInterface $context)
     {
-        $convention = $this->getCurrentSite();
-        $registration = new Registration();
-        $registration->setConvention($convention);
-        $taxdata = TaxData::copyFromUniversity($this->getUser()->getUniversity());
-        $registration->setTaxdata($taxdata);
+        $registration = $this->getCurrentRegistration();
+
         $form = $this->createForm(new ResponsibleType(), $registration);
 
         return $this->render(':frontend/registration/process:responsible.html.twig', array(
@@ -33,21 +28,16 @@ class ResponsibleStep extends BaseStep
     public function forwardAction(ProcessContextInterface $context)
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
-        $convention = $this->getCurrentSite();
-        $registration = new Registration();
-        $registration->setConvention($convention);
-        $form = $this->createForm(new ResponsibleType(), $registration);
+        $registration = $this->getCurrentRegistration();
 
+        $form = $this->createForm(new ResponsibleType(), $registration);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $this->getUser();
-            $registration->setUser($user);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($registration);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans('Your registration has been saved, you can now add taxdata'));
+            $this->addFlash('success', 'success.registration');
 
             return $this->complete();
         }

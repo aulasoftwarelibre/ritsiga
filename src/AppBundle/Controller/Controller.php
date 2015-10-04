@@ -23,12 +23,18 @@ abstract class Controller extends BaseController
         $user = $this->getUser();
 
         if (!$user instanceof User) {
-            return;
+            throw $this->createNotFoundException();
         }
 
         return $this->getDoctrine()->getRepository('AppBundle:Registration')->findOneBy([
             'user' => $user,
             'convention' => $this->getConvention(),
         ]);
+    }
+
+    protected function addFlash($type, $message)
+    {
+        $message = $this->get('translator')->trans($message, [], 'flashes');
+        parent::addFlash($type, $message);
     }
 }

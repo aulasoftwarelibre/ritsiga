@@ -8,6 +8,7 @@
  */
 namespace AppBundle\Process\Step;
 
+use AppBundle\Entity\Registration;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
 class WelcomeStep extends BaseStep
@@ -16,18 +17,19 @@ class WelcomeStep extends BaseStep
     {
         $user = $this->getUser();
         $convention = $this->getCurrentSite();
+        /** @var Registration $registration */
         $registration = $this->get('ritsiga.repository.registration')->findOneBy(array(
             'user' => $user,
             'convention' => $convention,
         ));
 
         if (!$user->getStudentDelegation()) {
-            $this->addFlash('warning', $this->get('translator')->trans('Debe completar su perfil para inscribirse en una asamblea'));
+            $this->addFlash('warning', 'warning.complete_data');
 
             return $this->redirectToRoute('fos_user_profile_edit');
         }
 
-        if ($registration) {
+        if ($registration && $registration->getStatus() != Registration::STATUS_INIT) {
             return $this->redirectToRoute('registration');
         }
 

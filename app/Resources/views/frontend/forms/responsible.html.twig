@@ -1,0 +1,12 @@
+{% block form %}
+    {{ form_errors(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.position) }}
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    {{ form_rest(form) }}
+{% endblock %}

@@ -23,6 +23,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class Registration
 {
+    const STATUS_INIT = 'init';
     const STATUS_OPEN = 'open';
     const STATUS_CONFIRMED = 'confirmed';
     const STATUS_PAID = 'paid';
@@ -85,7 +86,7 @@ class Registration
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=45, nullable=false)
-     * @Assert\Choice(choices={"open", "confirmed", "paid", "cancelled"})
+     * @Assert\Choice(choices={"open", "confirmed", "paid", "cancelled", "init"})
      * @Serializer\Exclude
      */
     private $status;
@@ -197,13 +198,14 @@ class Registration
     {
         return $this->convention;
     }
+
     /**
      * Constructor.
      */
     public function __construct()
     {
         $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->status = self::STATUS_OPEN;
+        $this->status = self::STATUS_INIT;
     }
 
     /**
@@ -298,6 +300,8 @@ class Registration
 
     /**
      * @param string $status
+     *
+     * @return $this
      */
     public function setStatus($status)
     {
@@ -316,7 +320,13 @@ class Registration
      */
     public static function getStatuses()
     {
-        return array(self::STATUS_OPEN, self::STATUS_PAID, self::STATUS_CONFIRMED, self::STATUS_CANCELLED);
+        return [
+            self::STATUS_OPEN,
+            self::STATUS_PAID,
+            self::STATUS_CONFIRMED,
+            self::STATUS_CANCELLED,
+            self::STATUS_INIT,
+        ];
     }
 
     /**
@@ -484,6 +494,11 @@ class Registration
             self::STATUS_CANCELLED => 'status.cancelled',
             self::STATUS_PAID => 'status.paid',
         ];
+    }
+
+    public function isOpen()
+    {
+        return $this->getStatus() === self::STATUS_OPEN;
     }
 
     /**

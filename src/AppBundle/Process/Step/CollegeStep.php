@@ -8,7 +8,7 @@
  */
 namespace AppBundle\Process\Step;
 
-use AppBundle\Form\CollegeType;
+use AppBundle\Form\Type\CollegeType;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
 class CollegeStep extends BaseStep
@@ -38,7 +38,7 @@ class CollegeStep extends BaseStep
             $em = $this->getDoctrine()->getManager();
             $em->persist($college);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans('Your college has been successfully updated'));
+            $this->addFlash('success', 'success.college');
 
             return $this->complete();
         }

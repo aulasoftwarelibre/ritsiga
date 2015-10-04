@@ -96,7 +96,7 @@ class RegistrationController extends Controller
         $registration = $this->getRegistration();
         $convention = $this->getConvention();
 
-        if (!$registration) {
+        if (!$registration || $registration->getStatus() == Registration::STATUS_INIT) {
             return $this->redirectToRoute('sylius_flow_start', array('scenarioAlias' => 'asamblea'));
         }
 

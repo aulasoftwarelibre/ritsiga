@@ -9,6 +9,7 @@
 namespace AppBundle\Process\Step;
 
 use AppBundle\Entity\Registration;
+use AppBundle\Entity\TaxData;
 use Sylius\Bundle\FlowBundle\Process\Step\ControllerStep;
 
 abstract class BaseStep extends ControllerStep
@@ -27,9 +28,19 @@ abstract class BaseStep extends ControllerStep
         $registration = $this->container->get('ritsiga.repository.registration')->findOneBy(['user' => $user]);
 
         if (!$registration) {
-            $this->createNotFoundException();
+            $convention = $this->getCurrentSite();
+            $registration = new Registration();
+            $registration->setConvention($convention);
+            $registration->setUser($user);
+            $registration->setTaxdata(TaxData::copyFromUniversity($this->getUser()->getUniversity()));
         }
 
         return $registration;
+    }
+
+    protected function addFlash($type, $message)
+    {
+        $message = $this->get('translator')->trans($message, [], 'flashes');
+        parent::addFlash($type, $message);
     }
 }

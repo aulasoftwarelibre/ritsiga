@@ -1,0 +1,23 @@
+{% extends ":frontend:base.html.twig" %}
+
+{% use ":frontend/forms:responsible.html.twig" %}
+
+{% block content %}
+    <section class="content">
+        <div class="box box-default">
+            <form method="post">
+                <div class ="box-header">
+                    <h3 class="box-title">{{ 'label.certificate_data' | trans }}</h3>
+                </div>
+                <div class="box-body">
+                    {% block form %}{{ parent() }}{% endblock %}
+                </div>
+                <div class="box-footer">
+                    <a href="{{ path('registration') }}" class="btn btn-default">Volver</a> &nbsp;
+                    <button class="btn btn-warning" type="submit" id="aceptar">Aceptar <i class="icon-forward icon-white"></i></button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+

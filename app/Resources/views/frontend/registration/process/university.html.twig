@@ -1,17 +1,11 @@
 {%  extends ":frontend/registration:step.html.twig" %}
 
-{% block titlestep %}
+{% use ":frontend/forms:university.html.twig" %}
 
-<h3 class="box-title"> Su Universidad </h3>
-{% endblock %}
+{% block titlestep %}{{ 'label.university'|trans }}{% endblock %}
+
 {% block descriptionstep %}
-    <p>Compruebe que los datos son correctos. El CIF es necesario para realizar las facturas. Si las facturas tienen
-    que ir a un CIF distinto podrá indicarlo más adelante. Aquí indique el de su universidad</p>
-{% endblock %}
-
-{% block formstep %}
-    {{ form_errors(form) }}
-
-    {{ form_rest(form) }}
+    Compruebe que los datos son correctos. El CIF es necesario para realizar las facturas. Si las facturas tienen
+    que ir a un CIF distinto podrá indicarlo más adelante. Aquí indique el de su universidad.
 {% endblock %}
 

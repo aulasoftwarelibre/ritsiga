@@ -1,16 +1,9 @@
-{%  extends ":frontend/registration:step.html.twig" %}
+{% extends ":frontend/registration:step.html.twig" %}
 
-{% block titlestep %}
-    <h3 class="box-title">{{ 'label.certificate_data' |trans }}</h3>
-{% endblock %}
+{% use ":frontend/forms:responsible.html.twig" %}
+
+{% block titlestep %}{{ 'label.certificate_data' | trans }}{% endblock %}
+
 {% block descriptionstep %}
     {{ 'help.certificate_data'|trans }}
-{% endblock %}
-{% block formstep %}
-    {{ form_errors(form) }}
-
-    {{ form_row(form.name) }}
-    {{ form_row(form.position) }}
-
-    {{ form_rest(form) }}
 {% endblock %}

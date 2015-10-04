@@ -8,7 +8,7 @@
  */
 namespace AppBundle\Process\Step;
 
-use AppBundle\Form\UniversityType;
+use AppBundle\Form\Type\UniversityType;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
 class UniversityStep extends BaseStep
@@ -38,7 +38,7 @@ class UniversityStep extends BaseStep
             $em = $this->getDoctrine()->getManager();
             $em->persist($university);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans('Your university has been successfully updated'));
+            $this->addFlash('success', 'success.university');
 
             return $this->complete();
         }

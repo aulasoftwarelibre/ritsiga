@@ -90,6 +90,14 @@
                 <source>label.fax</source>
                 <target>Fax</target>
             </trans-unit>
+            <trans-unit id="label.facebook">
+                <source>label.facebook</source>
+                <target>Facebook</target>
+            </trans-unit>
+            <trans-unit id="label.twitter">
+                <source>label.twitter</source>
+                <target>Twitter</target>
+            </trans-unit>
             <trans-unit id="16">
                 <source>Profile</source>
                 <target>Perfil</target>
@@ -122,29 +130,13 @@
                 <source>label.cif</source>
                 <target>NIF</target>
             </trans-unit>
-            <trans-unit id="24">
-                <source>Your university has been successfully updated</source>
-                <target>Su universidad ha sido actualizada correctamente</target>
-            </trans-unit>
             <trans-unit id="25">
                 <source>label.academic_degrees</source>
                 <target>Titulaciones impartidas</target>
             </trans-unit>
-            <trans-unit id="26">
-                <source>Your college has been successfully updated</source>
-                <target>Su centro ha sido actualizado correctamente</target>
-            </trans-unit>
-            <trans-unit id="27">
-                <source>Your student delegation has been successfully updated</source>
-                <target>Su delegación de estudiantes ha sido actualizado correctamente</target>
-            </trans-unit>
             <trans-unit id="28">
                 <source>label.position</source>
                 <target>Cargo</target>
-            </trans-unit>
-            <trans-unit id="29">
-                <source>Your registration has been saved, you can now add registrations</source>
-                <target>Su inscripción se ha guardado correctamente, ahora puede añadir inscripciones</target>
             </trans-unit>
             <trans-unit id="30">
                 <source>label.actions</source>

@@ -22,7 +22,7 @@ ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 RUN rm /etc/php5/fpm/pool.d/www.conf
 
 # Security
-RUN usermod -u 1002 www-data
+RUN usermod -u 1000 www-data
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]

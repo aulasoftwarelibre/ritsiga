@@ -8,7 +8,7 @@
  */
 namespace AppBundle\Process\Step;
 
-use AppBundle\Form\StudentDelegationType;
+use AppBundle\Form\Type\StudentDelegationType;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
 
 class StudentDelegationStep extends BaseStep
@@ -39,7 +39,7 @@ class StudentDelegationStep extends BaseStep
             $em = $this->getDoctrine()->getManager();
             $em->persist($student);
             $em->flush();
-            $this->addFlash('warning', $this->get('translator')->trans('Your student delegation has been successfully updated'));
+            $this->addFlash('success', 'success.student_delegation');
 
             return $this->complete();
         }

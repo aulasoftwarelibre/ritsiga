@@ -6,7 +6,7 @@
  * Date: 4/06/15
  * Time: 13:37.
  */
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -34,7 +34,6 @@ class ResponsibleType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Registration',
             'validation_groups' => ['Default', 'taxdata'],

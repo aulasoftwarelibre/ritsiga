@@ -34,55 +34,54 @@
             $('#step_student').removeClass("btn-default").addClass("btn-warning");
             $('#step_responsible').removeClass("btn-default").addClass("btn-warning");
             $('#step_participants').removeClass("btn-default").addClass("btn-warning");
+            $('#step_taxdata').removeClass("btn-default").addClass("btn-warning");
         }
     </script>
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12" id="center_column">
-            <div class="box box-warning">
-                <form action="{{ path('sylius_flow_forward', {'scenarioAlias': 'asamblea', 'stepName': context.currentStep.name}) }}" method="post">
-                    <div class ="box-header">
-                        {% block titlestep %}{% endblock %}
-                    </div>
-                    <div class="box-body">
-                            <div class="process">
-                                <div class="process-row">
-                                    <div class="process-step">
-                                        <button type="button" id="step_welcome" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-check fa-2x"></i></button>
-                                    </div>
-                                    <div class="process-step">
-                                        <button type="button" id="step_university" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-university fa-2x"></i></button>
-                                    </div>
-                                    <div class="process-step">
-                                        <button type="button" id="step_college" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-book fa-2x"></i></button>
-                                    </div>
-                                    <div class="process-step">
-                                        <button type="button" id="step_student" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-users fa-2x"></i></button>
-                                    </div>
-                                    <div class="process-step">
-                                        <button type="button" id="step_responsible" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-user fa-2x"></i></button>
-                                    </div>
-                                    <div class="process-step">
-                                        <button type="button" id="step_taxdata" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-euro fa-2x"></i></button>
-                                    </div>
-                                </div>
+    <section class="content">
+        <div class="box box-warning">
+            <form action="{{ path('sylius_flow_forward', {'scenarioAlias': 'asamblea', 'stepName': context.currentStep.name}) }}" method="post">
+                <div class ="box-header">
+                    <h3 class="box-title">{% block titlestep %}{% endblock %}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="process">
+                        <div class="process-row">
+                            <div class="process-step">
+                                <button type="button" id="step_welcome" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-check fa-2x"></i></button>
                             </div>
+                            <div class="process-step">
+                                <button type="button" id="step_university" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-university fa-2x"></i></button>
+                            </div>
+                            <div class="process-step">
+                                <button type="button" id="step_college" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-book fa-2x"></i></button>
+                            </div>
+                            <div class="process-step">
+                                <button type="button" id="step_student" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-users fa-2x"></i></button>
+                            </div>
+                            <div class="process-step">
+                                <button type="button" id="step_responsible" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-user fa-2x"></i></button>
+                            </div>
+                            <div class="process-step">
+                                <button type="button" id="step_taxdata" class="btn btn-default btn-circle" disabled="enabled"><i class="fa fa-euro fa-2x"></i></button>
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="info">
-                            {% block descriptionstep %}{% endblock %}
-                            </div>
-                            {% block formstep %}{% endblock %}
-                            {% block buttonsstep %}{% endblock %}
+                    <div class="alert bg-gray">
+                        {% block descriptionstep %}{% endblock %}
                     </div>
-                    <div class="box-footer">
-                        {% if context.firstStep!=1  %}
-                            <a href="{{ path('sylius_flow_display', {'scenarioAlias': 'asamblea', 'stepName': context.previousStep.name }) }}" class="btn btn-default">Volver</a> &nbsp;
-                        {% endif %}
-                        <button class="btn btn-warning" type="submit" id="aceptar">Aceptar <i class="icon-forward icon-white"></i></button>
-                    </div>
-                </form>
-            </div>
+
+                    {% block form %}{% endblock %}
+                </div>
+                <div class="box-footer">
+                    {% if context.firstStep!=1  %}
+                        <a href="{{ path('sylius_flow_display', {'scenarioAlias': 'asamblea', 'stepName': context.previousStep.name }) }}" class="btn btn-default">Volver</a> &nbsp;
+                    {% endif %}
+                    <button class="btn btn-warning" type="submit" id="aceptar">Aceptar <i class="icon-forward icon-white"></i></button>
+                </div>
+            </form>
         </div>
-    </div>
+    </section>
 {% endblock %}

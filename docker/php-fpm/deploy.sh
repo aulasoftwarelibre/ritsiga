@@ -4,7 +4,6 @@ deploy()
 {
     cd /var/www/symfony
     php app/console doctrine:schema:update --force --complete
-    php app/console h:l:s
     php app/console cache:clear
     chown -R www-data. /var/www/symfony/app/cache /var/www/symfony/app/logs
     cd -

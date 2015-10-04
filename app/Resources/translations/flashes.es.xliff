@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" source-language="en" datatype="plaintext">
+        <body>
+            <trans-unit id="success.taxdata">
+                <source>success.taxdata</source>
+                <target>Sus datos de facturación han sido guardados correctamente.</target>
+            </trans-unit>
+            <trans-unit id="success.university">
+                <source>success.university</source>
+                <target>Su universidad ha sido actualizada correctamente.</target>
+            </trans-unit>
+            <trans-unit id="success.college">
+                <source>success.college</source>
+                <target>Su centro ha sido actualizado correctamente.</target>
+            </trans-unit>
+            <trans-unit id="success.student_delegation">
+                <source>success.student_delegation</source>
+                <target>Su órgano de representación estudiantil ha sido actualizado correctamente.</target>
+            </trans-unit>
+            <trans-unit id="success.registration">
+                <source>success.registration</source>
+                <target>Los datos de la acreditación se han guardado correctamente.</target>
+            </trans-unit>
+            <trans-unit id="warning.complete_data">
+                <source>warning.complete_data</source>
+                <target>Debe completar su perfil para inscribirse en una asamblea.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

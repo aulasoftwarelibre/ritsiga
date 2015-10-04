@@ -1,4 +1,17 @@
 {%  extends ":frontend:base.html.twig" %}
+
+{% import _self as forms %}
+
+{% macro edit_button(value, to, open) %}
+    {% set disabled = open ? '' : 'disabled' %}
+    <div class="input-group input-group-sm">
+        <input type="text" class="form-control" id="{{ to }}" value="{{ value }}" readonly="readonly"/>
+        <span class="input-group-btn">
+          <a href="{{ url(to ~ '_edit') }}" class="btn btn-default btn-flat {{ disabled }}"><i class="fa fa-pencil"></i> {{ 'action.edit' | trans({}, 'actions') }}</a>
+        </span>
+    </div>
+{% endmacro %}
+
 {% block content %}
     {% block options %}
     {% endblock %}
@@ -11,23 +24,30 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <p><strong>{{ 'label.university' | trans }}:</strong> {{ registration.user.university }}</p>
-                            <p><strong>{{ 'label.college' | trans }}:</strong> {{ registration.user.college }}</p>
-                            <p><strong>{{ 'label.student_delegation' | trans }}:</strong> {{ registration.user.studentDelegation }}</p>
-                            <p><strong>{{ 'label.certificate_data' | trans }}:</strong>
-                            <ul>
-                                <li>{{ 'label.name' | trans }}:</strong> {{ registration.name }}</li>
-                                <li>{{ 'label.position' | trans }}:</strong> {{ registration.position }}</li>
-                            </ul>
-                            </p>
-                            <p><strong>{{ 'label.taxdata' | trans }}:</strong>
-                                <ul>
-                                    <li><strong>{{ 'label.name' | trans }}:</strong> {{ registration.taxdata.name }}</li>
-                                    <li><strong>{{ 'label.address' | trans }}:</strong> {{ registration.taxdata.address | nl2br }}</li>
-                                    <li><strong>{{ 'label.city' | trans }}:</strong> {{ registration.taxdata.city }} ({{ registration.taxdata.postcode }})</li>
-                                    <li><strong>{{ 'label.cif' | trans }}:</strong> {{ registration.taxdata.cif }}</li>
-                                </ul>
-                            </p>
+                            <div class="form-group">
+                                <label for="university">{{ 'label.university' | trans }}</label>
+                                {{ forms.edit_button(registration.user.university, 'university', registration.open) }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="college">{{ 'label.college' | trans }}</label>
+                                {{ forms.edit_button(registration.user.college, 'college', registration.open) }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="student_delegation">{{ 'label.student_delegation' | trans }}</label>
+                                {{ forms.edit_button(registration.user.studentDelegation, 'student_delegation', registration.open) }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="certificate_data">{{ 'label.certificate_data' | trans }}</label>
+                                {{ forms.edit_button(registration.name, 'responsible', registration.open) }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="taxdata">{{ 'label.taxdata' | trans }}</label>
+                                {{ forms.edit_button(registration.taxdata.name, 'taxdata', registration.open) }}
+                            </div>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- ./box-body -->
