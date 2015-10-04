@@ -213,25 +213,25 @@ services:
 ## VOTERS
 
     ritsiGA.security_voter.convention_voter:
-        class: AppBundle\Security\Voter\ConventionVoter
+        class: AppBundle\Security\Voter\Sonata\ConventionVoter
         arguments: [@ritsiga.site.manager, @security.role_hierarchy]
         tags:
            - { name: security.voter }
 
     ritsiGA.security_voter.participantype_voter:
-        class: AppBundle\Security\Voter\TicketVoter
+        class: AppBundle\Security\Voter\Sonata\TicketVoter
         arguments: [@ritsiga.site.manager, @security.role_hierarchy]
         tags:
            - { name: security.voter }
 
     ritsiGA.security_voter.participant_voter:
-        class: AppBundle\Security\Voter\ParticipantVoter
+        class: AppBundle\Security\Voter\Sonata\ParticipantVoter
         arguments: [@ritsiga.site.manager, @security.role_hierarchy]
         tags:
            - { name: security.voter }
 
     ritsiGA.security_voter.registration_voter:
-        class: AppBundle\Security\Voter\RegistrationVoter
+        class: AppBundle\Security\Voter\Sonata\RegistrationVoter
         arguments: [@ritsiga.site.manager, @security.role_hierarchy]
         tags:
            - { name: security.voter }
@@ -253,7 +253,7 @@ services:
             - { name: security.voter }
 
 #    ritsiGA.security_voter.organizer_voter:
-#        class: AppBundle\Security\Voter\AdminVoter
+#        class: AppBundle\Security\Voter\Sonata\AdminVoter
 #        arguments: [ @ritsiga.site.manager, @security.role_hierarchy ]
 #        tags:
 #          - { name: security.voter }

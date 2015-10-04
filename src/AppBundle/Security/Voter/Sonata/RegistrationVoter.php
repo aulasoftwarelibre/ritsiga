@@ -4,24 +4,24 @@
  * Created by PhpStorm.
  * User: sergio
  * Date: 22/08/15
- * Time: 10:57.
+ * Time: 10:59.
  */
-namespace AppBundle\Security\Voter;
+namespace AppBundle\Security\Voter\Sonata;
 
-use AppBundle\Entity\Participant;
+use AppBundle\Entity\Registration;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
-class ParticipantVoter extends AbstractOrganizationVoter
+class RegistrationVoter extends AbstractOrganizationVoter
 {
     public function getClass()
     {
-        return 'AppBundle\Entity\Participant';
+        return 'AppBundle\Entity\Registration';
     }
 
     /**
-     * @param TokenInterface   $token
-     * @param null|Participant $object
-     * @param array            $attributes
+     * @param TokenInterface    $token
+     * @param null|Registration $object
+     * @param array             $attributes
      *
      * @return int
      */
@@ -30,7 +30,7 @@ class ParticipantVoter extends AbstractOrganizationVoter
         $vote = parent::vote($token, $object, $attributes);
 
         if ($vote === self::ACCESS_GRANTED
-            && $object->getRegistration()->getConvention() != $this->siteManager->getCurrentSite()) {
+            && $object->getConvention() != $this->siteManager->getCurrentSite()) {
             $vote = self::ACCESS_DENIED;
         }
 

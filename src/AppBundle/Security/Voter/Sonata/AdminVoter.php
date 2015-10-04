@@ -6,7 +6,7 @@
  * Date: 22/08/15
  * Time: 00:36.
  */
-namespace AppBundle\Security\Voter;
+namespace AppBundle\Security\Voter\Sonata;
 
 use AppBundle\Site\SiteManager;
 use FOS\UserBundle\Model\UserInterface;
