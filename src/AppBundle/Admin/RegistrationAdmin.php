@@ -121,11 +121,11 @@ class RegistrationAdmin extends Admin
             ->with('title.travel_info', ['class' => 'col-md-6'])
                 ->add('arrivaldate', 'date', [
                     'label' => 'label.arrivaldate',
-                    'format' => 'd/m/Y',
+                    'format' => 'd/m/Y H:i',
                 ])
                 ->add('departuredate', 'date', [
                     'label' => 'label.departuredate',
-                    'format' => 'd/m/Y',
+                    'format' => 'd/m/Y H:i',
                 ])
                 ->add('transport', null, [
                     'label' => 'label.transport',
