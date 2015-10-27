@@ -32,6 +32,10 @@ class StudentDelegationType extends AbstractType
             ->add('postcode', null, [
                 'label' => 'label.postcode',
             ])
+            ->add('email', 'email', [
+                'label' => 'label.email',
+                'required' => true,
+            ])
             ->add('web', null, [
                 'label' => 'label.web',
             ])

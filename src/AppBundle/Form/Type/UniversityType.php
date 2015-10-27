@@ -41,6 +41,10 @@ class UniversityType extends AbstractType
             ->add('phone', null, [
                 'label' => 'label.phone',
             ])
+            ->add('email', 'email', [
+                'label' => 'label.email',
+                'required' => false,
+            ])
             ->add('cif', null, [
                 'label' => 'label.cif',
             ])

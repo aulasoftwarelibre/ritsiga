@@ -32,6 +32,10 @@ class CollegeType extends AbstractType
             ->add('postcode', null, [
                 'label' => 'label.postcode',
             ])
+            ->add('email', 'email', [
+                'label' => 'label.email',
+                'required' => false,
+            ])
             ->add('web', null, [
                 'label' => 'label.web',
             ])
