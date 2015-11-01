@@ -52,7 +52,7 @@ class ParticipantAdmin  extends Admin
                     'property' => 'getDescription',
                 ])
                 ->add('ticket', null, [
-                    'query_builder' => $this->getRepository('ticket')->getTicketsAvailability($this->getCurrentConvention()),
+                    'query_builder' => $this->getRepository('ticket')->getTicketsByConvention($this->getCurrentConvention()),
                     'required' => true,
                     'label' => 'label.ticket',
                 ])

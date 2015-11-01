@@ -41,4 +41,14 @@ class TicketRepository extends  EntityRepository
 
         return $query;
     }
+
+    public function getTicketsByConvention(Convention $convention)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('o.convention = :convention')
+            ->orderBy('o.endDate', 'DESC')
+            ->setParameter('convention', $convention);
+
+        return $query;
+    }
 }
