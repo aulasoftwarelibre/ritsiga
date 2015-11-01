@@ -87,6 +87,9 @@ services:
            - ~
            - AppBundle\Entity\Registration
            - ~
+        calls:
+            - [ setTemplate, [inner_list_row, backend/Registration/CRUD/inner_list_row.html.twig]]
+            - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
 
     ritsiGA.admin.participant:
         class: AppBundle\Admin\ParticipantAdmin

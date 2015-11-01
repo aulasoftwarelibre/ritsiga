@@ -200,3 +200,22 @@
 .fa-sir:before {
     content: "\f19b";
 }
+
+/* LABELS */
+
+.label-init,
+.label-open {
+    background-color: #00a7d0;
+}
+
+.label-cancelled {
+    background-color: #d33724;
+}
+
+.label-confirmed {
+    background-color: #f39c12;
+}
+
+.label-paid {
+    background-color: #008d4c;
+}

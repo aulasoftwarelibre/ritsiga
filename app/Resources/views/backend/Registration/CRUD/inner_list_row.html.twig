@@ -1,0 +1,26 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_flat_inner_row.html.twig' %}
+
+{% block row %}
+
+    {# you can use fields defined in the the Admin class #}
+    <span for="status" class="label label-{{ object.status }}">{{- object|render_list_element(admin.list['status']) -}}</span>&nbsp;-
+    <strong>{{ 'label.id_transfer' | trans }}:</strong> {{ object|render_list_element(admin.list['id']) }} -
+    <strong>{{ 'label.user' | trans }}</strong> {{ object.user.firstname ~ ' ' ~ object.user.lastname }} -
+    <strong>{{ 'label.phone' | trans }}:</strong> {{ object.user.phone }}
+    <br />
+    <strong>{{ 'label.university' | trans }}:</strong> {{ object|render_list_element(admin.list['user.university']) }} -
+    <strong>{{ 'label.college' | trans }}:</strong> {{ object|render_list_element(admin.list['user.college']) }}
+    <br />
+    <strong>{{ 'title.travel_info' | trans }}:</strong>
+    <i class="fa fa-sign-in"></i> {{ object.arrivaldate | date('d/m/y - h:i') }} - <i class="fa fa-sign-out"></i> {{ object.departuredate | date('d/m/y - h:i') }}<br/>
+    <strong>{{ 'label.transport' | trans }}:</strong> {{ object.transport ?: ('label.empty' | trans) }} -
+    <strong>{{ 'label.comentary' | trans }}:</strong> {{ object.comentary ?: ('label.empty' | trans) }}
+    <br />
+    <strong>Participantes:</strong>
+    <ul>
+        {% for participant in object.participants %}
+            <li><a href="{{ path('admin_app_participant_edit', {'id': participant.id}) }}">{{ participant }}</a> - <i class="fa fa-phone"></i> {{ participant.phone ?: ('label.empty' | trans) }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -189,6 +189,12 @@ class RegistrationAdmin extends Admin
                 'choices' => Registration::getStatusArrayChoice(),
                 'catalogue' => 'messages',
             ])
+            ->add('arrivaldate', null, [
+                'label' => 'label.arrivaldate',
+            ])
+            ->add('departuredate', null, [
+                'label' => 'label.departuredate',
+            ])
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],

@@ -411,6 +411,10 @@
                 <source>title.convention_parameters</source>
                 <target>Parámetros de la Asamblea</target>
             </trans-unit>
+            <trans-unit id="label.empty">
+                <source>label.empty</source>
+                <target>No especificado</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
