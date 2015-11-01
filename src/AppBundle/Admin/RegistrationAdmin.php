@@ -70,11 +70,11 @@ class RegistrationAdmin extends Admin
                 ])
             ->end()
             ->with('title.travel_info', ['class' => 'col-md-6'])
-                ->add('arrivaldate', 'sonata_type_date_picker', [
+                ->add('arrivaldate', 'sonata_type_datetime_picker', [
                     'label' => 'label.arrivaldate',
                     'required' => false,
                 ])
-                ->add('departuredate', 'sonata_type_date_picker', [
+                ->add('departuredate', 'sonata_type_datetime_picker', [
                     'label' => 'label.departuredate',
                     'required' => false,
                 ])
