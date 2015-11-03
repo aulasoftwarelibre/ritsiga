@@ -11,15 +11,17 @@
     <strong>{{ 'label.university' | trans }}:</strong> {{ object|render_list_element(admin.list['user.university']) }} -
     <strong>{{ 'label.college' | trans }}:</strong> {{ object|render_list_element(admin.list['user.college']) }}
     <br />
-    <strong>{{ 'title.travel_info' | trans }}:</strong>
-    <i class="fa fa-sign-in"></i> {{ object.arrivaldate | date('d/m/y - h:i') }} - <i class="fa fa-sign-out"></i> {{ object.departuredate | date('d/m/y - h:i') }}<br/>
+    <strong>{{ 'label.arrivaldate' | trans }}:</strong> {{ object.arrivaldate ? (object.arrivaldate|date('d/m/y H:i')) : ('label.empty' | trans) }} -
+    <strong>{{ 'label.departuredate' | trans }}:</strong> {{ object.departuredate ? (object.departuredate|date('d/m/y H:i')) : ('label.empty' | trans) }}<br/>
     <strong>{{ 'label.transport' | trans }}:</strong> {{ object.transport ?: ('label.empty' | trans) }} -
     <strong>{{ 'label.comentary' | trans }}:</strong> {{ object.comentary ?: ('label.empty' | trans) }}
     <br />
     <strong>Participantes:</strong>
     <ul>
         {% for participant in object.participants %}
-            <li><a href="{{ path('admin_app_participant_edit', {'id': participant.id}) }}">{{ participant }}</a> - <i class="fa fa-phone"></i> {{ participant.phone ?: ('label.empty' | trans) }}</li>
+            <li><a href="{{ path('admin_app_participant_edit', {'id': participant.id}) }}">{{ participant }}</a> -
+                <i class="fa fa-phone"></i> {{ participant.phone ?: ('label.empty' | trans) }} -
+                <strong>{{ 'label.size' | trans }}:</strong>  {{ participant.size ?: ('label.empty' | trans) }} </li>
         {% endfor %}
     </ul>
 
