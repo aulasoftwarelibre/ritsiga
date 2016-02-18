@@ -9,7 +9,6 @@
 namespace AppBundle\Process\Step;
 
 use AppBundle\Entity\Registration;
-use AppBundle\Entity\TaxData;
 use AppBundle\Form\Type\TaxDataType;
 use FOS\RestBundle\View\View;
 use Sylius\Bundle\FlowBundle\Process\Context\ProcessContextInterface;
