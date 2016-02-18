@@ -25,7 +25,11 @@ abstract class BaseStep extends ControllerStep
     public function getCurrentRegistration()
     {
         $user = $this->getUser();
-        $registration = $this->container->get('ritsiga.repository.registration')->findOneBy(['user' => $user]);
+        $convention = $this->getCurrentSite();
+        $registration = $this->get('ritsiga.repository.registration')->findOneBy(array(
+            'user' => $user,
+            'convention' => $convention,
+        ));
 
         if (!$registration) {
             $convention = $this->getCurrentSite();
