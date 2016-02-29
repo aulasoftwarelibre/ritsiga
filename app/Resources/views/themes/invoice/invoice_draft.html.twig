@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Example 2</title>
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/pdf.css', absolute=true) }}" media="all" />
-</head>
-<body>
-<header class="clearfix">
-    <div id="logo">
-        <img src="{{ asset('bundles/app/img/logo_ritsi.png', absolute=true) }}">
-    </div>
-    <div id="company">
-        <h2 class="name">Asociación RITSI</h2>
-        <div>CIF: G83299487</div>
-        <div>Área de Tesorería</div>
-        <div><a href="mailto:tesorero@ritsi.org">tesorero@ritsi.org</a></div>
-    </div>
-    </div>
-</header>
-<main>
+{% extends 'themes/template.html.twig' %}
+
+{% block main %}
+
     <div id="details" class="clearfix">
         <div id="client">
+            <div class="to">Datos del emisor:</div>
+            <h2 class="name">Reunión de Estudiantes de Ingenierías Técnicas y Superiores en Informática</h2>
+            <div class="address">Ctra. N-II, km. 33,6. Politécnica S/N
+                28.805 Alcalá de Henares (Madrid)</div>
+            <div class="cif">G83299487</div>
+        <p></p>
             <div class="to">Datos del socio:</div>
             <h2 class="name">{{ registration.taxdata.name }}</h2>
             <div class="address">
@@ -64,7 +53,7 @@
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td colspan="1">IVA 0%</td>
+            <td colspan="1">IVA 0%<sup>1</sup></td>
             <td>--</td>
         </tr>
         <tr>
@@ -85,9 +74,15 @@
         </dl>
     </div>
 </main>
-<footer>
-    Asociación registrada en el Ministerio del Interior el 18 de Septiembre de 2002.
-    Número Nacional 169687 de la Sección 1.
-</footer>
-</body>
-</html>
+
+{% endblock %}
+
+{% block footer %}
+<p style="text-align: left;">
+    <sup>1</sup>
+    La Asociación está reconocida como entidad de carácter social según el artículo 20.1.12.
+    de la Ley del Impuesto sobre el Valor Añadido (Ley 37/1992) y posee certificado de Hacienda
+    de la exención de IVA (clave 5).
+</p>
+{{ parent() }}
+{% endblock %}
